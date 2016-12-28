@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="MediaAnalysisService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2015-04.2.6">
+  <Role name="MediaAnalysisRole">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="Database.ConnectionString" value="Server= g1sa681vaf.database.chinacloudapi.cn,1433;Database=MediaAnalysis;User ID=micdev;Password=mic@2016;Trusted_Connection=False;Encrypt=True;Connection Timeout=120;"/>
+    </ConfigurationSettings>
+  </Role>
+</ServiceConfiguration>

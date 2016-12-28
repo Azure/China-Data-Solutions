@@ -1,0 +1,72 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "MediaAnalysisService", "MediaAnalysisService\MediaAnalysisService.ccproj", "{33B23F3A-9930-4FCF-84EF-EBD1F2467D0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaAnalysisRole", "MediaAnalysisRole\MediaAnalysisRole.csproj", "{2FDE1C32-D0F0-4493-B9EB-1E20EAA63DC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaAnalysis", "MediaAnalysis\MediaAnalysis.csproj", "{4AB3216A-888B-4E94-99D5-34EF1F1500C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{51AD01E6-9B8A-49B8-A54E-B0A4AC37448A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLPLib", "NLPLib\NLPLib.csproj", "{E4862BAE-9AD2-4BE1-9099-668318E7EBB2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{82467481-3AE6-4614-8A8B-4677A2A621BD}"
+	ProjectSection(SolutionItems) = preProject
+		Deploy\InitDB.sql = Deploy\InitDB.sql
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33B23F3A-9930-4FCF-84EF-EBD1F2467D0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33B23F3A-9930-4FCF-84EF-EBD1F2467D0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33B23F3A-9930-4FCF-84EF-EBD1F2467D0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33B23F3A-9930-4FCF-84EF-EBD1F2467D0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FDE1C32-D0F0-4493-B9EB-1E20EAA63DC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FDE1C32-D0F0-4493-B9EB-1E20EAA63DC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FDE1C32-D0F0-4493-B9EB-1E20EAA63DC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FDE1C32-D0F0-4493-B9EB-1E20EAA63DC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AB3216A-888B-4E94-99D5-34EF1F1500C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AB3216A-888B-4E94-99D5-34EF1F1500C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AB3216A-888B-4E94-99D5-34EF1F1500C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AB3216A-888B-4E94-99D5-34EF1F1500C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51AD01E6-9B8A-49B8-A54E-B0A4AC37448A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51AD01E6-9B8A-49B8-A54E-B0A4AC37448A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51AD01E6-9B8A-49B8-A54E-B0A4AC37448A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51AD01E6-9B8A-49B8-A54E-B0A4AC37448A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4862BAE-9AD2-4BE1-9099-668318E7EBB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4862BAE-9AD2-4BE1-9099-668318E7EBB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4862BAE-9AD2-4BE1-9099-668318E7EBB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4862BAE-9AD2-4BE1-9099-668318E7EBB2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://mcdi.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = DataAccess\\DataAccess.csproj
+		SccProjectName1 = DataAccess
+		SccLocalPath1 = DataAccess
+		SccProjectUniqueName2 = NLPLib\\NLPLib.csproj
+		SccProjectName2 = NLPLib
+		SccLocalPath2 = NLPLib
+		SccProjectUniqueName3 = MediaAnalysis\\MediaAnalysis.csproj
+		SccProjectName3 = MediaAnalysis
+		SccLocalPath3 = MediaAnalysis
+		SccProjectUniqueName4 = MediaAnalysisRole\\MediaAnalysisRole.csproj
+		SccProjectName4 = MediaAnalysisRole
+		SccLocalPath4 = MediaAnalysisRole
+		SccProjectUniqueName5 = MediaAnalysisService\\MediaAnalysisService.ccproj
+		SccProjectName5 = MediaAnalysisService
+		SccLocalPath5 = MediaAnalysisService
+	EndGlobalSection
+EndGlobal
