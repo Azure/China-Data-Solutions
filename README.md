@@ -16,4 +16,4 @@ Discover social hot events, analyze sentiment and impact of events based on stre
 Discover and monitor events of enterprise, analyze sentiment and impact of events based on streaming news data published on local public network.
 
 ### [Customer Review Data Analytics Solution](https://github.com/Azure/China-Data-Solutions/tree/master/Marketing/Customer%20Review%20Data%20Analytics) [[Demo]](https://msit.powerbi.com/view?r=eyJrIjoiNTBkNGIwMjAtMTUxNi00M2MxLTllOGMtN2MxZTkwMGEyNDExIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
-Analyze and monitor customer review satification index on productions based on review data published on e-commerce websites.
+Analyze and monitor customer review on productions based on review data published on e-commerce websites.
