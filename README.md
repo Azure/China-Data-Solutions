@@ -15,7 +15,7 @@ Discover social hot events, analyze sentiment and impact of events based on stre
 
 
 ## Solutions for Marketing
-### [Social Listening Solution (CN)](https://github.com/Azure/China-Data-Solutions/tree/master/Marketing/ListeningCN/Web%20Demo) [Demo]
+### [Social Listening Solution (CN)](https://github.com/Azure/China-Data-Solutions/tree/master/Marketing/ListeningCN) [Demo]
 Discover and monitor events of enterprise, analyze sentiment and impact of events based on streaming news data published on local public network.
 
 ### [Customer Review Data Analytics Solution](https://github.com/Azure/China-Data-Solutions/tree/master/Marketing/CRDAnalytics) [[Demo]](https://msit.powerbi.com/view?r=eyJrIjoiNGJiMmFhMjMtNzE0OC00MjM1LThiOTgtYjFhOWIzY2ZlZmU2IiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
