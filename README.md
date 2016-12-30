@@ -1,6 +1,9 @@
 # Data Analytics Industry Solutions How-To Guides
 Data analytics industry solutions are for transforming your data into business intelligence actions. Solution how-to guides contain all the necessary materials and instructions to guide how to deploy solutions to Azure China subscription.
-Deployable demo package of solution is provided to help users to deploy demo with cooked data to quick understand business scenarios and data schema of the solution.
+
+We provide 2 types of packages for customers and partners.
+* Solution package - Solution package includes sample raw data, trained models and demo application (web app or PBI report). Solution package can be auto-deployed to Azure subscription directly follow the instructions of readme to help customers and partners understand how to build business scenarios with Azure services. Customers and partners can repalce the raw data, then modify the solution based on source code and scripts of solutions to build their Demo and PoC on demand.
+* Demo package - Demo package includes cooked data and demo application (web app or PBI report). Demo package can be deployed follow the instructions of readme to help customers and partners quick understand business scenarios. And customers and partners can also modify the demo application to present the business scenarios from different point of views.
 
 
 ## Solutions for Media
