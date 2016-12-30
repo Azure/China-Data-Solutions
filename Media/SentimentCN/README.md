@@ -7,14 +7,14 @@
 
 ## 技术架构
 解决方案架构图如下：
-![Solution Diagram](./Technical%20Packages/Pictures/SocialSentimentCN.jpg)
+![Solution Diagram](./Pictures/SocialSentimentCN.jpg)
 
-## [PowerBI演示](https://github.com/Azure/China-Data-Solutions/tree/master/Media/Social%20Sentiment%20(CN)/PBI%20Demo)
+## [PowerBI演示](https://github.com/Azure/China-Data-Solutions/tree/master/Media/SentimentCN/PBI%20Demo)
 解决方案提供的PBI Demo包含了分析处理过的数据及基本的业务场景。用户可以基于自己的业务理解，快速重新设计符合自己业务需要的Demo或PoC。
 
-## [部署包](https://github.com/Azure/China-Data-Solutions/tree/master/Media/Social%20Sentiment%20(CN)/Technical%20Packages/Deployment%20Packages)
+## [部署包](https://github.com/Azure/China-Data-Solutions/tree/master/Media/SentimentCN/DeployPkg)
 解决方案提供的PBI Demo包含了分析处理过的数据及基本的业务场景。用户可以基于自己的业务理解，快速重新设计符合自己业务需要的Demo或PoC。
 
-## [源代码](https://github.com/Azure/China-Data-Solutions/tree/master/Media/Social%20Sentiment%20(CN)/Technical%20Packages/Source%20Packages)
+## [源代码](https://github.com/Azure/China-Data-Solutions/tree/master/Media/SentimentCN/src)
 解决方案提供了可部署在自有Azure订阅的解决方案部署包，并提供了相应的源代码包供用户参考。用户可以基于这些开发包快速设计、搭建及开发基于Azure的定制化的解决方案。
 

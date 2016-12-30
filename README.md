@@ -7,16 +7,16 @@ We provide 2 types of packages for customers and partners.
 
 
 ## Solutions for Media
-### [Social Sentiment Solution (CN)](https://github.com/Azure/China-Data-Solutions/blob/master/Media/Social%20Sentiment%20(CN)) [[Demo]](https://msit.powerbi.com/view?r=eyJrIjoiOTJkZDYyYzgtZjQwYS00ZTkxLWFhMDAtMWQyNGQ0MjhjZTZjIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
+### [Social Sentiment Solution (CN)](https://github.com/Azure/China-Data-Solutions/tree/master/Media/SentimentCN) [[Demo]](https://msit.powerbi.com/view?r=eyJrIjoiOTJkZDYyYzgtZjQwYS00ZTkxLWFhMDAtMWQyNGQ0MjhjZTZjIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
 Discover social hot events, analyze sentiment and impact of events based on streaming news data published on local public network.
 
-### [Social Sentiment Solution (EN)](https://github.com/Azure/China-Data-Solutions/tree/master/Media/Social%20Sentiment%20(EN)) [Demo]
+### [Social Sentiment Solution (EN)](https://github.com/Azure/China-Data-Solutions/tree/master/Media/SentimentEN) [Demo]
 Discover social hot events, analyze sentiment and impact of events based on streaming news data published on global public network.
 
 
 ## Solutions for Marketing
-### [Social Listening Solution (CN)](https://github.com/Azure/China-Data-Solutions/tree/master/Marketing/Social%20Listening%20(CN)/Web%20Demo) [Demo]
+### [Social Listening Solution (CN)](https://github.com/Azure/China-Data-Solutions/tree/master/Marketing/ListeningCN/Web%20Demo) [Demo]
 Discover and monitor events of enterprise, analyze sentiment and impact of events based on streaming news data published on local public network.
 
-### [Customer Review Data Analytics Solution](https://github.com/Azure/China-Data-Solutions/tree/master/Marketing/Customer%20Review%20Data%20Analytics) [[Demo]](https://msit.powerbi.com/view?r=eyJrIjoiNGJiMmFhMjMtNzE0OC00MjM1LThiOTgtYjFhOWIzY2ZlZmU2IiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
+### [Customer Review Data Analytics Solution](https://github.com/Azure/China-Data-Solutions/tree/master/Marketing/CRDAnalytics) [[Demo]](https://msit.powerbi.com/view?r=eyJrIjoiNGJiMmFhMjMtNzE0OC00MjM1LThiOTgtYjFhOWIzY2ZlZmU2IiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
 Analyze and monitor customer review on productions based on review data published on e-commerce websites.
