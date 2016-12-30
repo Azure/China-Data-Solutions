@@ -7,7 +7,7 @@
 
 ## 技术架构
 解决方案架构图如下：
-![Solution Diagram](Technical Packages/Pictures/SocialSentimentCN.jpg)
+![Solution Diagram](/Pictures/SocialSentimentCN.jpg)
 
 ## [PowerBI演示](https://github.com/Azure/China-Data-Solutions/tree/master/Media/Social%20Sentiment%20(CN)/PBI%20Demo)
 解决方案提供的PBI Demo包含了分析处理过的数据及基本的业务场景。用户可以基于自己的业务理解，快速重新设计符合自己业务需要的Demo或PoC。
