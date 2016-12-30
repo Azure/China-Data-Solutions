@@ -11,11 +11,10 @@
 ![Solution Diagram](https://github.com/Azure/China-Data-Solutions/blob/master/Media/SentimentCN/Pictures/SocialSentimentCN.JPG)
 
 ## [PowerBI演示](https://github.com/Azure/China-Data-Solutions/tree/master/Media/SentimentCN/PBI%20Demo)
-解决方案提供的PBI Demo包含了分析处理过的数据及基本的业务场景。用户可以基于自己的业务理解，快速重新设计符合自己业务需要的Demo或PoC。
+解决方案提供的PBI Demo包含了分析处理过的数据及基本的业务场景。用户可以基于自己的业务理解，利用分析过的样本数据快速修改PBI demo报告，定制业务数据展现方式，帮助客户深入理解业务场景。
 
 ## [部署包](https://github.com/Azure/China-Data-Solutions/tree/master/Media/SentimentCN/DeployPkg)
-解决方案提供的PBI Demo包含了分析处理过的数据及基本的业务场景。用户可以基于自己的业务理解，快速重新设计符合自己业务需要的Demo或PoC。
+解决方案提供了可部署在自有Azure订阅的解决方案部署包，通过部署解决方案，用户可以深入了解如何利用Azure云服务实现业务场景，并可以通过修改部署包中的样本数据或修改PBI Demo报告来快速搭建自己的Demo。
 
 ## [源代码](https://github.com/Azure/China-Data-Solutions/tree/master/Media/SentimentCN/src)
-解决方案提供了可部署在自有Azure订阅的解决方案部署包，并提供了相应的源代码包供用户参考。用户可以基于这些开发包快速设计、搭建及开发基于Azure的定制化的解决方案。
-
+解决方案提供了相应的源代码包供用户参考。用户可以通过修改源码来快速搭建及开发基于Azure的定制化的Demo。
