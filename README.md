@@ -10,9 +10,8 @@ We provide 2 types of packages for customers and partners.
 ### [Social Sentiment Solution (CN)](https://github.com/Azure/China-Data-Solutions/tree/master/Media/SentimentCN) [[Demo]](https://msit.powerbi.com/view?r=eyJrIjoiOTJkZDYyYzgtZjQwYS00ZTkxLWFhMDAtMWQyNGQ0MjhjZTZjIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
 Discover social hot events, analyze sentiment and impact of events based on streaming news data published on local public network.
 
-### [Social Sentiment Solution (EN)](https://github.com/Azure/China-Data-Solutions/tree/master/Media/SentimentEN) [Demo]
+### [Social Sentiment Solution (EN)](https://github.com/Azure/China-Data-Solutions/tree/master/Media/SentimentEN) [[Demo]](https://msit.powerbi.com/view?r=eyJrIjoiYmExZGMxMjUtN2MxZi00MzczLWIwOTEtNWRkMWM5ZmQ0YjIwIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
 Discover social hot events, analyze sentiment and impact of events based on streaming news data published on global public network.
-
 
 ## Solutions for Marketing
 ### [Social Listening Solution (CN)](https://github.com/Azure/China-Data-Solutions/tree/master/Marketing/ListeningCN) [Demo]
