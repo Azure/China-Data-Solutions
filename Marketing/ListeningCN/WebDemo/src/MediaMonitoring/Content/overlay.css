@@ -1,0 +1,260 @@
+﻿.disable-scrollbar {
+    overflow:hidden;
+    height: 100%;
+   
+}
+/*Overlay start*/
+.wrapper {
+    width: 100%;
+    -webkit-transition: -webkit-transform 0.5s;
+    -moz-transition: transform 0.5s;
+    -o-transition: transform 0.5s;
+    transition: transform 0.5s;
+}
+
+.wrapper::after {
+    content: '';
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    background: rgba(0,0,0,1);
+    -webkit-transition: opacity 0.5s, visibility 0s 0.5s;
+    -moz-transition: opacity 0.5s, visibility 0s 0.5s;
+    -o-transition: opacity 0.5s, visibility 0s 0.5s;
+    transition: opacity 0.5s, visibility 0s 0.5s;
+    overflow: hidden;
+}
+
+.wrapper.overlay-open::after {
+    visibility: visible;
+    opacity: 0.5;
+    -webkit-transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+}
+/* Overlay style */
+
+.overlay-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background:rgba(0,0,0,0);
+    overflow:hidden;
+    
+    visibility:hidden;
+    z-index:10001;
+}
+
+.overlay-container .visible {
+   visibility: visible;
+}
+
+.overlay-container.visible {
+   visibility: visible;
+   overflow:auto;
+}
+
+.overlay {
+	width: 50%;    
+	margin-left: 25%;
+	background: #00427c;
+    margin-top:200px;
+    opacity:0.95;
+    border: 1px solid #00ffff;
+}
+
+#news-overlay {
+    margin-top:50px;
+}
+
+/* Overlay closing cross */
+    .overlay .overlay-close {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        right: -42px;
+        top: 0;
+        overflow: hidden;
+        border: none;
+        text-indent: 200%;
+        outline: none;
+        background: rgba(0,0,0,0);
+        background-image: url('../Resources/img/close.png');
+    }
+/* Effects */
+.overlay-scale {
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transform: scale(0.9);
+    -moz-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    -o-transform: scale(0.9);
+    transform: scale(0.9);
+    -webkit-transition: -webkit-transform 0.2s, opacity 0.2s, visibility 0s 0.2s;
+    -moz-transition: transform 0.2s, opacity 0.2s, visibility 0s 0.2s;
+    -o-transition: transform 0.2s, opacity 0.2s, visibility 0s 0.2s;
+    transition: transform 0.2s, opacity 0.2s, visibility 0s 0.2s;
+    z-index:10001
+}
+
+    .overlay-scale.open {
+        visibility: visible;
+        opacity: 1;
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);
+        -webkit-transition: -webkit-transform 0.4s, opacity 0.4s;
+        -moz-transition: transform 0.4s, opacity 0.4s;
+        -o-transition: transform 0.4s, opacity 0.4s;
+        transition: transform 0.4s, opacity 0.4s;
+    }
+
+.overlay-content {
+    color:#ebebeb;
+    margin:32px;
+}
+
+.overlay-label {
+    font-size: 18px;
+    margin-bottom:32px;
+}
+
+.overlay-news-label {
+    font-size: 24px;
+    font-weight:700;
+    margin-bottom:26px;
+}
+
+.overlay-news-label-sentiment {
+    font-size: 20px;
+    line-height:1;
+    font-weight:700;
+    margin-left:5px;
+}
+
+.overlay-action-group,
+.overlay-weibo-detail {
+    margin-bottom:32px;
+}
+
+.overlay-weibo-meta {
+    margin-bottom:22px;
+    font-size:16px;
+    font-weight:lighter;
+    line-height:24px;
+}
+
+.overlay-weibo-user-name {
+    margin-right:10px;
+}
+
+.overlay-weibo-createtime {
+    font-size:14px;
+}
+
+.overlay-weibo-link {
+    font-size:14px;
+    color: #00ffff;
+}
+
+.overlay-weibo-content {
+    margin-left:20px;
+    font-size:16px;
+}
+
+.overlay-weibo-text {
+    margin-bottom:22px;
+}
+
+.overlay-weibo-thumbnail img {
+    margin-right:18px;
+}
+
+    .overlay-action-group div {
+        width:45%;
+    }
+
+.overlay-action-group button {
+    width:100%;
+    background: #00427c;
+    border: 1px solid #00ffff;
+    border-radius: 0;
+    font-size:22px;
+    height:58px;
+}
+
+    .overlay-action-group button span {
+        margin-top: auto;
+        margin-bottom:auto;
+        display:block;
+    }
+
+    .overlay-action-group button:hover {
+        background: #0088fe !important;
+        color: white !important;
+    }
+
+    .overlay-news-list {
+        margin-top:0px; 
+        margin-bottom:3px;
+        width: 100%;
+    }
+
+    .overlay-news-content {
+        color:#ffffff;
+        min-height: 70px;
+    }
+
+    .overlay-newsandComment-content {
+        color:#ffffff;
+        min-height: 100px;
+    }
+
+    .overlay-news-title{
+        font-size:16px;
+        margin-top:10px;
+        padding-left:0px;
+    }
+
+    .overlay-news-meta {
+        margin-top:20px;
+        font-size:12px;
+        color:#b6b5b5;
+        font-weight:lighter;
+        padding-left:0px;
+    }
+
+    .overlay-newswithcomment-meta {
+        margin-top:10px;
+        font-size:12px;
+        color:#b6b5b5;
+        font-weight:lighter;
+        padding-left:0px;
+    }
+
+    .overlay-news-user-name {
+        padding-left:0px;
+        margin-right:10px;
+    }
+
+    .overlay-news-createtime {
+    }
+
+    .overlay-news-HR {
+        width:100%;
+        background-color:#46719d;
+        height:1px;
+        border:none;
+        margin-top: 10px;
+        margin-bottom: 0px;
+    }

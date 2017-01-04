@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Marketing/ListeningCN/WebDemo/src/DataAccessLayer/bin/Debug
+/Marketing/ListeningCN/WebDemo/src/MediaMonitoring/bin
+/Marketing/ListeningCN/WebDemo/src/MediaMonitoring/obj/Debug

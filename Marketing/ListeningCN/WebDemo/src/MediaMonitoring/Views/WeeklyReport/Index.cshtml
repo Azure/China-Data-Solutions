@@ -1,0 +1,860 @@
+﻿@{
+    ViewBag.Title = "WeeklyReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    #selfEventRiver {
+        width: 100%;
+        height: 300px;
+        background-color: #003d73;
+        margin-top: 20px;
+        
+    }
+
+    .leftarea {
+        margin-top: 10px;
+        width: 100%;
+        height: 300px;
+        padding-left: 0px;
+        padding-right: 10px;
+        background-color: #003d73;
+    }
+
+    .rightarea {
+        margin-top: 10px;
+        width: 100%;
+        height: 300px;
+        padding-left: 10px;
+        padding-right: 0px;
+        background-color: #003d73;
+    }
+
+    #totalreporttrend {
+        width: 50%;
+        float: left;
+        margin-left: 20px;
+        height: 230px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    #CountByReporter {
+        width: 40%;
+        float: left;
+        margin-left: 14px;
+        height: 250px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    #SentimentLine {
+        width: 80%;
+        float: left;
+        margin-left: 8%;
+        height: 300px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    #selfMap {
+        width: 80%;
+        float: left;
+        margin-left: 10%;
+        height: 290px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    #AgeGender {
+        width: 80%;
+        float: left;
+        margin-left: 10%;
+        height: 300px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .RightTopTextPanel {
+        width: 25%;
+        float: right;
+        position: absolute;
+        right: 30px;
+        top: 30px;
+    }
+
+    .textPart-leftop {
+        float: left;
+        padding-left: 0px;
+        padding-right: 0px;
+        position: absolute;
+        left: 30px;
+        top: 30px;
+    }
+
+    .textPart-bottom {
+        float: left;
+        padding-left: 0px;
+        padding-right: 0px;
+        position: absolute;
+        top: 250px;
+        left: 30px;
+    }
+
+    .text-big {
+        font-family: 'Microsoft YaHei';
+        font-size: 40px;
+        color: white;
+    }
+
+    .text-title {
+        font-family: 'Microsoft YaHei';
+        height: 30px;
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .text-small {
+        font-family: 'Microsoft YaHei';
+        font-size: 18px;
+        color: white;
+    }
+
+    .text-big-righttop {
+        font-family: 'Microsoft YaHei';
+        font-size: 40px;
+        color: white;
+        float: right;
+    }
+
+    .text-small-righttop {
+        font-family: 'Microsoft YaHei';
+        font-size: 18px;
+        color: white;
+        float: right;
+    }
+
+    .text-small-righttopline2 {
+        font-family: 'Microsoft YaHei';
+        font-size: 14px;
+        color: white;
+        float: right;
+        position: absolute;
+        right: 10px;
+        top: 60px;
+    }
+     @@media(min-width: 992px){
+    .col-r-padding {
+        padding-right: 5px;
+        margin-right: -10px;
+    }
+
+    .col-l-padding {
+        padding-right: 5px;
+    }
+    }
+</style>
+
+
+<div class="row">
+    <div class="col-md-12 nopadding">
+        <div id="selfEventRiver">
+            <iframe src="~/WeeklyReport/SelfEventRiver" onload="this.style.visibility = 'visible';" style="width:100%; border:0px; height:300px; background-color:#001426;visibility:hidden;"></iframe>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 nopadding col-r-padding">
+        <div id="reporterArea" class="leftarea">
+            @*<div id="TrendByDayHour" >*@
+            <div id="totalreporttrend">
+            </div>
+            <div id="CountByReporter">
+            </div>
+            <div class="textPart-leftop">
+                <span class="text-title">媒体曝光&amp;报道分布</span>
+            </div>
+            <div class="textPart-bottom">
+                <span id="ReportCounter" class="text-big">0</span>
+                <span class="text-small">篇</span>
+            </div>
+            <div class="RightTopTextPanel">
+                <span class="text-big-righttop">5</span>
+                <span class="text-small-righttop">TOP</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 nopadding col-l-padding">
+        <div id="SentimentArea" class="rightarea">
+            <div id="SentimentLine"></div>
+            <div class="textPart-leftop">
+                <span class="text-title">用户访问指数&amp;用户情感分布</span>
+            </div>
+            <div class="textPart-bottom">
+                <span class="text-big"></span>
+                <span class="text-small"></span>
+            </div>
+            <div class="RightTopTextPanel">
+                <span id="sentimentRatioNumberDiv" class="text-big-righttop" style="position:absolute;right:25px;top:0px"></span>
+                <span id="sentimentRatioDiv" class="text-small-righttop" style="position:absolute;right:10px;top:35px"></span>
+                <span id="sentimentSummaryDiv" class="text-small" style="position:absolute;font-size:14px;right:10px;top:55px"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 nopadding col-r-padding">
+        <div id="selfMapArea" class="leftarea">
+            <div id="selfMap"></div>
+            <div class="textPart-leftop">
+                <span class="text-title">关注人群地域分布</span>
+            </div>
+            <div class="textPart-bottom">
+                <span id="maxLocationRatioDiv" class="text-big"></span>
+                <span class="text-small">%</span>
+            </div>
+            <div class="RightTopTextPanel">
+                <span id="maxLocationDiv" class="text-big-righttop"></span>
+                <span class="text-small-righttopline2">关注人群最多</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 nopadding col-l-padding">
+        <div id="AgeGenderArea" class="rightarea">
+            <div id="AgeGender"></div>
+            <div class="textPart-leftop">
+                <span class="text-title">关注人群属性</span>
+            </div>
+            <div class="textPart-bottom">
+                <span id="MainGenderRatioLeftDiv" class="text-big"></span>
+                <span id="MainGenderLeftBottomDiv" class="text-small"></span>
+            </div>
+            <div class="RightTopTextPanel">
+                <span id="MainAgeGroupRightDiv" class="text-big-righttop" style="font-size:40px"></span>
+                <span id="MainGenderRightGroupDiv" class="text-small-righttopline2"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/CompetitorGraphDrawer.js"></script>
+    <script type="text/javascript">
+        setCurrentSelectPage($('.js-nav-li-2'));
+
+        var totalReportTrendDrawer = function (data) {
+            var xAxisDataJson = [];
+            var seriesDataJson = [];
+            var totalcount = 0;
+
+            if (typeof (data) === 'undefined' || data == null) return;
+
+            $.each(data.ReportCountTrend, function (index, obj) {
+                xAxisDataJson.push(obj.Time);
+                seriesDataJson.push(obj.Count);
+                totalcount += obj.Count;
+            });
+
+            var totalreporttrend = echarts.init(document.getElementById('totalreporttrend'));
+
+            var optiontotalreporttrend = {
+
+                grid: {
+                    left: '3%',
+                    right: '5%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+
+                tooltip: {
+                    trigger: 'axis'
+                },
+
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    axisLine: {
+                        show: true,
+                        lineStyle: {
+                            color: '#FCFCFC',
+                        },
+                    },
+                    splitLine: {
+                        show: false,
+                    },
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            fontSize: 13,
+                            color: '#FCFCFC',
+                        },
+                    },
+                    data: xAxisDataJson,
+                },
+                yAxis:
+                    {
+                        type: 'value',
+                        axisLine: {
+                            show: true,
+                            lineStyle: {
+                                color: '#FCFCFC',
+                            },
+                        },
+                        axisLabel: {
+                            show: false,
+                        },
+                        splitLine: { show: false },
+                    },
+                series: [
+                    {
+                        name: '报道量',
+                        type: 'line',
+                        data: seriesDataJson,
+                        smooth: true,
+                    },
+                ]
+            };
+            totalreporttrend.setOption(optiontotalreporttrend);
+
+            //display label
+            var ReportCounter = document.getElementById('ReportCounter');
+            ReportCounter.innerText = totalcount.toFixed(0);
+        }
+
+        var newsSourceDrawer = function (data) {
+            if (data == null) return;
+            var xAxisDataJson = ['', '', '', '', ''];
+            var seriesDataJson = [0, 0, 0, 0, 0];
+            var i = 4;
+            $.each(data.TopNewsSource, function (index, obj) {
+                if (i >= 0) {
+                    xAxisDataJson[i] = obj.Name;
+                    seriesDataJson[i] = obj.Count;
+                    i--;
+                }
+            });
+
+            var countByReporter = echarts.init(document.getElementById('CountByReporter'));
+            var optionCountByReporter = {
+                tooltip: {
+                    show: true
+                },
+                grid: {
+                    left: '3%',
+                    right: '8%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+
+                yAxis: [
+                    {
+                        type: 'category',
+                        axisLabel: {
+                            textStyle: {
+                                color: '#ffffff',
+                            }
+                        },
+                        splitLine: { show: false },
+                        data: xAxisDataJson
+                    }
+                ],
+                xAxis: [
+                    {
+                        show: false,
+                        type: 'value',
+                        splitLine: { show: false },
+                    }
+                ],
+                series: [
+                    {
+                        name: "报道量",
+                        type: "bar",
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'right',
+                                textStyle: {
+                                    color: '#ffffff',
+                                    fontsize: 14
+                                }
+                            }
+                        },
+                        data: seriesDataJson,
+                        itemStyle: {
+                            normal: {
+                                color: '#007fbc'
+                            }
+                        }
+                    }
+                ]
+            };
+
+            countByReporter.setOption(optionCountByReporter);
+        }
+
+        var sentimentDrawer = function (data) {
+            if (data == null) return;
+            var xAxisDataJson = [];
+            var totalVisitSeriesDataJson = [];
+            var positiveSeriesDataJson = [];
+            var negativeSeriesDataJson = [];
+            var totalPositive = 0;
+            var totalNegative = 0;
+            var maxBarHeight = 0;
+            $.each(data.VisitSentimentTrend, function (index, obj) {
+                xAxisDataJson.push(obj.Time);
+                positiveSeriesDataJson.push(obj.PositiveCount);
+                negativeSeriesDataJson.push(-obj.NegativeCount);
+
+                totalPositive += obj.PositiveCount;
+                totalNegative += obj.NegativeCount;
+
+                if (obj.PositiveCount > maxBarHeight)
+                    maxBarHeight = obj.PositiveCount;
+
+                if (obj.NegativeCount > maxBarHeight)
+                    maxBarHeight = obj.NegativeCount;
+            });
+
+            maxBarHeight = maxBarHeight * 1.5;
+
+            var maxVisit = 0;
+            $.each(data.VisitCountTrend, function (index, obj) {
+                totalVisitSeriesDataJson.push(obj.Count);
+                if (obj.Count > maxVisit)
+                    maxVisit = obj.Count;
+            });
+            maxVisit = maxVisit * 1.1;
+
+            var SentimentLine = echarts.init(document.getElementById('SentimentLine'));
+
+            var optionSentimentLine = {
+                title: {
+                    text: ''
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    formatter: function (params) {
+                        return '总访问量' + params[2].value + '    正面评论: ' + params[0].value + '   负面评论: ' + (-params[1].value);
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: true,
+                    data: xAxisDataJson,
+                    axisLine: {
+                        show: true,
+                        lineStyle: {
+                            color: '#FCFCFC',
+                        },
+                    },
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            fontSize: 13,
+                            color: '#FCFCFC',
+                        },
+                    },
+                    splitLine: { show: false },
+                },
+                yAxis: [
+                    {
+                        type: 'value',
+                        //name: '评论数',
+                        min: -maxBarHeight,
+                        max: maxBarHeight,
+                        axisLine: {
+                            show: true,
+                            lineStyle: {
+                                color: '#FCFCFC',
+                            },
+                        },
+                        axisLabel: {
+                            show: false,
+                            formatter: '{value} ',
+                            textStyle: {
+                                fontSize: 13,
+                                color: '#FCFCFC',
+                            },
+                        },
+                        splitLine: { show: false },
+                    },
+                    {
+                        type: 'value',
+                        //name: '访问量',
+                        min: -maxVisit,
+                        max: maxVisit,
+                        axisLine: {
+                            show: false,
+                            lineStyle: {
+                                color: '#FCFCFC',
+                            },
+                        },
+                        axisLabel: {
+                            show: false,
+                            formatter: '{value} ',
+                            textStyle: {
+                                fontSize: 13,
+                                color: '#FCFCFC',
+                            },
+                        },
+                        splitLine: { show: false },
+                    }
+                ],
+                series: [
+                    {
+                        name: '正面',
+                        type: 'bar',
+                        stack: 'sentiment',
+                        data: positiveSeriesDataJson,
+                        smooth: true,
+                        itemStyle: {
+                            normal: {
+                                color: '#00ff7c'
+                            }
+                        }
+                    },
+                    {
+                        name: '负面',
+                        type: 'bar',
+                        stack: 'sentiment',
+                        data: negativeSeriesDataJson,
+                        smooth: true,
+                        itemStyle: {
+                            normal: {
+                                color: '#e53965'
+                            }
+                        }
+                    },
+                    {
+                        name: '访问量',
+                        type: 'line',
+                        yAxisIndex: 1,
+                        data: totalVisitSeriesDataJson,
+                        smooth: true,
+                        itemStyle: {
+                            normal: {
+                                color: '#00ffff'
+                            }
+                        }
+                    }
+                ]
+            };
+
+            SentimentLine.setOption(optionSentimentLine);
+
+            //display Label
+
+            var ratio = (totalPositive + 1) / (totalPositive + totalNegative + 2);
+            if (ratio > 0.55) {
+                var DisplayRatio = ratio * 100;
+
+                var sentimentRatioNumberDiv = document.getElementById('sentimentRatioNumberDiv');
+                sentimentRatioNumberDiv.innerText = DisplayRatio.toFixed(0);
+
+                var sentimentRatioDiv = document.getElementById('sentimentRatioDiv');
+                sentimentRatioDiv.innerText = '%';
+
+                var sentimentSummaryDiv = document.getElementById('sentimentSummaryDiv');
+                sentimentSummaryDiv.innerText = '本周正面情绪较多';
+
+                // set color, same with positive bar
+                sentimentRatioNumberDiv.style.color = '#00ff7c';
+                sentimentRatioDiv.style.color = '#00ff7c';
+                sentimentSummaryDiv.style.color = '#FCFCFC';
+            }
+            else if (ratio < 0.45) {
+                var DisplayRatio = ratio * 100;
+
+                var sentimentRatioNumberDiv = document.getElementById('sentimentRatioNumberDiv');
+                sentimentRatioNumberDiv.innerText = DisplayRatio.toFixed(0);
+
+                var sentimentRatioDiv = document.getElementById('sentimentRatioDiv');
+                sentimentRatioDiv.innerText = '%';
+
+                var sentimentSummaryDiv = document.getElementById('sentimentSummaryDiv');
+                sentimentSummaryDiv.innerText = '本周负面情绪较多';
+
+                // set color, same with negative bar
+                sentimentRatioNumberDiv.style.color = '#e53965';
+                sentimentRatioDiv.style.color = '#e53965';
+                sentimentSummaryDiv.style.color = '#FCFCFC';
+            }
+            else {
+                //中性
+                var DisplayRatio = ratio * 100;
+
+                var sentimentRatioNumberDiv = document.getElementById('sentimentRatioNumberDiv');
+                sentimentRatioNumberDiv.innerText = DisplayRatio.toFixed(0);
+
+                var sentimentRatioDiv = document.getElementById('sentimentRatioDiv');
+                sentimentRatioDiv.innerText = '%';
+
+                var sentimentSummaryDiv = document.getElementById('sentimentSummaryDiv');
+                sentimentSummaryDiv.innerText = '本周情绪相对中性';
+
+                // set color to write
+                sentimentRatioNumberDiv.style.color = '#FCFCFC';
+                sentimentRatioDiv.style.color = '#FCFCFC';
+                sentimentSummaryDiv.style.color = '#FCFCFC';
+            }
+        }
+
+        var ageGenderDrawer = function (data) {
+            if (data == null) return;
+            var AgeGenderDataJson = [];
+            var GenderDataJson = [];
+
+            var maxAgeGroupName = '';
+            var maxGenderName = '';
+            var max = 0;
+
+            var maleCount = 0;
+            var femaleCount = 0;
+            $.each(data.AgeGenderCount, function (index, obj) {
+                if (obj.AgeGroup != 'NULL' && obj.AgeGroup != 'NULL') {
+                    if (obj.Gender == 'male' || obj.Gender == '男性') {
+                        maleCount += obj.Count;
+                        obj.Gender = '男性';   //zh-ch
+                    }
+                    else if (obj.Gender == 'female' || obj.Gender == '女性') {
+                        femaleCount += obj.Count;
+                        obj.Gender = '女性';
+                    }
+
+                    var AgeGenderItem = { name: obj.AgeGroup + ' ' + obj.Gender, value: obj.Count };
+                    AgeGenderDataJson.push(AgeGenderItem);
+
+                    if (obj.Count > max) {
+                        max = obj.Count;
+                        maxAgeGroupName = obj.AgeGroup;
+                        maxGenderName = obj.Gender;
+                    }
+
+                }
+
+            });
+            var itemmale = { name: "男性", value: maleCount };
+            var itemfemale = { name: "女性", value: femaleCount };
+            GenderDataJson.push(itemfemale);
+            GenderDataJson.push(itemmale);
+
+            var AgeGenderChart = echarts.init(document.getElementById('AgeGender'));
+
+            var optionAgeGender = {
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b}: {c} ({d}%)"
+                },
+                series: [
+                    {
+                        name: '性别',
+                        type: 'pie',
+                        //selectedMode: 'single',
+                        radius: [0, '35%'],
+
+                        label: {
+                            normal: {
+                                position: 'inner'
+                            }
+                        },
+                        labelLine: {
+                            normal: {
+                                show: false
+                            }
+                        },
+                        color: ['#ffa13c', '#0088fe'],
+                        data: GenderDataJson
+                    },
+                    {
+                        name: '年龄',
+                        type: 'pie',
+                        radius: ['40%', '55%'],
+                        itemStyle: {
+                            normal:
+                            {
+                                borderColor: '#003d73',
+                                borderWidth: 2
+                            }
+                        },
+                        color: ['#ffa13c', '#ffa13c', '#ffa13c', '#ffa13c', '#ffa13c', '#0088fe', '#0088fe', '#0088fe', '#0088fe', '#0088fe'],
+                        data: AgeGenderDataJson
+                    }
+                ]
+            };
+
+            AgeGenderChart.setOption(optionAgeGender);
+
+            // Set Label
+            if (maleCount > femaleCount) {
+                var ratio = maleCount / (maleCount + femaleCount) * 100;
+
+                var MainGenderRatioLeftDiv = document.getElementById('MainGenderRatioLeftDiv');
+                MainGenderRatioLeftDiv.innerText = ratio.toFixed(0);
+
+                var MainGenderLeftBottomDiv = document.getElementById('MainGenderLeftBottomDiv');
+                MainGenderLeftBottomDiv.innerText = '%男性';
+
+                var MainGenderRightGroupDiv = document.getElementById('MainGenderRightGroupDiv');
+                MainGenderRightGroupDiv.innerText = '男性为主要用户';
+            }
+            else if (maleCount + femaleCount > 0) {
+                var ratio = femaleCount / (maleCount + femaleCount) * 100;
+
+                var MainGenderRatioLeftDiv = document.getElementById('MainGenderRatioLeftDiv');
+                MainGenderRatioLeftDiv.innerText = ratio.toFixed(0);
+
+                var MainGenderLeftBottomDiv = document.getElementById('MainGenderLeftBottomDiv');
+                MainGenderLeftBottomDiv.innerText = '%女性';
+
+
+                var MainGenderRightGroupDiv = document.getElementById('MainGenderRightGroupDiv');
+                MainGenderRightGroupDiv.innerText = '女性为主要用户';
+            }
+
+            var MainAgeGroupRightDiv = document.getElementById('MainAgeGroupRightDiv');
+            MainAgeGroupRightDiv.innerText = maxAgeGroupName;
+
+        }
+
+        var dataConvert = {};
+        dataConvert.toNewsList = function (data) {
+            var items = [];
+            var maxCommentsCount = 1;
+            for (var i = 0; i < data.Events.length; i++) {
+                var event = data.Events[i];
+                var negativeComments = [];
+                for (var j = 0; j < event.Comments.length && j < maxCommentsCount; j++) {
+                    var comment = { Content: event.Comments[j].Content, Vote: event.Comments[j].Vote };
+                    negativeComments.push(comment);
+                }
+
+                var item = { Url: event.Url, Source: event.Source, Title: event.Name, NegativeComments: negativeComments, CreatedTime: event.Date }
+                items.push(item);
+            }
+            return items;
+        };
+
+        dataConvert.toMapSeries = function (data) {
+            var mapData = [];
+            for (var i = 0; i < data.Distributions.length; i++) {
+                var distribution = data.Distributions[i];
+                var item = {};
+                item.name = distribution.Name;
+                item.data = [];
+                for (var name in distribution.Values) {
+                    var areaNum = {};
+                    areaNum.name = name;
+                    areaNum.value = distribution.Values[name];
+                    item.data.push(areaNum);
+                }
+                mapData.push(item);
+            }
+
+            return mapData;
+        };
+
+        function parseQuery(qstr) {
+            var query = {};
+            var a = qstr.substr(1).split('&');
+            for (var i = 0; i < a.length; i++) {
+                var b = a[i].split('=');
+                query[decodeURIComponent(b[0]).toLowerCase()] = decodeURIComponent(b[1] || '');
+            }
+            return query;
+        }
+        
+        function getCurDate() {
+            var query = parseQuery(top.location.search);
+            if (typeof (query['enddate']) !== 'undefined') {
+                return query['enddate'];
+            } else {
+                return '';
+            }
+        }
+
+        var endDate = getCurDate();
+        $.get("/api/WeeklyReportData/GetData?endDate=" + endDate).success(function (data) {
+            totalReportTrendDrawer(data);
+            sentimentDrawer(data);
+            newsSourceDrawer(data);
+            ageGenderDrawer(data);
+            //$('#SentimentLine').on('click', GetCommentSentiment);
+            $('#totalreporttrend').on('click', function () {
+                GetTopNewsListByReportCount();
+            });
+        });
+
+        /// Draw Map Area
+        $.get("/api/analysis/RegionDistr?endDate=" + endDate).success(function (data) {
+            var dataDict = {};
+            var colorDic = {
+                'selfMap': '#00aeef'
+            };
+
+            var mapData = dataConvert.toMapSeries(data);
+            if (mapData.length <= 0) return;
+            for (var i = 0; i < mapData.length; i++) {
+                var item = mapData[i];
+                dataDict['selfMap'] = item.data;
+            }
+
+            var selfid = 'selfMap';
+            graphDrawer.mapDrawer.drawMapGraph(selfid, colorDic[selfid], dataDict[selfid], true);
+
+            var total = 0;
+            var max = 0;
+            var maxlocation = '';
+            for (var i = 0; i < dataDict[selfid].length; i++) {
+                var item = dataDict[selfid][i];
+                if (item.value > max) {
+                    max = item.value;
+                    maxlocation = item.name;
+                }
+
+                total = total + item.value;
+            }
+
+            var ratio = max / total * 100;
+            ratio = isNaN(ratio) ? 0 : ratio;
+            // show
+            var maxLocationDiv = document.getElementById('maxLocationDiv');
+            maxLocationDiv.innerText = maxlocation;
+            var maxLocationRatioDiv = document.getElementById('maxLocationRatioDiv');
+            if (ratio > 10) {
+                maxLocationRatioDiv.innerText = ratio.toFixed(0);
+            }
+            else {
+                maxLocationRatioDiv.innerText = ratio.toFixed(1);
+            }
+        });
+
+        function GetCommentSentiment() {
+            $.get("/api/WeeklyReportData/GetNewsListAndNewsSentiments?endDate=" + endDate).success(function (data) {
+                toggleOverlay('div#news-overlay', 'div#news-overlay-container', 'commentsentiments', this, data);
+            });
+        }
+
+        function GetNewsListOnSource(sources) {
+            $.post("/api/WeeklyReportData/GetNewsListOnSource?endDate=" + endDate, { '': sources }).success(function (data) {
+                var reverse = 0;
+                showNewsListOverlay_SortBySource(data, sources, reverse);
+            })
+        }
+
+        function GetTopNewsListByReportCount() {
+            $.get("/api/WeeklyReportData/GetTopNewsListByReportCount?endDate=" + endDate).success(function (data) {
+                showNewsListOverlay(data);
+            })
+        }
+
+        $("#selfEventRiver").on("click", function () {
+            $.get("/api/WeeklyReportData/SelfTopNewList?endDate=" + endDate).success(function (data) {
+                var items = dataConvert.toNewsList(data);
+                showNewsListOverlay(items);
+            });
+        });
+
+    </script>
+}

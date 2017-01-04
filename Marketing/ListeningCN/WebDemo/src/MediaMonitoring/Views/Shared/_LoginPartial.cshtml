@@ -1,0 +1,68 @@
+﻿@using Microsoft.AspNet.Identity
+<script id="companyTemplate" type="text/x-handlebars-template">
+    <ul class="company">
+        <li>
+            <input class="com-name" placeholder="公司名称" value="{{name}}" />
+            <br />
+            {{#each filters}}
+            <ul class='com-a'>
+                <li><input class="com-filter" placeholder="关键词" value="{{text}}"></li>
+            </ul>
+            <a href='#' class='com-add-keys'>+</a>
+            {{/each}}
+        </li>
+
+    </ul>
+</script>
+<script id="competitorTemplate" type="text/x-handlebars-template">
+    
+        <li>
+            <input class="com-name" placeholder="公司名称" value="{{name}}" />
+            <br />
+            {{#each filters}}
+            <ul class='com-a'>
+                <li><input class="com-filter" placeholder="关键词" value="{{text}}"></li>
+            </ul>
+            <a href='#' class='com-add-keys'>+</a>
+            {{/each}}
+        </li>
+   
+</script>
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", style = "display:none" }))
+    {
+        @Html.AntiForgeryToken()
+
+    }
+    <div class="user-profile pull-left company-keys">
+        <img id="profile" class="pull-left" src="~/Resources/img/user.png" />
+        <div class="com-group">
+            <div class="sjx-border"></div>
+            <div class="sjx"></div>
+            <div class="group-a">
+                <h2 class="sec-title">公司</h2>
+            </div>
+            <div class="group-b">
+                <h2 class="sec-title">竞品公司</h2>
+            </div>
+            <div><a id="btnUpProfile" style="width:100%;">提交</a></div>
+        </div>
+    </div>
+    <div class="navbar-separator pull-left"></div>
+    <div class="navbar-top pull-left">
+        <a href="javascript:document.getElementById('logoutForm').submit()">登出</a>
+    </div>
+}
+else
+{
+    <div class="navbar-top pull-left">
+        @Html.ActionLink("注册", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+    </div>
+    <div class="navbar-separator pull-left"></div>
+    <div class="navbar-top pull-left">
+        @Html.ActionLink("登录", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+    </div>
+}
+
+

@@ -1,0 +1,580 @@
+﻿<link href="~/Content/cloud.css" rel="stylesheet" />
+<link href="~/Content/tooltip.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "实时监控";
+}
+<style type="text/css">
+    .panel {
+        margin-bottom: 10px;
+    }
+</style>
+<div class="clearfix row monitoring">
+    <div class="pull-left brand-health col-md-4 padding-right-5">
+        <div class="panel panel-default panel-customize-top">
+            <div class="panel-body health-scan">
+                <img class="scan-image" src="" />
+                <div class="scanline"></div>
+            </div>
+        </div>
+    </div>
+    <div class="pull-left statistic col-md-4 padding-right-5 padding-left-5">
+        <div class="panel panel-default panel-customize-top margin-bottom-10">
+            <div class="panel-body">
+                <div class="media-report-title data-title">报道量</div>
+                <div class="media-report-data">
+                    <span class="report-amount"></span>
+                    <span class="report-amount-trend-sign"><i id="js-report-amount-trend" class="fa"></i></span>
+                </div>
+                <div class="media-report-description">
+                    <span class="media-report-description-compare"></span>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default panel-customize-top">
+            <div class="panel-body">
+                <div class="data-title">
+                    <span>报道情感分布</span>
+                </div>
+                <div class="sentiment-report-label">
+                    <span class="first-label">正面</span>
+                    <span>负面</span>
+                </div>
+                <div class="scan-sentiment-report" id="scan-sentiment">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pull-left statistic col-md-4 padding-left-5">
+        <div class="panel panel-default panel-customize-top margin-bottom-10">
+            <div class="panel-body">
+                <div class="data-title">
+                    <span>媒体分布TOP5</span>
+                </div>
+                <div class="media-source-report" id="media-source">
+
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default panel-customize-top">
+            <div class="panel-body">
+                <div class="report-visit-title data-title">
+                    <span>用户访问分布TOP5</span>
+                </div>
+                <div class="report-visit" id="visit-map">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix row">
+    <div class="col-md-8 pull-left word-cloud-container padding-right-5">
+        <div class="panel panel-default panel-customize-bottom word-cloud" id="vis">
+
+        </div>
+        <form id="form" class="hidden">
+            <p style="position: absolute; right: 0; top: 0" id="status"></p>
+
+            <div>
+                <div id="presets"></div>
+                <div id="custom-area">
+                    <textarea id="text" style="visibility: hidden"></textarea>
+                    <button id="go" type="submit">Home</button>
+                    <button id="settings" type="button">Settings</button>
+                </div>
+            </div>
+
+            <div id="settingpanel" style="visibility: hidden">
+                <hr>
+                <div style="float: right; text-align: right">
+                    <p><label for="max">Number of words:</label> <input type="number" value="100" min="1" id="max">
+                    <p>
+                        <label for="evaluation-color"><input type="checkbox" id="evaluation-color" checked="checked"> Use evaluation color.</label>
+                        <!--<p><label for="colours">Colours:</label> <a href="#" id="random-palette">get random palette</a>-->
+                    <p>
+                        <label>Download:</label>
+                        <a id="download-svg" href="#" target="_blank">SVG</a> |
+                        <a id="download-png" href="#" target="_blank">PNG</a>
+                </div>
+
+                <div style="float: left">
+                    <p>
+                        <label>Spiral:</label>
+                        <label for="archimedean"><input type="radio" name="spiral" id="archimedean" value="archimedean" checked="checked"> Archimedean</label>
+                        <label for="rectangular"><input type="radio" name="spiral" id="rectangular" value="rectangular"> Rectangular</label>
+                    <p>
+                        <label for="scale">Scale:</label>
+                        <label for="scale-log"><input type="radio" name="scale" id="scale-log" value="log" checked="checked"> log n</label>
+                        <label for="scale-sqrt"><input type="radio" name="scale" id="scale-sqrt" value="sqrt"> √n</label>
+                        <label for="scale-linear"><input type="radio" name="scale" id="scale-linear" value="linear"> n</label>
+                    <p><label for="font">Font:</label> <input type="text" id="font" value="Microsoft YaHei">
+                </div>
+
+                <div id="angles">
+                    <p>
+                        <input type="number" id="angle-count" value="5" min="1"> <label for="angle-count">orientations</label>
+                        <label for="angle-from">from</label> <input type="number" id="angle-from" value="-30" min="-90" max="90"> °
+                        <label for="angle-to">to</label> <input type="number" id="angle-to" value="30" min="-90" max="90"> °
+                </div>
+                <hr id="endline" style="clear: both">
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4 pull-left lastest-news padding-left-5">
+        <div class="panel panel-default panel-customize-bottom">
+            <div class="panel-body" id="js-word-NewsList">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix row">
+    <div class="col-md-12">
+        <div class="panel panel-default panel-customize-bottom weibo-news-container">
+            <div class="panel-body">
+                <div class="hot-news-label">
+                    
+                        <span>热点微博</span>
+                   
+                </div>
+                <div class="news-list" id="js-hr-NewsList">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="weiboNewsList-template" type="text/x-handlebars-template">
+    {{#each NewsList}}
+    <div class="clearfix col-md-4 news-detail-container">
+        <div class="news-detail">
+            <a href="#" data-toggle-weiboId="{{WeiboId}}">
+                <div class="pull-left thumbnail">
+                    <img src="{{Thumbnail}}" />
+                </div>
+                <div class="news-detail-info pull-left">
+                    <div class="news-detail-title">
+                        {{Title}}
+                    </div>
+                    <div class="news-detail-description">
+                        {{Text}}
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    {{/each}}
+</script>
+
+<script id="WordNewsList-template" type="text/x-handlebars-template">
+    <div class="hot-news-label">
+        <span>相关词条：{{KeyWord}}</span>
+    </div>
+    {{#each NewsList}}
+    <div class="news-list">
+        <div class="news-detail clearfix">
+            <a href="{{Url}}" data-toggle-Id="{{Id}}" target="_blank">
+                <div class="pull-left thumbnail">
+                    <img src="{{ThumbnailUrl}}" />
+                </div>
+                <div class="news-detail-info pull-left">
+                    <div class="news-detail-title">
+                        {{Title}}
+                    </div>
+                    <div class="news-detail-description">
+                        {{Description}}
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    {{/each}}
+</script>
+
+
+<script src="~/Scripts/d3.js"></script>
+<script src="~/Scripts/tooltip.js"></script>
+<script src="~/Scripts/unicode.js"></script>
+<script src="~/Scripts/d3.layout.cloud.js"></script>
+<script src="~/Scripts/cloud.js"></script>
+<script src="~/Scripts/CompetitorGraphDrawer.js"></script>
+<script type="text/javascript">
+    $(function () {
+        setCurrentSelectPage($('.js-nav-li-1'));
+        ShowRadarScan();
+        $(window).resize(ShowRadarScan);
+        //load wordcloud
+        load("");
+        var sentimentChart = echarts.init(document.getElementById('scan-sentiment'));
+        var mediaSourceChart = echarts.init(document.getElementById('media-source'));
+        var visitMapChart = echarts.init(document.getElementById('visit-map'));
+        var sentimentOption = {
+            grid: {
+                top: 0
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    show: false
+                }
+            ],
+            yAxis: [
+                {
+                    show: false,
+                    type: 'value',
+                    min: 0,
+                    max: 1,
+                    axisLabel: {
+                        formatter: '{value}*100 %'
+                    }
+                }
+            ],
+            series: [
+                {
+                    name: '正面',
+                    type: 'bar',
+                    data: [],
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'bottom',
+                            textStyle: {
+                                fontSize: 30,
+                                color: '#00ff7c'
+                            },
+                            formatter: function (a) {
+                                return (a.data * 100).toFixed(0) + '%';
+                            }
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: '#00ff7c'
+                        }
+                    }
+                },
+                {
+                    name: '负面',
+                    type: 'bar',
+                    data: [],
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'bottom',
+                            textStyle: {
+                                fontSize: 30,
+                                color: '#ed1c24'
+                            },
+                            formatter: function (a) {
+                                return (a.data * 100).toFixed(0) + '%';
+                            }
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: '#ed1c24'
+                        }
+                    }
+                }
+            ]
+        };
+        var mediaReportOption = {
+            grid: {
+                top: 0,
+                bottom: 10,
+                left: '40%'
+            },
+            xAxis: {
+                type: 'value',
+                show: false
+            },
+            yAxis: {
+                type: 'category',
+                data: ['新浪新闻', '腾讯新闻', '今日头条', '凤凰新闻', '一点咨询'],
+                show: true,
+                axisLine: {
+                    show: false
+                },
+                splitLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    show: true,
+                    textStyle: {
+                        color: '#ffffff',
+                        fontSize: 16,
+                    }
+
+                }
+            },
+            series: [
+                {
+                    name: '报道量',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'right',
+                            textStyle: {
+                                color: '#ffffff',
+                                fontSize: 16
+                            }
+                        }
+                    },
+                    data: [130, 222, 301, 334, 420],
+                    itemStyle: {
+                        normal: {
+                            color: '#00ffff'
+                        }
+                    }
+
+                },
+            ]
+        };
+        var visitMapOption = option = {
+            grid: {
+                top: 0,
+                bottom: 0,
+                left: 0,
+                right: 0
+            },
+            geo: {
+                map: 'china',
+                label: {
+                    emphasis: {
+                        show: false
+                    }
+                },
+                scaleLimit: {
+                    min: 1,
+                    max: 1
+                },
+                roam: false,
+                itemStyle: {
+                    normal: {
+                        areaColor: '#323c48',
+                        borderColor: '#111'
+                    },
+                    emphasis: {
+                        areaColor: '#2a333d'
+                    }
+                }
+            },
+            series: [
+                {
+                    name: 'Top 5',
+                    type: 'effectScatter',
+                    coordinateSystem: 'geo',
+                    data: [],
+                    symbolSize: function (val) {
+                        return val[2] / 40;
+                    },
+                    showEffectOn: 'render',
+                    rippleEffect: {
+                        brushType: 'stroke'
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: '#ffbb3c',
+                            shadowBlur: 10,
+                            shadowColor: '#333'
+                        }
+                    },
+                    zlevel: 1
+                }
+            ]
+        };
+        LoadSentimentScanReport(sentimentChart, sentimentOption);
+        LoadTopNewsSourceReport(mediaSourceChart, mediaReportOption);
+        LoadNewsLocationReport(visitMapChart, visitMapOption);
+        $('.news-list').on('click', 'a', toggleWeiboDetailOverlay);
+        //show bran scan result
+        HealthScan();
+        UpdateWeiboHotNewsList();
+        GetMediaReportScanReport();
+        $('#scan-sentiment').on('click', GetSentimentNewsList);
+
+    });
+
+    function GetMediaReportScanReport() {
+        $.get("/api/Scan/GetMediaReportScanReport")
+            .success(function (data) {
+                $(".media-report-data .report-amount").html(data.Count);
+                $$trendTag = $("#js-report-amount-trend");
+                var trend = Math.abs(data.CompareRate) + "%";
+                var description = "";
+                if (data.CompareRate >= 0) {
+                    $$trendTag.addClass("fa-arrow-circle-up");
+                    description = "同比增长" + trend;
+                } else {
+                    $$trendTag.addClass("fa-arrow-circle-down");
+                    description = "同比下降" + trend;
+                }
+
+                $('.media-report-description-compare').html(description);
+                $('.media-report-data').on('click', GetSentimentNewsList);
+            });
+    }
+
+    function LoadSentimentScanReport(echartObj, option) {
+        $.get("/api/Scan/GetSentimentScanReport")
+            .success(function (data) {
+                if (data) {
+                    option.series[0].data[0] = parseFloat((data.PositivePerct * 100) / 100).toFixed(2);
+                    option.series[1].data[0] = parseFloat((data.NegativePerct * 100) / 100).toFixed(2);
+                    drawChart(echartObj, option);
+                }
+            });
+    }
+
+    function LoadTopNewsSourceReport(echartObj, option) {
+        $.get("/api/Scan/GetTopNewsSourceDistribute")
+            .success(function (data) {
+                if (data) {
+                    option.yAxis.data = data.NewsSource;
+                    option.series[0].data = data.NewsCount;
+                    drawChart(echartObj, option);
+                    $('#media-source')
+                        .on('click',
+                            function () {
+                                sources = data.NewsSource;
+                                GetNewsListOnSource(sources);
+                            });
+                }
+            });
+    }
+
+    function LoadNewsLocationReport(echartObj, option) {
+        var normalizeData = function (sum, count) {
+            var result = count / sum * 1000;
+            return result;
+        };
+
+        $.get("/api/Scan/GetLocationDistribute")
+           .success(function (data) {
+               if (data  && data.length >0) {
+                   var frontData = [];
+                   var sum = 0;
+                   for (var idx in data) {
+                       sum += data[idx].VisitCount;
+                   }
+
+                   for (var idx in data) {
+                       var location = data[idx];
+                       var item = { name: location.Name, value: normalizeData(sum, location.VisitCount) };
+                       frontData.push(item);
+                   }
+
+                   var cnData = graphDrawer.mapDrawer.converEnDataToCN(frontData);
+                   var cookedData = graphDrawer.mapDrawer.convertData(cnData);
+                   option.series[0].data = cookedData;
+                   drawChart(echartObj, option);
+                   $('#media-source')
+                       .on('click',
+                           function () {
+                               sources = data.NewsSource;
+                               GetNewsListOnSource(sources);
+                           });
+               }
+           });
+    }
+
+    function drawChart(myChart, option) {
+        myChart.hideLoading();
+        myChart.setOption(option);
+    }
+
+    function HealthScan() {
+        ShowScanningImage(1);
+        ShowScanResult(1);
+    }
+
+    function ShowScanningImage(userId) {
+        var imageUrl = '/Resources/img/scanningbackground' + userId + '.png';
+        $('.health-scan img').attr('src', imageUrl);
+        $('.scanline').show();
+    }
+
+    function ShowRadarScan() {
+        var width = $('.scan-image').width();
+        $('.scanline').width(width);
+    }
+
+    function ShowScanResult(userId) {
+        setTimeout(function () {
+            ReplaceScanImageWithResult(userId);
+        },
+            10000);
+    }
+
+    function ReplaceScanImageWithResult(userId) {
+        $$img = $('.health-scan img');
+        $$img.fadeOut('slow',
+            function () {
+                $('.scanline').hide();
+                var imageUrl = '/Resources/img/scanresult' + userId + '.png';
+                $$img.attr('src', imageUrl);
+                $$img.fadeIn('slow');
+            });
+
+        var items = $(".statistic > .panel");
+        items.each(function (idx, element) {
+            $(element).fadeOut('slow');
+            $(element).fadeIn('slow');
+        });
+        ShowNotificationTips();
+        ShowNotificationSign();
+    }
+
+    function UpdateWeiboHotNewsList() {
+        ShowHotWeiboNewsList();
+        setInterval(ShowHotWeiboNewsList, 1000000);
+    }
+
+    function ShowNotificationTips() {
+        $('#js-notification-tips')
+            .html("<img src=\"/Resources/img/jiao.png\"/><span style=\"font-size:16px\">一条实时热点与本品牌相关，请密切关注</span>")
+            .fadeIn('slow')
+            .delay(5000)
+            .fadeOut('slow');
+    }
+
+    function ShowNotificationSign() {
+        $('.notification.red').removeClass('hidden').show(1000);
+    }
+
+    function ShowHotWeiboNewsList() {
+        var weiboList = $('#js-hr-NewsList');
+        $.get("/api/Scan/GetLatestHotNews")
+            .success(function (data) {
+                if (data && data.NewsList && data.NewsList.length > 0) {
+                    var weiboListTemplateSource = $('#weiboNewsList-template').html();
+                    var weiboListTemplate = Handlebars.compile(weiboListTemplateSource);
+                    weiboList.html(weiboListTemplate(data));
+                } else {
+                    $(".weibo-news-container").hide();
+                }
+                   
+            });
+    }
+
+    function GetSentimentNewsList() {
+        $.get("/api/Scan/GetSentimentNewsList")
+            .success(function (data) {
+                toggleOverlay('div#news-overlay', 'div#news-overlay-container', 'sentimentNewslist', this, data);
+            });
+    }
+
+    function GetNewsListOnSource(sources) {
+        $.post("/api/Scan/GetNewsListOnSource", { '': sources })
+            .success(function (data) {
+                var reverse = 1;
+                showNewsListOverlay_SortBySource(data, sources, reverse);
+            });
+    }
+</script>

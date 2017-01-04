@@ -1,0 +1,71 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EventRiver</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script type="text/javascript" src="~/Scripts/require.js"></script>
+    <style type="text/css">
+        body {
+            padding: 0px;
+            margin: 0;
+        }
+
+        .area {
+            width: 100%;
+            height: 300px;
+            background-color: #003d73;
+            /*border: solid 2px #00aeef;
+            border-radius: 3px;*/
+        }
+    </style>
+</head>
+<body>
+    <div id="events" class="area"></div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <script type="text/javascript" src="~/Scripts/echartsv2.js"></script>
+    <script type="text/javascript" src="~/Scripts/EventRiver.js"></script>
+    <script type="text/javascript">
+        function parseQuery(qstr) {
+            var query = {};
+            var a = qstr.substr(1).split('&');
+            for (var i = 0; i < a.length; i++) {
+                var b = a[i].split('=');
+                query[decodeURIComponent(b[0]).toLowerCase()] = decodeURIComponent(b[1] || '');
+            }
+            return query;
+        }
+
+        function getCurDate() {
+            var query = parseQuery(top.location.search);
+            if (typeof (query['enddate']) !== 'undefined') {
+                return query['enddate'];
+            } else {
+                return '';
+            }
+        }
+        $.get("/api/weeklyreportdata/selfevents?endDate=" + getCurDate())
+            .success(function (data) {
+                var graphData = dataConvert.convertEventSeries(data);
+                eventRiverDrawer.drawEventRiver("events", graphData, "公司动态");
+            })
+            .fail(function (data) {
+            });
+
+        $("#events").on("click", function () {
+            $('#selfEventRiver', window.parent.document).click();
+        });
+    </script>
+</body>
+</html>

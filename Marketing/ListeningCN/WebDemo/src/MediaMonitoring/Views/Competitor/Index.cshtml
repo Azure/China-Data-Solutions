@@ -1,0 +1,591 @@
+﻿
+@{
+    ViewBag.Title = "Competitor Analysis";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    #industry {
+        width: 100%;
+        height: 300px;
+        background-color: #003d73;
+        margin-top: 20px;
+    }
+
+    .area {
+        margin-top: 10px;
+        width: 100%;
+        height: 300px;
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color: #003d73;
+    }
+
+
+    #media {
+        width: 100%;
+        height: 300px;
+    }
+
+    #sentiment {
+        width: 100%;
+        height: 300px;
+    }
+
+    #age {
+        width: 100%;
+        height: 300px;
+    }
+
+    .tablist {
+        padding-right: 5px;
+        display: inline-block;
+    }
+
+    .circle {
+        margin-top: 3px;
+        width: 15px;
+        height: 15px;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
+        float: left;
+    }
+
+    .active {
+        margin-top: 3px;
+        width: 15px;
+        height: 15px;
+        background: white;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
+        float: left;
+        text-align: center;
+        border-width: 3px;
+        border-style: solid;
+    }
+
+    .list {
+        padding-left: 0px;
+    }
+
+    .menu {
+        margin-top: 3px;
+    }
+
+        .menu a {
+            color: white;
+        }
+
+    .mapmenu {
+    }
+
+    .map {
+        width: 100%;
+        height: 220px;
+        float: left;
+    }
+
+    .mapArea {
+        width: 50%;
+        float: left;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #selfMap {
+        width: 100%;
+        height: 220px;
+    }
+
+    #commenu {
+        margin-left: -40px;
+    }
+
+    .center {
+        margin-left: -40px;
+        text-align: center;
+    }
+
+    #mapTitle {
+        height: 30px;
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .text {
+        width: 50px;
+        font-family: 'Microsoft YaHei';
+        font-size: 16px;
+    }
+      @@media (min-width: 992px){
+     .col-r-padding{padding-right:5px;margin-right:-10px;}
+     .col-l-padding{padding-right:5px;}
+    }
+</style>
+<div class="row">
+    <div class="col-md-12 nopadding">
+        <div id="industry" style="display:none;">
+            <iframe src="~/Competitor/EventRiver" onload="this.style.visibility = 'visible';" style="width: 100%; border: 0px; height: 300px; background-color: #003d73; visibility: hidden;"></iframe>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 nopadding col-r-padding">
+        <div id="mediaArea" class="area">
+            <div id="media">
+
+            </div>
+
+        </div>
+        <div id="sentiArea" class="area">
+            <div id="sentiment"></div>
+        </div>
+
+    </div>
+    <div class="col-md-6 nopadding col-l-padding">
+        <div id="mapArea" class="area">
+            <div id="mapTitle">访问量分布</div>
+            <div id="comArea" class="mapArea">
+                <div id="tabs">
+                    <div class="menu" style="display:none;">
+                        <ul id="commenu" class="center">
+                            <li class="tablist">
+                                <a href="#tabs-1">
+                                    <div class="circle"></div>
+                                    <div class="text">百度</div>
+                                </a>
+                            </li>
+                            <li class="tablist">
+                                <span></span><a href="#tabs-2">
+                                    <div class="circle"></div><div class="text">百度</div>
+                                </a>
+                            </li>
+                            <li class="tablist">
+                                <span></span><a href="#tabs-3">
+                                    <div class="circle"></div><div class="text">百度</div>
+                                </a>
+                            </li>
+                            <li class="tablist">
+                                <span></span><a href="#tabs-4">
+                                    <div class="circle"></div><div class="text">百度</div>
+                                </a>
+                            </li>
+                            @*<li class="tablist">
+                                    <span></span><a href="#tabs-5">
+                                        <div class="circle"></div>Proin dolorxx
+                                    </a>
+                                </li>
+                                <li class="tablist">
+                                    <span></span><a href="#tabs-6">
+                                        <div class="circle"></div>Aenean laciniaxx
+                                    </a>
+                                </li>*@
+                        </ul>
+                    </div>
+                    <div class="graph" style="display:none;">
+                        <div id="tabs-1" class="map">
+
+                        </div>
+                        <div id="tabs-2" class="map">
+                            
+                        </div>
+                        <div id="tabs-3" class="map">
+                            
+                        </div>
+                        <div id="tabs-4" class="map">
+                           
+                        </div>
+                        @*<div id="tabs-5">
+                                <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+                            </div>
+                            <div id="tabs-6">
+                                <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+                                <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+            <div id="selfArea" class="mapArea">
+                <div class="menu" style="display:none;">
+                    <ul class="center">
+                        <li class="tablist">
+                            <a href="#selfMap">
+                                <div class="circle"></div><div class="text">百度</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="graph">
+                    <div id="selfMap">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="ageArea" class="area">
+            <div id="age">
+            </div>
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/CompetitorGraphDrawer.js"></script>
+    <script type="text/javascript">
+
+        setCurrentSelectPage($('.js-nav-li-3'));
+        Date.prototype.addDays = function (days) {
+            var dat = new Date(this.valueOf());
+            dat.setDate(dat.getDate() + days);
+            return dat;
+        }
+
+
+        var dataConvert = {};
+
+        dataConvert.toNewsList = function (data) {
+            var items = [];
+            var maxCommentsCount = 1;
+            for (var i = 0; i < data.Events.length; i++) {
+                var event = data.Events[i];
+                var negativeComments = [];
+                for (var j = 0; j < event.Comments.length && j < maxCommentsCount; j++) {
+                    var comment = { Content: event.Comments[j].Content, Vote: event.Comments[j].Vote };
+                    negativeComments.push(comment);
+                }
+
+                var item = { Url: event.Url, Source: event.Source, Title: '[' + event.Company + ']' + event.Name, NegativeComments: negativeComments, CreatedTime: event.Date }
+                items.push(item);
+            }
+            return items;
+        };
+
+        dataConvert.toLineSeries = function (data) {
+            var lineData = {};
+            lineData.keys = [];
+            lineData.series = [];
+            for (var i = 0; i < data.Distributions.length; i++) {
+                var item = data.Distributions[i];
+                for (var prop in item.Values) {
+                    if (lineData.keys.indexOf(prop) === -1) {
+                        lineData.keys.push(prop);
+                    }
+                }
+            }
+
+            lineData.keys = lineData.keys.sort();
+            for (var i = 0; i < data.Distributions.length; i++) {
+                var item = data.Distributions[i];
+                var series = { "type": "line", "smooth": true };
+                series.name = item.Name;
+                series.smooth = true;
+                series.data = [];
+                for (var j = 0; j < lineData.keys.length; j++) {
+                    var propName = lineData.keys[j];
+                    if (typeof (item.Values[propName]) !== 'undefined') {
+                        series.data.push(item.Values[propName]);
+                    } else {
+                        series.data.push(0);
+                    }
+                }
+
+                lineData.series.push(series);
+            }
+
+            return lineData;
+        };
+
+        dataConvert.toRadarSeries = function (data) {
+            var radarData = {};
+            radarData.indicators = [];
+            radarData.values = [];
+            for (var i = 0; i < data.Distributions.length; i++) {
+
+                var item = data.Distributions[i];
+                for (var prop in item.Values) {
+                    var contained = false;
+                    for (var k = 0; k < radarData.indicators.length; k++) {
+                        var indicatorName = radarData.indicators[k].name;
+                        if (indicatorName === prop) {
+                            contained = true;
+                        }
+                    }
+                    if (!contained) {
+                        var indicator = { "max": 0 };
+                        indicator.name = prop;
+                        radarData.indicators.push(indicator);
+                    }
+                }
+            }
+
+            for (var i = 0; i < data.Distributions.length; i++) {
+                var item = data.Distributions[i];
+                var values = {};
+                values.name = item.Name;
+                values.value = [];
+                for (var j = 0; j < radarData.indicators.length; j++) {
+                    var indicator = radarData.indicators[j];
+                    var propName = indicator.name;
+                    if (typeof (item.Values[propName]) !== 'undefined') {
+                        var val = item.Values[propName];
+                        values.value.push(val);
+                        if (val > indicator.max) {
+                            indicator.max = val;
+                        }
+                    } else {
+                        values.value.push(0);
+                    }
+                }
+
+                radarData.values.push(values);
+            }
+
+            return radarData;
+        }
+
+        dataConvert.toScatterSeries = function (data) {
+            var scatter = {};
+            scatter.legends = [];
+            scatter.data = [];
+            var keys = [];
+            for (var i = 0; i < data.List.length; i++) {
+                var item = data.List[i];
+                scatter.legends.push(item.Name);
+                for (var prop in item.ReportCount) {
+                    if (keys.indexOf(prop) === -1) {
+                        keys.push(prop);
+                    }
+                }
+
+                for (var prop in item.VisitCount) {
+                    if (keys.indexOf(prop) === -1) {
+                        keys.push(prop);
+                    }
+                }
+
+                keys.sort(function (a, b) { return b - a });
+            }
+
+            if (keys.length > 0) {
+                var min = keys[0];
+                var date = new Date(min);
+                var minDate = date.addDays(-1);
+
+                for (var i = 0; i < data.List.length; i++) {
+                    var item = data.List[i];
+                    var series = [];
+                    series.push([minDate.toDateString(), null, null]);
+                    for (var k = 0; k < keys.length; k++) {
+                        var single = new Array();
+                        var key = keys[k];
+                        single.push(key);
+                        if (typeof (item.VisitCount[key]) !== 'undefined') {
+                            single.push(item.VisitCount[key]);
+                        } else {
+                            single.push(0);
+                        }
+                        if (typeof (item.ReportCount[key]) !== 'undefined') {
+                            single.push(item.ReportCount[key]);
+                        } else {
+                            single.push(0);
+                        }
+
+                        series.push(single);
+                    }
+
+                    scatter.data.push(series);
+                }
+            }
+
+            return scatter;
+        };
+
+        dataConvert.toMapSeries = function (data) {
+            var mapData = [];
+            for (var i = 0; i < data.Distributions.length; i++) {
+                var distribution = data.Distributions[i];
+                var item = {};
+                item.name = distribution.Name;
+                item.data = [];
+                for (var name in distribution.Values) {
+                    var areaNum = {};
+                    areaNum.name = name;
+                    areaNum.value = distribution.Values[name];
+                    item.data.push(areaNum);
+                }
+                mapData.push(item);
+            }
+
+            return mapData;
+        };
+
+        function parseQuery(qstr) {
+            var query = {};
+            var a = qstr.substr(1).split('&');
+            for (var i = 0; i < a.length; i++) {
+                var b = a[i].split('=');
+                query[decodeURIComponent(b[0]).toLowerCase()] = decodeURIComponent(b[1] || '');
+            }
+            return query;
+        }
+
+        function getCurDate() {
+            var query = parseQuery(top.location.search);
+            if (typeof (query['enddate']) !== 'undefined') {
+                return query['enddate'];
+            } else {
+                return '';
+            }
+        }
+
+        var endDate = getCurDate();
+
+        var tabs = $("#tabs").tabs();
+
+        var companies = $.get("/api/analysis/Competitors").success(function (company) {
+            dataConvert.getSelfName = function () {
+                return company.CompanyName;
+            };
+
+            var colors = [
+                '#00aeef',
+                '#f26522',
+                '#ffff00',
+                '#39b54a',
+                '#b6b2b2'
+            ];
+
+            var colorDic = {
+                'selfMap': '#b6b2b2',
+                'tabs-1': '#00aeef',
+                'tabs-2': '#f26522',
+                'tabs-3': '#ffff00',
+                'tabs-4': '#39b54a'
+            };
+
+            var nameDic = {};
+
+
+            $.get("/api/analysis/RegionDistr").success(function (data) {
+
+                var dataDict = {};
+
+                function getFirstAvailableArea() {
+                    for (var key in colorDic) {
+                        if (typeof (dataDict[key]) === 'undefined' && key !== 'selfMap') {
+                            return key;
+                        }
+                    }
+                    return null;
+                };
+
+                function setMenuActive(id) {
+                    var tab = $(".tablist a[href='#" + id + "'] .circle");
+                    tab.addClass("active");
+                    tab.css("backgroundColor", "white");
+                }
+
+                function setMenuDeactive(id) {
+                    var tab = $(".tablist a[href='#" + id + "']  .circle");
+                    tab.removeClass("active");
+                    tab.css("backgroundColor", colorDic[id]);
+                }
+
+
+                var mapData = dataConvert.toMapSeries(data);
+                for (var i = 0; i < mapData.length; i++) {
+                    var item = mapData[i];
+                    if (item.name === dataConvert.getSelfName()) {
+                        dataDict['selfMap'] = item.data;
+                        nameDic['selfMap'] = item.name;
+                        colorDic['selfMap'] = colors[i];
+                    } else {
+                        var key = getFirstAvailableArea();
+                        if (key != null) {
+                            dataDict[key] = item.data;
+                            nameDic[key] = item.name;
+                            colorDic[key] = colors[i];
+                        } else {
+                            alert("less keys than expected");
+                        }
+                    }
+                }
+
+                //Update the ul color
+                var list = $(".tablist");
+                list.each(function (idx, e) {
+                    var atag = $(e).children("a");
+                    var id = atag.attr("href").substr(1);
+                    if (typeof (nameDic[id]) !== 'undefined') {
+                        atag.children(".text").text(nameDic[id]);
+                        atag.children(".circle").css("borderColor", colorDic[id]);
+                        atag.children(".circle").css("backgroundColor", colorDic[id]);
+                    } else {
+                        $(e).css("display", "none");
+                    }
+                });
+
+                $(".menu").css("display", "block");
+                $(".graph").css("display", "block");
+
+
+                var selfid = 'selfMap';
+                var cmpid = 'tabs-1';
+                graphDrawer.mapDrawer.drawMapGraph(selfid, colorDic[selfid], dataDict[selfid], true);
+                graphDrawer.mapDrawer.drawMapGraph(cmpid, colorDic[cmpid], dataDict[cmpid], true);
+                setMenuActive(selfid);
+                setMenuActive(cmpid);
+
+                tabs.on("tabsactivate", function (event, ui) {
+                    setMenuActive($(ui.newPanel).attr("id"));
+                    setMenuDeactive($(ui.oldPanel).attr("id"));
+                    if ($(ui.newPanel).children().length === 0) {
+                        var id = $(ui.newPanel).attr("id");
+                        var mapsource = dataDict[id];
+                        graphDrawer.mapDrawer.drawMapGraph(id, colorDic[id], mapsource, true);
+                    }
+                });
+            }).fail(function (data) {
+            });
+        });
+
+        /// Draw Sentiment Area
+        $.get("/api/analysis/SentiDistr?endDate=" + endDate).success(function (data) {
+            var sentiData = dataConvert.toLineSeries(data);
+            graphDrawer.drawLine("sentiment", sentiData, function () {
+                $.get("/api/analysis/SentimentNewsList?endDate=" + endDate).success(function (data) {
+                    var items = dataConvert.toNewsList(data);
+                    toggleOverlay('div#news-overlay', 'div#news-overlay-container', 'commentsentiments', this, items);
+                });
+            });
+        }).fail(function (data) {
+        });
+
+        /// Draw Age Radar Area
+        $.get("/api/analysis/AgeDistr?endDate=" + endDate).success(function (data) {
+            var ageData = dataConvert.toRadarSeries(data);
+            graphDrawer.drawRadar("age", ageData);
+        }).fail(function (data) {
+        });
+
+        /// Draw Media Exposure Area
+        $.get("/api/analysis/MediaExposure?endDate=" + endDate).success(function (data) {
+            if (data.List.length > 0) {
+                var mediaData = dataConvert.toScatterSeries(data);
+                graphDrawer.drawMediaExposure("media", mediaData);
+            }
+        }).fail(function (data) {
+        });
+
+        $("#industry").on("click", function () {
+            $.get("/api/analysis/TopNewList?endDate=" + endDate).success(function (data) {
+                var items = dataConvert.toNewsList(data);
+                showNewsListOverlay(items);
+            });
+        });
+    </script>
+}

@@ -1,0 +1,817 @@
+﻿@using DataAccessLayer
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Media Monitoring</title>
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/overlay.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript" src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+    <script src="~/Scripts/overlay.js"></script>
+    <script src="~/Scripts/handlebars.js"></script>
+    <script type="text/javascript" src="~/Scripts/echartsv3.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/china.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .company-keys {
+            position: relative;
+        }
+
+        .container .navbar-header .user-profile .keys-show {
+            color: #fff;
+            text-decoration: none;
+        }
+
+            .container .navbar-header .user-profile .keys-show:hover {
+                color: #00ffff;
+            }
+
+        .container .navbar-header .com-group {
+            display: none;
+            background: rgba(0,0,0,1);
+            color: #fff;
+            width: 108px;
+            min-height: 170px;
+            font-size: 14px;
+            position: absolute;
+            border: solid 1px #00a99d;
+            margin-left: 3px;
+            margin-top: 30px;
+        }
+
+            .container .navbar-header .com-group a {
+                text-decoration: none;
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                line-height: 10px;
+                color: #808080;
+            }
+
+                .container .navbar-header .com-group a:hover {
+                    color: #fff;
+                }
+
+            .container .navbar-header .com-group input {
+                width: 60px;
+                height: 20px;
+                line-height: 20px;
+                margin-top: 5px;
+                padding-left: 3px;
+                font-size: 12px;
+                border: solid #808080 1px;
+                background-color: rgba(0,0,0,1);
+                color: #808080;
+            }
+
+            .container .navbar-header .com-group .sec-title {
+                margin-left: 10px;
+                margin-top: 5px;
+                font-size: 14px;
+            }
+
+            .container .navbar-header .com-group .sjx {
+                width: 0;
+                height: 0;
+                border-bottom: 14px solid rgba(0,0,0,1);
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                position: absolute;
+                left: 6px;
+                top: -12px;
+            }
+
+            .container .navbar-header .com-group .sjx-border {
+                width: 0;
+                height: 0;
+                border-bottom: 14px solid #00a99d;
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                position: absolute;
+                left: 6px;
+                top: -14px;
+            }
+
+        .container .navbar-header .group-a {
+            width: 107px;
+            min-height: 90px;
+            padding-bottom: 14px;
+        }
+
+            .container .navbar-header .group-a ul li {
+                list-style: none;
+            }
+
+            .container .navbar-header .group-a .company {
+                width: 79px;
+                min-height: 50px;
+                margin: 0 14px;
+            }
+
+                .container .navbar-header .group-a .company li {
+                    min-height: 25px;
+                    width: 79px;
+                    position: relative;
+                }
+
+                .container .navbar-header .group-a .company .com-add-keys {
+                    position: absolute;
+                    right: 0px;
+                    top: 33px;
+                    display: block;
+                    width: 10px;
+                    height: 10px;
+                    line-height: 10px;
+                }
+
+                .container .navbar-header .group-a .company .com-add {
+                    position: absolute;
+                    right: 10px;
+                    top: 29px;
+                }
+
+            .container .navbar-header .group-a .com-a {
+                padding-left: 0px;
+            }
+
+                .container .navbar-header .group-a .com-a li {
+                    width: 79px;
+                }
+
+        .container .navbar-header .group-b {
+            width: 107px;
+            min-height: 95px;
+            border-top: solid 1px #00a99d;
+            padding-bottom: 14px;
+        }
+
+            .container .navbar-header .group-b ul li {
+                list-style: none;
+            }
+
+            .container .navbar-header .group-b .company > li {
+                margin-top: 5px;
+            }
+
+            .container .navbar-header .group-b .company {
+                width: 79px;
+                min-height: 50px;
+                margin: 0 14px;
+                position: relative;
+            }
+
+                .container .navbar-header .group-b .company li {
+                    min-height: 25px;
+                    width: 79px;
+                    position: relative;
+                }
+
+                .container .navbar-header .group-b .company .com-add-keys {
+                    position: absolute;
+                    right: 10px;
+                    top: 33px;
+                    display: block;
+                    width: 10px;
+                    height: 10px;
+                    line-height: 10px;
+                }
+
+                .container .navbar-header .group-b .company li:first-child .com-add-keys {
+                    right: 0px;
+                }
+
+                .container .navbar-header .group-b .company .com-add {
+                    position: absolute;
+                    right: 0px;
+                    top: 9px;
+                }
+
+            .container .navbar-header .group-b .com-a {
+                padding-left: 0px;
+            }
+
+                .container .navbar-header .group-b .com-a li {
+                    width: 79px;
+                }
+            .navbar-nav .js-nav-image-arrow{position:absolute;bottom:-6px;}
+            .nav.navbar-nav li img{margin-top:0px;}
+        </style>
+
+</head>
+<body class="wrapper">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                @if (SysConfig.AllowLogin)
+                {
+                    @Html.Partial("_LoginPartial")
+                }
+                <div class="navbar-separator pull-left"></div>
+                <div class="navbar-top user-notification dropdown pull-left">
+                    <a class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenu-notification">
+                        <i class="fa fa-envelope"></i>
+                        <span class="notification red hidden">1</span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu-notification" id="notificationArea"></ul>
+                    <div id="js-notification-tips" class="notification-tips">
+                    </div>
+                </div>
+                <div class="navbar-separator pull-left"></div>
+                <div class="navbar-top dropdown user-favorite pull-left">
+                    <a class="dropdown-toggle" id="dropdownMenu-favorite" data-toggle="dropdown">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu-favorite" id="favoriateList"></ul>
+                </div>
+            </div>
+            <div class="navbar-collapse collapse pull-right">
+                <ul class="nav navbar-nav">
+                    <li class="js-nav-li-1">@Html.ActionLink("实时监控", "Index", "Home")<div class="js-nav-image-arrow" style="width:100%"><img src="~/Resources/img/arrow.png"></div></li>
+                    <li class="navbar-separator"></li>
+                    <li class="js-nav-li-2">@Html.ActionLink("一周动态报告", "Index", "WeeklyReport")<div class="js-nav-image-arrow invisible" style="width:100%"><img src="~/Resources/img/arrow.png"></div></li>
+                    <li class="navbar-separator"></li>
+                    <li class="js-nav-li-3">@Html.ActionLink("行业分析报告", "Index", "Competitor")<div class="js-nav-image-arrow invisible" style="width:100%"><img src="~/Resources/img/arrow.png"></div></li>
+                    @if (SysConfig.AllowDatePick)
+                    {
+                        <li><button class="js-bt-datepicker-trigger"><i class="fa fa-calendar-o"></i><span>报告时间</span></button></li>
+                    }
+
+                </ul>
+                <div id="datepicker" data-date-end-date="0d">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div id="weibo-overlay-container" class="overlay-container">
+            <div id="weibo-overlay" class="overlay overlay-scale">
+                <button type="button" id="weibo-overlay-close" class="overlay-close"></button>
+                <div id="WeiboList" class="overlay-content js-hidden-overlay">
+                    <div class="overlay-label">
+                        原微博
+                    </div>
+                    <div id="js-hr-overlay-detail">
+                    </div>
+                    <div class="overlay-action-group clearfix">
+                        <div class="overlay-action-fav pull-left">
+                            <button class="btn"><span>持续关注</span></button>
+                        </div>
+                        <div class="overlay-action-fix pull-right">
+                            <button class="btn js-trigger-communication"><span>立即公关</span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="communication-content hidden js-communication">
+                    <div class="communication-title">
+                        通知以下人员，开始立即公关
+                    </div>
+                    <div class="communication-list">
+                        <ul class="list-group checked-list-box clearfix">
+                            <li class="list-group-item pull-left clearfix">
+                                <div class="communication-info pull-left">
+                                    <div class="communication-img pull-left">
+                                        <img src="~/Resources/img/frank.png" />
+                                    </div>
+                                    <div class="communication-detail pull-left">
+                                        <div class="com-name">
+                                            公关部 刘经理
+                                        </div>
+                                        <div class="com-phone">
+                                            139xxxxxxxx
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pull-left communication-checkbox">
+                                    <input type="checkbox" />
+                                </div>
+                            </li>
+                            <li class="list-group-item pull-left clearfix">
+                                <div class="communication-info pull-left">
+                                    <div class="communication-img pull-left">
+                                        <img src="~/Resources/img/shanshan.png" />
+                                    </div>
+                                    <div class="communication-detail pull-left">
+                                        <div class="com-name">
+                                            公关部 陈经理
+                                        </div>
+                                        <div class="com-phone">
+                                            136xxxxxxxx
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pull-left communication-checkbox">
+                                    <input type="checkbox" />
+                                </div>
+                            </li>
+                            <li class="list-group-item pull-left clearfix">
+                                <div class="communication-info pull-left">
+                                    <div class="communication-img pull-left">
+                                        <img src="~/Resources/img/yan.png" />
+                                    </div>
+                                    <div class="communication-detail pull-left">
+                                        <div class="com-name">
+                                            公关部 赵经理
+                                        </div>
+                                        <div class="com-phone">
+                                            135xxxxxxxx
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pull-left communication-checkbox">
+                                    <input type="checkbox" />
+                                </div>
+                            </li>
+                        </ul>
+                        <button class="communication-button" onclick="sendMessage();">
+                            立即联系
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="news-overlay-container" class="overlay-container">
+            <div id="news-overlay" class="overlay overlay-scale">
+                <button type="button" id="news-overlay-close" class="overlay-close"></button>
+                <div id="NewsList" class="overlay-content js-hidden-overlay">
+                    <div id="js-hr-overlay-NewsList">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script id="overlay-newslist-content-template" type="text/x-handlebars-template">
+            <div class="overlay-news-label">
+                新闻列表
+            </div>
+            {{#each this}}
+            <HR class="overlay-news-HR" align=center SIZE=1 />
+            <div class="overlay-news-list">
+                <a href="{{Url}}" target="_blank">
+                    <div class="overlay-news-content">
+                        <div class="overlay-news-title col-md-12 pull-left">{{Title}}</div>
+                        <div class="overlay-news-meta col-md-12 clearfix">
+                            <div class="overlay-news-user-name pull-left">
+                                {{Source}}
+                            </div>
+                            <div class="overlay-news-createtime pull-left">
+                                {{CreatedTime}}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {{/each}}
+        </script>
+        <script id="overlay-newssentimentlist-content-template" type="text/x-handlebars-template">
+            <div class="overlay-news-label">
+                新闻列表
+            </div>
+            <div style="margin-top: 10px; margin-bottom: 10px; margin-left: 0px; height: 20px;">
+                <img src="/Resources/img/fumian.png" class="pull-left" />
+                <div class="overlay-news-label-sentiment pull-left">
+                    负面
+                </div>
+            </div>
+            {{#each NegativeNewsList}}
+            <HR class="overlay-news-HR" align=center SIZE=1 />
+            <div class="overlay-news-list">
+                <a href="{{Url}}" target="_blank">
+                    <div class="overlay-news-content">
+                        <div class="overlay-news-title col-md-12 pull-left">{{Title}}</div>
+                        <div class="overlay-news-meta col-md-12 clearfix">
+                            <div class="overlay-news-user-name pull-left">
+                                {{Source}}
+                            </div>
+                            <div class="overlay-news-createtime pull-left">
+                                {{CreatedTime}}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {{/each}}
+            <HR class="overlay-news-HR" align=center SIZE=1 />
+            <div style="margin-top: 30px; margin-bottom: 10px; margin-left: 0px; height: 20px;">
+                <img src="/Resources/img/zhengmian.png" class="pull-left" />
+                <div class="overlay-news-label-sentiment pull-left">
+                    正面
+                </div>
+            </div>
+            {{#each PositiveNewsList}}
+            <HR class="overlay-news-HR" align=center SIZE=1 />
+            <div class="overlay-news-list">
+                <a href="{{Url}}" target="_blank">
+                    <div class="overlay-news-content">
+                        <div class="overlay-news-title col-md-12 pull-left">{{Title}}</div>
+                        <div class="overlay-news-meta col-md-12 clearfix">
+                            <div class="overlay-news-user-name pull-left">
+                                {{Source}}
+                            </div>
+                            <div class="overlay-news-createtime pull-left">
+                                {{CreatedTime}}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {{/each}}
+        </script>
+        <script id="overlay-commentsentimentlist-content-template" type="text/x-handlebars-template">
+            <div class="overlay-news-label">
+                新闻列表
+            </div>
+            {{#each this}}
+            <HR class="overlay-news-HR" align=center SIZE=1 />
+            <div class="overlay-news-list">
+                <a href="{{Url}}" target="_blank">
+                    <div class="overlay-newsandComment-content">
+                        <div class="overlay-news-title col-md-12 pull-left">{{Title}}</div>
+                        <div class="overlay-newswithcomment-meta col-md-12 clearfix">
+                            <div class="overlay-news-user-name pull-left">
+                                {{Source}}
+                            </div>
+                            <div class="overlay-news-createtime pull-left">
+                                {{CreatedTime}}
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="font-size:12px;color:#00ffff;margin-top:10px;padding-left:0px;">评论：</div>
+                        {{#each NegativeComments}}
+                        <div class="overlay-news-user-name pull-left" style="font-size:12px;color:#00ffff;margin-bottom:10px;">
+                            {{Content}}
+                        </div>
+                        {{/each}}
+                    </div>
+                </a>
+            </div>
+            {{/each}}
+        </script>
+        <script id="overlay-content-template" type="text/x-handlebars-template">
+            <div class="overlay-weibo-detail">
+                <div class="overlay-weibo-meta clearfix">
+                    <div class="overlay-weibo-user-name pull-left">
+                        {{UserName}}
+                    </div>
+                    <div class="overlay-weibo-createtime pull-left">
+                        {{WeiboCreatedTime}}
+                    </div>
+                    <div class="overlay-weibo-link pull-right">
+                        <a href="#">进入微博</a>
+                    </div>
+                </div>
+                <div class="overlay-weibo-content">
+                    <div class="overlay-weibo-text">{{WeiboContent}}</div>
+                    <div class="overlay-weibo-thumbnail clearfix">
+                        <img class="pull-left" src="{{Thumbnail}}" />
+                    </div>
+                </div>
+            </div>
+        </script>
+        <script id="scan-notification-List" type="text/x-handlebars-template">
+            <li class="li-label">
+                与本品牌相关的事实热点，请密切关注
+            </li>
+            {{#each NewsList}}
+            <li class="li-item js-toggle-overlay clearfix">
+                <a href="#" data-toggle-weiboId="{{WeiboId}}">
+                    <div class="thumbnail pull-left"><img src="{{Thumbnail}}"></div>
+                    <div class="li-item-content unread pull-left">
+                        {{Text}}
+                    </div>
+                </a>
+            </li>
+            {{/each}}
+        </script>
+        <script id="scan-favoriate-List" type="text/x-handlebars-template">
+            {{#each NewsList}}
+            <li class="li-item js-toggle-overlay clearfix">
+                <a href="#" data-toggle-weiboId="{{WeiboId}}">
+                    <div class="thumbnail pull-left"><img src="{{Thumbnail}}"></div>
+                    <div class="li-item-content pull-left">
+                        {{Text}}
+                    </div>
+                </a>
+            </li>
+            {{/each}}
+        </script>
+        @RenderBody()
+        <footer></footer>
+        <!--overlay start-->
+        <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+        <script src="~/Scripts/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+        <script type="text/javascript">
+            function sendMessage() {
+                var message = {};
+                message.ToNumbers = ["+", "+"];
+                message.TextBody = "以下微博信息对企业口碑有影响，请考虑立即公关. 微博链接: http://m.weibo.cn/2745813247/3973962700075206";
+                $.post("/api/notification/sendsmsmessage",
+                    JSON.stringify(message),
+                    function (data) {
+                    });
+            }
+
+            $(function () {
+                $('.dropdown-menu').on('click', 'a', toggleWeiboDetailOverlay);
+                $('.js-trigger-communication').on('click', ShowCommunicationContent);
+                $('#dropdownMenu-notification')
+                    .on('click',
+                        function () {
+                            if (!$('.notification').hasClass('hidden')) {
+                                $('.notification').addClass('hidden');
+                            }
+                            ShowWeiboList("/api/Scan/GetNotificationList", '#notificationArea', "#scan-notification-List");
+                        });
+
+                $('#dropdownMenu-favorite')
+                    .on('click',
+                        function () {
+                            ShowWeiboList('/api/Scan/GetFavoriateList', '#favoriateList', "#scan-favoriate-List");
+                        });
+
+                $('.communication-button').on('click', toggleWeiboDetailOverlay);
+                $('.dropdown-menu')
+                    .on('click',
+                        '.js-toggle-overlay a',
+                        function () {
+                            var $$this = $(this);
+                            var childNode = $$this.find('.li-item-content');
+                            if (childNode.hasClass('unread')) {
+                                childNode.removeClass('unread');
+                            }
+                        });
+                $('#weibo-overlay-close').on('click', toggleWeiboDetailOverlay);
+                $('#news-overlay-close').on('click', function () {                   
+                    toggleNewsListOverlay();                    
+                });
+                if (!$.fn.bootstrapDP && $.fn.datepicker && $.fn.datepicker.noConflict) {
+                    var datepicker = $.fn.datepicker.noConflict();
+                    $.fn.bootstrapDP = datepicker;
+                }
+                $('.js-bt-datepicker-trigger')
+                    .on('click',
+                        function () {
+                            $.get('/api/WeeklyReportData/GetMinReportDate').success(function (data) {
+                                $('#datepicker').show();
+                                $('#datepicker')
+                                    .bootstrapDP({
+                                        language: "zh-CN",
+                                        startDate: data.substr(0,10),
+                                        todayBtn: "linked"
+                                    })
+                                    .on('changeDate',
+                                        function (e) {
+                                            UpdatePageUrlWithDate(e.date);
+                                        });
+                            });
+                        });
+                WeeklyReportAndCompetitorLinkUrl();
+                $(document)
+                    .click(function (event) {
+                        if (!$(event.target).closest('#datepicker').length &&
+                            !$(event.target).is('#datepicker') &&
+                            !$(event.target).closest('.js-bt-datepicker-trigger').length &&
+                            !$(event.target).is('.js-bt-datepicker-trigger')) {
+                            if ($('#datepicker').is(':visible')) {
+                                $('#datepicker').hide();
+                            }
+                        }
+                    });
+            });
+
+            function UpdatePageUrlWithDate(date) {
+                var queryDate = toUTCDateString(date);
+                if (location.href.toLowerCase().indexOf('competitor') >= 0) {
+                    location.href = location.protocol + "//" + location.host + '/Competitor' + '?endDate=' + queryDate;
+                } else {
+                    location.href = location.protocol + "//" + location.host + '/WeeklyReport' + '?endDate=' + queryDate;
+                }
+            }
+
+            function toggleWeiboDetailOverlay() {
+                toggleOverlay('div#weibo-overlay', 'div#weibo-overlay-container', 'weibo', this, null);
+            }
+
+            function showNewsListOverlay(data) {
+               
+                toggleOverlay('div#news-overlay', 'div#news-overlay-container', 'newslist', this, data);
+            }
+
+            function showNewsListOverlay_SortBySource(data, sources, reverse) {
+                // sort data by sources, reverse
+                var sorteddata = [];
+
+                if (reverse == 1) {
+                    for (var i = sources.length - 1; i >= 0; i--) {
+                        for (var j = 0; j < data.length; j++) {
+                            if (data[j].Source == sources[i]) {
+                                sorteddata.push(data[j]);
+                            }
+                        }
+                    }
+                } else {
+                    for (var i = 0; i < sources.length; i++) {
+                        for (var j = 0; j < data.length; j++) {
+                            if (data[j].Source == sources[i]) {
+                                sorteddata.push(data[j]);
+                            }
+                        }
+                    }
+                }
+                showNewsListOverlay(sorteddata);
+            }
+
+            function toggleNewsListOverlay() {
+                toggleOverlay('div#news-overlay', 'div#news-overlay-container', 'newslist', this, null);
+            }
+
+            function ShowWeiboList(requestUrl, displayAreaId, templateId) {
+                var displayArea = $(displayAreaId);
+                $.get(requestUrl)
+                    .success(function (data) {
+                        if (data) {
+                            var templateSource = $(templateId).html();
+                            var template = Handlebars.compile(templateSource);
+                            displayArea.html(template(data));
+                        }
+                    });
+            }
+
+            function WeeklyReportAndCompetitorLinkUrl() {
+                var searchQuery = location.search;
+                if (searchQuery.toString().toLowerCase().indexOf("enddate") >= 0) {
+                    $('.js-nav-li-2 a').attr('href', '/weeklyreport' + searchQuery);
+                    $('.js-nav-li-3 a').attr('href', '/Competitor' + searchQuery);
+                }
+            }
+        </script>
+        <script type="text/javascript">
+            var profileManager = {};
+            profileManager.ToFrontFilter = function (filterModel) {
+                var model = { name: "" };
+                model.filters = [];
+                if (filterModel) {
+                    model.name = filterModel.UserName;
+                    for (var idx in filterModel.UserFilterListCollection) {
+                        var filter = filterModel.UserFilterListCollection[idx];
+                        var fil = { text: "" };
+                        for (var i in filter.Filters) {
+                            var item = filter.Filters[i].Value;
+                            fil.text = fil.text + item + "+";
+                        }
+
+                        if (fil.text.length > 0) {
+                            fil.text = fil.text.slice(0, fil.text.length - 1);
+                        }
+
+                        model.filters.push(fil);
+                    }
+                } else {
+                    var fil = { text: "" };
+                    model.filters.push(fil);
+                }
+
+                return model;
+            }
+
+            profileManager.toFrontModel = function (data) {
+                var model = {};
+                model.company = this.ToFrontFilter(data.UserFilter);
+                model.competitors = [];
+                if (data.CompetitorFilter) {
+                    for (var i in data.CompetitorFilter) {
+                        var item = this.ToFrontFilter(data.CompetitorFilter[i]);
+                        model.competitors.push(item);
+                    }
+                }
+                else {
+                    var com = { name: "" };
+                    com.filters = [];
+                    var fil = { text: "" };
+                    com.filters.push(fil);
+                    model.competitors.push(com);
+                }
+
+                return model;
+            };
+
+            profileManager.collectCompanyModel = function (selector) {
+                var model = {};
+                model.name = $(selector).find(".com-name").val();
+                model.filters = [];
+                $(selector).find(".com-filter").each(function () {
+                    if ($.trim($(this).val()) != "") {
+                        model.filters.push($(this).val());
+                    }
+                });
+
+                return model;
+            }
+
+            profileManager.collectProfileModel = function () {
+                var model = { company: {}, competitors: [] };
+                model.company = this.collectCompanyModel(".group-a");
+                $(".group-b .company>li").each(function () {
+                    model.competitors.push(profileManager.collectCompanyModel($(this)));
+                });
+
+                return model;
+            }
+
+            $(function () {
+                $("#profile")
+                    .on("click",
+                        function () {
+                            $.get('/api/profile/get')
+                                .success(function (data) {
+                                    bindProfile(data);
+                                    $(".com-group").toggle();
+                                })
+                                .fail(function (data) {
+                                    alert(data);
+                                });
+
+                        });
+
+                $("#btnUpProfile")
+                    .on("click",
+                        function () {
+                            var profile = profileManager.collectProfileModel();
+                            var postdata = JSON.stringify(profile);
+                            $(".com-group").toggle();
+                            $.post('/api/profile/UpdateProfile',
+                                { '': postdata },
+                                function (d) {
+                                },
+                                "text/plain");
+                        }
+                    );
+
+                function bindProfile(data) {
+                    $(".group-a").html("");
+                    $(".group-b").html("");
+                    var frontModel = profileManager.toFrontModel(data);
+                    var templateSource = $("#companyTemplate").html();
+                    var template = Handlebars.compile(templateSource);
+                    var result = template(frontModel.company);
+                    $(".group-a").append(result);
+                    $(".group-b").append("<ul class='company'></ul>");
+                    if (frontModel.competitors.length == 0) { 
+                        $(".group-b>ul").append("<li><input class='com-name' placeholder='公司名称' value=''/> <br /><ul class='com-a'><li><input class='com-filter' placeholder='关键词'></li></ul><a href='#' class='com-add-keys'>+</a></li><a href='#' class='com-add'>+</a>");
+                    } else {
+                        for (var i in frontModel.competitors) {
+                            var src = $("#competitorTemplate").html();
+                            var tpl = Handlebars.compile(src);
+                            var com = frontModel.competitors[i];
+                            $(".group-b>ul").append(tpl(com));
+                            if (i = "0") { $(".group-b>ul").append("<a href='#' class='com-add'>+</a>"); }
+                        }
+                    }
+                    addKeyWords(".group-a", 1, 3);
+                    addKeyWords(".group-b", 3, 3);
+                }
+
+                function addKeyWords(classN, num, keyNum) {
+                   
+                    $(classN)
+                        .off();
+                    $(classN)
+                        .on("click", ".com-add",
+                            function () {
+                                if ($(classN + " .company>li").length < num) {
+                                    $(classN + " .company")
+                                        .append("<li><input class='com-name' placeholder='公司名称'/><a href='#' class='del'>x</a><br/><ul class='com-a'><li><input  class='com-filter' placeholder='关键词'></li></ul><a href='#' class='com-add-keys'>+</a></li>");
+                                }
+                            });
+
+                    $(classN)
+                        .on("click", ".del",
+                            function () {
+                                if ($(this).parent().parent().children("li").length > 1) {
+                                    $(this).parent().remove();
+                                }
+                            });
+                    $(classN)
+                        .on("click", ".company .com-add-keys",
+                            function () {
+                                if ($(this).parent().find('.com-a>li').length < keyNum) {
+                                    $(this)
+                                        .parent()
+                                        .find('.com-a').last()
+                                        .append("<li><input  class='com-filter' placeholder='关键词'/><a href='#' class='del'>x</a></li></li>");
+                                }
+                            });
+                }
+            });
+
+        </script>
+    </div>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
