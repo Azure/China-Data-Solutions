@@ -31,10 +31,24 @@ namespace MediaAnalysis.Pipeline.NewsAnalysisPipeline
                     var keywords = resultDict.ContainsKey(item.Id) ? resultDict[item.Id] : null;
                     if (keywords.Any())
                     {
-                        item.KeyWords = string.Join(" ", keywords);
-                        db.NewsStreams.Attach(item);
-                        db.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                        var keyword = string.Join(" ", keywords);
+                        item.KeyWords = keyword;
                     }
+                    else
+                    {
+                        if (item != null && !string.IsNullOrEmpty(item.Title))
+                        {
+                            var length = item.Title.Length > 20 ? 20 : item.Title.Length;
+                            item.KeyWords = item.Title.Substring(0, length);
+                        }
+                        else
+                        {
+                            item.KeyWords = "Empty";
+                        }
+                    }
+
+                    db.NewsStreams.Attach(item);
+                    db.Entry(item).State = System.Data.Entity.EntityState.Modified;
                 }
 
                 try

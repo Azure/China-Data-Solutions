@@ -41,6 +41,14 @@
     <ServiceConfiguration Include="ServiceConfiguration.Cloud.cscfg" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataCollectingRole\DataCollectingRole.csproj">
+      <Name>DataCollectingRole</Name>
+      <Project>{3284473c-c96e-47e3-9e79-882e91603a64}</Project>
+      <Private>True</Private>
+      <RoleType>Worker</RoleType>
+      <RoleName>DataCollectingRole</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
     <ProjectReference Include="..\MediaAnalysisRole\MediaAnalysisRole.csproj">
       <Name>MediaAnalysisRole</Name>
       <Project>{2fde1c32-d0f0-4493-b9eb-1e20eaa63dc4}</Project>
@@ -51,9 +59,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DataCollectingRoleContent\" />
+    <Folder Include="DataCollectionRoleContent\" />
+    <Folder Include="DataGeneratorContent\" />
     <Folder Include="MediaAnalysisRoleContent\" />
   </ItemGroup>
   <ItemGroup>
+    <DiagnosticsConfiguration Include="DataCollectingRoleContent\diagnostics.wadcfgx" />
+    <DiagnosticsConfiguration Include="DataCollectionRoleContent\diagnostics.wadcfgx" />
+    <DiagnosticsConfiguration Include="DataGeneratorContent\diagnostics.wadcfgx" />
     <DiagnosticsConfiguration Include="MediaAnalysisRoleContent\diagnostics.wadcfgx" />
   </ItemGroup>
   <!-- Import the target files for this project template -->

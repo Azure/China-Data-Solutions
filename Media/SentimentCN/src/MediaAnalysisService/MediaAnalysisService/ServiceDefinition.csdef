@@ -6,4 +6,9 @@
       <Setting name="Database.ConnectionString" />
     </ConfigurationSettings>
   </WorkerRole>
+  <WorkerRole name="DataCollectingRole" vmsize="Small">
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+    </ConfigurationSettings>
+  </WorkerRole>
 </ServiceDefinition>

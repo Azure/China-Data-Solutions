@@ -4,7 +4,13 @@
     <Instances count="1" />
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
-      <Setting name="Database.ConnectionString" value="Server= g1sa681vaf.database.chinacloudapi.cn,1433;Database=MediaAnalysis;User ID=micdev;Password=mic@2016;Trusted_Connection=False;Encrypt=True;Connection Timeout=120;"/>
+      <Setting name="Database.ConnectionString" value="Server= g1sa681vaf.database.chinacloudapi.cn,1433;Database=MediaAnalysis;User ID=micdev;Password=mic@2016;Trusted_Connection=False;Encrypt=True;Connection Timeout=120;" />
+    </ConfigurationSettings>
+  </Role>
+  <Role name="DataCollectingRole">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
     </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>

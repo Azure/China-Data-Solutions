@@ -5,18 +5,14 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2FDE1C32-D0F0-4493-B9EB-1E20EAA63DC4}</ProjectGuid>
+    <ProjectGuid>{3284473C-C96E-47E3-9E79-882E91603A64}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MediaAnalysisRole</RootNamespace>
-    <AssemblyName>MediaAnalysisRole</AssemblyName>
+    <RootNamespace>DataCollectingRole</RootNamespace>
+    <AssemblyName>DataCollectingRole</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <RoleType>Worker</RoleType>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,14 +38,6 @@
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="JiebaNet.Analyser, Version=0.38.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\jieba.NET.0.38.3\lib\net45\JiebaNet.Analyser.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="JiebaNet.Segmenter, Version=0.38.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\jieba.NET.0.38.3\lib\net45\JiebaNet.Segmenter.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -102,67 +90,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NewsAnalysisWorker.cs" />
+    <Compile Include="DataSimulator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorkerRole.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\NLPLib\Resources\char_state_tab.json">
-      <Link>Resources\char_state_tab.json</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\NLPLib\Resources\pos_prob_emit.json">
-      <Link>Resources\pos_prob_emit.json</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\NLPLib\Resources\pos_prob_start.json">
-      <Link>Resources\pos_prob_start.json</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\NLPLib\Resources\pos_prob_trans.json">
-      <Link>Resources\pos_prob_trans.json</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\NLPLib\Resources\prob_emit.json">
-      <Link>Resources\prob_emit.json</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\NLPLib\Resources\prob_trans.json">
-      <Link>Resources\prob_trans.json</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="app.config" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <Content Include="Data\samplenews.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
-      <Project>{51AD01E6-9B8A-49B8-A54E-B0A4AC37448A}</Project>
+      <Project>{51ad01e6-9b8a-49b8-a54e-b0a4ac37448a}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MediaAnalysis\MediaAnalysis.csproj">
-      <Project>{4AB3216A-888B-4E94-99D5-34EF1F1500C3}</Project>
-      <Name>MediaAnalysis</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\NLPLib\Resources\cn_synonym.txt">
-      <Link>Resources\cn_synonym.txt</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\NLPLib\Resources\dict.txt">
-      <Link>Resources\dict.txt</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\NLPLib\Resources\idf.txt">
-      <Link>Resources\idf.txt</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\NLPLib\Resources\stopwords.txt">
-      <Link>Resources\stopwords.txt</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
