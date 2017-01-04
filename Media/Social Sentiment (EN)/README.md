@@ -1,1 +1,0 @@
-# Social Sentiment Solution (EN)
