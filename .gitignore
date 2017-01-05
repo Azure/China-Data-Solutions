@@ -1,7 +1,36 @@
-﻿################################################################################
+﻿
+
+
+
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/Marketing/ListeningCN/WebDemo/src/DataAccessLayer/bin/Debug
-/Marketing/ListeningCN/WebDemo/src/MediaMonitoring/bin
-/Marketing/ListeningCN/WebDemo/src/MediaMonitoring/obj/Debug
+/Media/Social Sentiment (CN)/Technical Packages/Source Packages/src/MediaAnalysisService/NLPLib/obj/Debug
+/Media/Social Sentiment (CN)/Technical Packages/Source Packages/src/MediaAnalysisService/DataAccess/obj/Debug
+/Media/Social Sentiment (CN)/Technical Packages/Source Packages/src/MediaAnalysisService/MediaAnalysisRole/obj/Debug
+/Media/Social Sentiment (CN)/Technical Packages/Source Packages/src/MediaAnalysisService/DataAccess/bin/Debug
+/Media/Social Sentiment (CN)/Technical Packages/Source Packages/src/MediaAnalysisService/MediaAnalysis/bin/Debug
+/Media/Social Sentiment (CN)/Technical Packages/Source Packages/src/MediaAnalysisService/MediaAnalysis/obj/Debug
+/Media/Social Sentiment (CN)/Technical Packages/Source Packages/src/MediaAnalysisService/MediaAnalysisRole/bin/Debug
+/Media/Social Sentiment (CN)/Technical Packages/Source Packages/src/MediaAnalysisService/MediaAnalysisService/bin/Debug
+/Media/Social Sentiment (CN)/Technical Packages/Source Packages/src/MediaAnalysisService/MediaAnalysisService/obj/Debug
+/Media/Social Sentiment (CN)/Technical Packages/Source Packages/src/MediaAnalysisService/NLPLib/bin/Debug
+/Media/Social Sentiment (CN)/Technical Packages/Source Packages/src/MediaAnalysisService/packages
+/Media/Social Sentiment (CN)/Technical Packages/Source Packages/src/MediaAnalysisService/.vs/MediaAnalysisService/v14
+/Media/SentimentCN/src/MediaAnalysisService/.vs
+/Media/SentimentCN/src/MediaAnalysisService/DataAccess/obj/Debug
+/Media/SentimentCN/src/MediaAnalysisService/DataAccess/bin/Debug
+/Media/SentimentCN/src/MediaAnalysisService/DataCollectingRole/obj/Debug
+/Media/SentimentCN/src/MediaAnalysisService/DataCollectingRole/bin/Debug
+/Media/SentimentCN/src/MediaAnalysisService/MediaAnalysis/obj/Debug
+/Media/SentimentCN/src/MediaAnalysisService/MediaAnalysis/bin/Debug
+/Media/SentimentCN/src/MediaAnalysisService/MediaAnalysisRole/obj/Debug
+/Media/SentimentCN/src/MediaAnalysisService/MediaAnalysisRole/bin/Debug
+/Media/SentimentCN/src/MediaAnalysisService/MediaAnalysisService/obj/Debug
+/Media/SentimentCN/src/MediaAnalysisService/MediaAnalysisService/ecf/MediaAnalysisRoleContent
+/Media/SentimentCN/src/MediaAnalysisService/MediaAnalysisService/csx/Debug
+/Media/SentimentCN/src/MediaAnalysisService/MediaAnalysisService/bin/Debug
+/Media/SentimentCN/src/MediaAnalysisService/NLPLib/bin/Debug
+/Media/SentimentCN/src/MediaAnalysisService/NLPLib/obj/Debug
+/Media/SentimentCN/src/MediaAnalysisService/packages

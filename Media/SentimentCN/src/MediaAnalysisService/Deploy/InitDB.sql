@@ -130,27 +130,3 @@ CREATE FULLTEXT INDEX ON [dbo].[NewsStream](
 [KeyWords] LANGUAGE 'English')
 KEY INDEX [ui_Id]ON ([ftCatalog], FILEGROUP [PRIMARY])
 WITH (CHANGE_TRACKING = AUTO, STOPLIST = SYSTEM)
-
-
-
-
-/****** Object:  Trigger [dbo].[trgAfterInsert_NewsStream]    Script Date: 12/22/2016 7:26:48 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE TRIGGER [dbo].[trgAfterInsert_NewsStream] ON [dbo].[NewsStream] 
-FOR INSERT
-AS BEGIN
-	DECLARE @date date;	
-	SELECT @date=i.[Date] FROM inserted i;		
-	IF EXISTS(SELECT 1 FROM [dbo].[LoadHistory] WHERE [Date]=@date)
-		UPDATE [dbo].[LoadHistory] 
-		SET [NewsStream] = getdate() 
-		WHERE [Date]=@date
-	ELSE IF @date IS NOT NULL
-		INSERT INTO [dbo].[LoadHistory]([Date], [NewsStream])
-		VALUES(@date, getdate());
-END
-

@@ -43,6 +43,7 @@ namespace MediaAnalysis.Pipeline.NewsAnalysisPipeline
                 {
                     //@@TODO LOG
                     Debug.WriteLine(e);
+                    throw;
                 }
             }
 

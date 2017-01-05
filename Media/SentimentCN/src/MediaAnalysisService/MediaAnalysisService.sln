@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{824674
 		Deploy\InitDB.sql = Deploy\InitDB.sql
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataCollectingRole", "DataCollectingRole\DataCollectingRole.csproj", "{3284473C-C96E-47E3-9E79-882E91603A64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,29 +46,12 @@ Global
 		{E4862BAE-9AD2-4BE1-9099-668318E7EBB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4862BAE-9AD2-4BE1-9099-668318E7EBB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4862BAE-9AD2-4BE1-9099-668318E7EBB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3284473C-C96E-47E3-9E79-882E91603A64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3284473C-C96E-47E3-9E79-882E91603A64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3284473C-C96E-47E3-9E79-882E91603A64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3284473C-C96E-47E3-9E79-882E91603A64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://mcdi.visualstudio.com/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = DataAccess\\DataAccess.csproj
-		SccProjectName1 = DataAccess
-		SccLocalPath1 = DataAccess
-		SccProjectUniqueName2 = NLPLib\\NLPLib.csproj
-		SccProjectName2 = NLPLib
-		SccLocalPath2 = NLPLib
-		SccProjectUniqueName3 = MediaAnalysis\\MediaAnalysis.csproj
-		SccProjectName3 = MediaAnalysis
-		SccLocalPath3 = MediaAnalysis
-		SccProjectUniqueName4 = MediaAnalysisRole\\MediaAnalysisRole.csproj
-		SccProjectName4 = MediaAnalysisRole
-		SccLocalPath4 = MediaAnalysisRole
-		SccProjectUniqueName5 = MediaAnalysisService\\MediaAnalysisService.ccproj
-		SccProjectName5 = MediaAnalysisService
-		SccLocalPath5 = MediaAnalysisService
 	EndGlobalSection
 EndGlobal
