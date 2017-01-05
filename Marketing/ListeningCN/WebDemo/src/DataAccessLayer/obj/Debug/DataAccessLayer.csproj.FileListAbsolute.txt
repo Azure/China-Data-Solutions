@@ -29,3 +29,4 @@ D:\ccgrepo\China-Data-Solutions\Marketing\ListeningCN\WebDemo\src\DataAccessLaye
 D:\ccgrepo\China-Data-Solutions\Marketing\ListeningCN\WebDemo\src\DataAccessLayer\bin\Debug\Newtonsoft.Json.xml
 D:\ccgrepo\China-Data-Solutions\Marketing\ListeningCN\WebDemo\src\DataAccessLayer\obj\Debug\DataAccessLayer.dll
 D:\ccgrepo\China-Data-Solutions\Marketing\ListeningCN\WebDemo\src\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
+D:\ccgrepo\China-Data-Solutions\Marketing\ListeningCN\WebDemo\src\DataAccessLayer\obj\Debug\DataAccessLayer.csprojResolveAssemblyReference.cache

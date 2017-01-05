@@ -145,7 +145,6 @@
     <Compile Include="DataModels\NewsStream.cs" />
     <Compile Include="DataModels\WeiboLastProcessRecord.cs" />
     <Compile Include="DataModels\WordCloudItem.cs" />
-    <Compile Include="DataModels\SentiResult.cs" />
     <Compile Include="DataModels\WordClouds.cs" />
     <Compile Include="Helper\ConfigurationReader.cs" />
     <Compile Include="Helper\DBNotMapAttribute.cs" />
