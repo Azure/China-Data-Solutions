@@ -414,12 +414,7 @@
     <Content Include="Content\bootstrap-datepicker.standalone.css.map" />
     <Content Include="Content\bootstrap-datepicker.min.css.map" />
     <Content Include="Content\bootstrap-datepicker.css.map" />
-    <None Include="Properties\PublishProfiles\centerone.pubxml" />
-    <None Include="Properties\PublishProfiles\ercenterone - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\ercenterone - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\PackageBuild.pubxml" />
-    <None Include="Properties\PublishProfiles\prmn - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\prmn - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cloud.js" />
     <Content Include="Scripts\china.js" />
