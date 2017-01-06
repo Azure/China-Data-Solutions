@@ -1,5 +1,7 @@
 # Social Listening Solution (CN)
+
 # 摘要
+
 # 前提
 
 1.安装Windows PowerShell ISE
@@ -18,6 +20,7 @@ $Global:DbPackage = "socialmediadb3.zip"；
 
 
 # 发布过程 
+
 使用文件中的数据库cosialmediadb3.zip创建一个数据库作为这个网站的数据库。脚本执行过程中，会创建新的数据库，创建一个资源组，上传“项目发布文件”。也可以在脚本执行过程中，当提示问题“Please Input a database connection string if you have. Press enter to create a new database. ”时，输入已有的数据库连接字符串也可以。
 
 - 打开Windows PowerShell ISE
