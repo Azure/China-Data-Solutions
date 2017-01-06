@@ -36,6 +36,14 @@
 /Media/SentimentCN/src/MediaAnalysisService/packages
 
 
+################################################################################
+# ListeningCN WebDemo
+################################################################################
+/Marketing/ListeningCN/WebDemo/src/packages
+/Marketing/ListeningCN/WebDemo/src/DataAccessLayer/bin/Debug
+/Marketing/ListeningCN/WebDemo/src/DataAccessLayer/obj/Debug
+/Marketing/ListeningCN/WebDemo/src/MediaMonitoring/bin/Debug
+/Marketing/ListeningCN/WebDemo/src/MediaMonitoring/obj/Debug
 
 
 # Created by https://www.gitignore.io/api/visualstudio
