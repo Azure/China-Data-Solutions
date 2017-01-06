@@ -10,20 +10,24 @@
 
 ## 架构描述
 
+- 数据库文件：socialSentimentdb.zip
+- 项目文件包：socialSentiment.zip
+
 > **注:**
 
-> - setup.ps1文件要和.zip文件放在同一文件目录下
-> - setup.ps1文件要和.zip文件放在同一文件目录下
-> - setup.ps1文件的第四行代表项目使用的数据库的名称：$Global:DbPackage = "socialmediadb3.zip"；
-> - setup.ps1文件的第？行代表项目文件的名称
+> - setup.ps1文件要和数据库文件放在同一文件目录下
+> - setup.ps1文件要和项目文件包放在同一文件目录下
+> - setup.ps1文件的第二行 PackageName 代表项目文件的名称
+> - setup.ps1文件的第四行 PackageName 代表项目使用的数据库的名称
 
 
 
 
 ## 部署步骤
 
-使用文件中的数据库cosialmediadb3.zip创建一个数据库作为这个网站的数据库。脚本执行过程中，会创建新的数据库，创建一个资源组，上传“项目发布文件”。也可以在脚本执行过程中，当提示问题“Please Input a database connection string if you have. Press enter to create a new database. ”时，输入已有的数据库连接字符串也可以。
+使用文件中的数据库创建一个数据库作为这个网站的数据库。脚本执行过程中，会创建新的数据库，创建一个资源组，上传“项目发布文件”。也可以在脚本执行过程中，当提示问题“Please Input a database connection string if you have. Press enter to create a new database. ”时，输入已有的数据库连接字符串也可以。
 
+- 解压项目文件包到当前目录
 - 打开Windows PowerShell ISE
 - 输入命令，切换到项目代码所在位置“绝对路径\PackageSocialSentiment\SocialSentiment” 
 - 输入 setup.ps1 按下键盘上tab键两下，然后回车，脚本文件即开始执行。
