@@ -402,12 +402,7 @@
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Properties\PublishProfiles\centerone.pubxml" />
-    <None Include="Properties\PublishProfiles\ercenterone - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\ercenterone - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\PackageBuild.pubxml" />
-    <None Include="Properties\PublishProfiles\prmn - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\prmn - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\cloud.js" />
