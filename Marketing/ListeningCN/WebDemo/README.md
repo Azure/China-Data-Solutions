@@ -26,7 +26,7 @@
 
 ## 部署步骤
 
-使用文件中的数据库创建一个数据库作为这个网站的数据库。脚本执行过程中，会创建新的数据库，创建一个资源组，上传“项目发布文件”。也可以在脚本执行过程中，当提示问题 “Please Input a database connection string if you have. Press enter to create a new database. ” 时，输入已有的数据库连接字符串也可以。
+使用文件中的数据库创建一个数据库作为这个网站的数据库。脚本执行过程中，会创建新的数据库，创建一个资源组，上传“项目发布文件”。
 
 - 解压项目文件包到当前目录
 - 打开 Windows PowerShell ISE
@@ -35,8 +35,9 @@
 	-	首先页面会弹出窗口提示登陆 azure ，输入用户名和密码后点确定，脚本将自动继续运行。运行脚本过程中会有相关问题
 	-	第一个：Please select the deployment location [1] China North [2] China East 。请输入“1” 并“回车”。
 	-	第二个：Please Input a database connection string if you have. Press enter to create a new database. 
-请输入”回车”。就会创建新的数据库
+请输入”回车”。
 	-	第三个：Please input the user name for sql database, sa is not allowed 。请输入azure（这里可以自定义）
-	-	第四个：Please input the password for sql database。请输入密码 Passw0rd! (这里可以自定义)，回车，继续执行脚本文件
-
+	-	第四个：Please input the password for sql database。请输入密码 Passw0rd! (这里可以自定义)，回车，继续执行脚本文件。创建新的Database Server后会自动导入数据库。
+	-   数据库导入完毕后，资源文件被自动上传到FTP。
+- 脚本执行完毕后，PowerShell ISE 会返回发布成功的网站的地址。
 
