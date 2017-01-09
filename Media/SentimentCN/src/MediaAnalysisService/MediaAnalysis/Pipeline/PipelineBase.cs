@@ -11,6 +11,8 @@ namespace MediaAnalysis.Pipeline
 
         public virtual string Name { get; }
 
+        public IPipelineLog Logger { get; set; }
+
         public IList<IPipelineActivity> Activities { get; } = new List<IPipelineActivity>();
 
         public abstract void Init();
