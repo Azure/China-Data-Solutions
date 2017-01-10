@@ -4,7 +4,7 @@
 
 1.安装 Windows PowerShell ISE
 
-2.在 https://portal.azure.cn 拥有Azure账户
+2.在 https://portal.azure.cn 拥有Azure账户，Azure 账户可以创建资源组并且可以创建新的sql server。
 
 
 
