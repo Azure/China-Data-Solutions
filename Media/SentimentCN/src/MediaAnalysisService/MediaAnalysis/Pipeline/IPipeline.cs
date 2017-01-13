@@ -8,6 +8,8 @@ namespace MediaAnalysis.Pipeline
 {
     public interface IPipeline
     {
+        IPipelineLog Logger { get; set; }
+
         string Name { get; }
 
         IList<IPipelineActivity> Activities { get; }
