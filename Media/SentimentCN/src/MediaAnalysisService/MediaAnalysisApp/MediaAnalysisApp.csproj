@@ -288,6 +288,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Properties\PublishProfiles\runningjobs - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\runningjobs - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\test.pubxml" />

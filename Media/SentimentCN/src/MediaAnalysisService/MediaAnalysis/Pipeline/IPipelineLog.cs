@@ -8,6 +8,5 @@ namespace MediaAnalysis.Pipeline
 {
     public interface IPipelineLog
     {
-        void Log(string message);
     }
 }
