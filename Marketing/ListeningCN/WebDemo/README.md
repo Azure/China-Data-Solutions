@@ -1,4 +1,4 @@
-----------
+﻿----------
 
 # 解决方案部署文档
 ----------
@@ -48,10 +48,10 @@
 	-	问题二“Please Input a database connection string if you have. Press enter to create a new database.” ，请输入”回车”，就会创建新的数据库。
 	-	问题三“Please input the password for sql database”，请输入密码Passw0rd! (可以自定义)，回车，继续执行脚本文件，创建新的Database Server后会自动导入数据库。
 
-脚本执行完后最下方一行会显示已经发布好的网站的地址，进入这个地址就会看到部署的方案。
+脚本执行完后，如果部署成功，会返回发布成功的网站信息，DefaultHostName参数的值既是网站的地址，进入这个地址就会看到部署的方案。
 
-部署完毕后，登录 https://portal.azure.cn ，在Azure上会看到自动创建的以‘RGsocialsenti'为开头的资源组，在此资源组里可以看到本方案用到的所有资源：一个数据库服务器，一个数据库，一个存储账户，一个应用服务计划和一个应用服务。
+在发布成功的网站信息中，DefaultHostName参数的值是方案所用的Azure资源组的名字。登录 https://portal.azure.cn ，找到以‘RGsocialsenti'为开头的资源组，在此资源组里可以看到本方案用到的所有资源：一个数据库服务器，一个数据库，一个存储账户，一个应用服务计划和一个应用服务。
 
 ## 重新部署
-重新部署的主要操作是删除这个方案所在的资源组。登录 https://portal.azure.cn 在“资源组”菜单下找到以‘RGsocialsenti'为开头的资源组。点击这个资源组，可以看到右侧显示区域列出该资源组下的相关资源，点击资源组右侧的“删除” 即可删除整个资源组。
+重新部署的主要操作是删除这个方案所用的资源组以及中的所有资源。登录 https://portal.azure.cn 在“资源组”菜单下找到以‘RGsocialsenti'为开头的资源组。点击这个资源组，可以看到右侧显示区域列出该资源组下的相关资源，点击资源组右侧的“删除” 即可删除整个资源组。
 
