@@ -1,4 +1,4 @@
-﻿----------
+----------
 
 # 解决方案部署文档
 ----------
@@ -21,13 +21,13 @@
 1. DeployPkg文件夹包含的文件
 
 
-1.  网络连接
+2.  网络连接
 
 
-1.  一个微软Azure的账户（https://portal.azure.cn）
+3.  一个微软Azure的账户（https://portal.azure.cn）
 
 
-1.  安装Windows PowerShell ISE
+4.  安装Windows PowerShell ISE
 
 
 ## 部署步骤
@@ -36,13 +36,13 @@
 1.  解压项目文件包到当前目录
 
 
-1. 打开Windows PowerShell ISE
+2. 打开Windows PowerShell ISE
 
 
-1. 输入命令，切换到部署文件所在位置 
+3. 输入命令，切换到部署文件所在位置 
 
 
-1. 输入命令执行脚本setup.ps1
+4. 输入命令执行脚本setup.ps1
 	-	首先页面会弹出窗口提示登陆azure，输入用户名和密码后点确定，脚本将自动继续运行。脚本运行过程中会有提问相关问题。
 	-	问题一“Please select the deployment location [1] China North [2] China East”，请选择“1”或“2”后“回车”。
 	-	问题二“Please Input a database connection string if you have. Press enter to create a new database.” ，请输入”回车”，就会创建新的数据库。
