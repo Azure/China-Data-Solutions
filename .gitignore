@@ -321,3 +321,5 @@ build/
 
 # End of https://www.gitignore.io/api/visual ,visualstudio
 
+/Media/SentimentCN/DeployPkg/Web
+/Media/SentimentCN/DeployPkg/ASA
