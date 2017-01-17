@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using MediaAnalysis;
 using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
 using Newtonsoft.Json.Linq;
@@ -39,16 +40,17 @@ namespace DataCollectingJob
                     await client.SendAsync(data);
                     if (index%100 == 0)
                     {
-                        Console.WriteLine($"{index} items sent.");
+                        Logger.Log($"{index} items sent.");
                         index++;
                     }
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine(ex);
+                    Logger.Log(ex);
                 }
             }
 
+            //// Block this thread will not run again
             while (true)
             {
                 System.Threading.Thread.Sleep(100000);

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MediaAnalysis;
 using Microsoft.Azure.WebJobs;
 
 namespace NewsTextAnalysisJob
@@ -25,8 +26,7 @@ namespace NewsTextAnalysisJob
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                Debug.WriteLine(e);
+                Logger.Log(e);
             }
         }
     }

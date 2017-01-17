@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccess;
 using DataAccess.Models;
+using MediaAnalysis;
 using MediaAnalysis.Pipeline;
 using MediaAnalysis.Pipeline.NewsAnalysisPipeline;
 
@@ -28,7 +29,7 @@ namespace NewsTextAnalysisJob
                 }
                 else
                 {
-                    Console.WriteLine($"{newsStreams.Count()} items processed.");
+                    Logger.Log($"{newsStreams.Count()} items processed.");
                 }
             }
             else
