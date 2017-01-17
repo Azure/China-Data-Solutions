@@ -25,7 +25,7 @@ namespace DataAccessLayer.Managers
     using DataAccessLayer.DataModels.Filters;
     using DataAccessLayer.Helper;
 
-    using Iveonik.Stemmers;
+   // using Iveonik.Stemmers;
 
 
 
