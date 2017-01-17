@@ -1,0 +1,98 @@
+{"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+  },
+  "variables": {
+    "eventHubNamespace": "{{EventHubNS}}",
+    "eventHubName": "newshub",
+    "eventHubKeyName": "RootManageSharedAccessKey",
+    "sqlServerName": "{{SqlServerName}}",
+    "sqlServerAdminLogin": "{{SqlServerUser}}",
+    "password":"{{SqlServerPassword}}",
+    "sqlDBName": "{{DBName}}",
+    "sqlpbiTableName":"NewsStream",
+    "jobName": "ASANewsImport",
+    "jobQuery": "SELECT [Date],[Url],[Title],[NewsArticleDescription],[Description],[NewsArticleCategory],[NewsSource],[GoodDominantImageURL],[KeyWords],[ClusterId0],[ClusterId1],[ClusterId2],[ClusterId3],[ClusterId4],[BuildTime2],[Id],DateTime.Now  as [BuildTime]INTO    newsstream FROM    newshub"
+  },
+  "resources": [ {
+      "apiVersion": "2015-09-01",
+      "type": "Microsoft.StreamAnalytics/StreamingJobs",
+      "name": "[variables('jobName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        /* The only supported value for ASA sku is standard https://msdn.microsoft.com/en-us/library/azure/dn834994.aspx */
+        "sku": { "name": "Standard" },
+        "inputs": [
+          {
+            "name": "newshub",
+            "properties": {
+              "type": "stream",
+              "serialization": {
+                "type": "JSON",
+                "properties": { "encoding": "UTF8" }
+              },
+               "datasource": {
+                "type": "Microsoft.ServiceBus/EventHub",
+                "properties": {
+                  "eventHubName": "[variables('eventHubName')]",
+                  "serviceBusNamespace": "[variables('eventHubNamespace')]",
+                  "sharedAccessPolicyName": "[variables('eventHubKeyName')]",
+                  "sharedAccessPolicyKey": "[listKeys(resourceId('Microsoft.Eventhub/namespaces/authorizationRules', variables('eventHubNamespace'), variables('eventHubKeyName')), '2014-09-01').primaryKey]"
+                }
+              }
+            }
+          }
+        ],
+         "outputs": [
+	  {
+            "name": "teststream",
+            "properties": {
+              "datasource": {
+                "type": "Microsoft.Sql/Server/Database",
+                "properties": {
+                  "server": "[variables('sqlServerName')]",
+                  "database": "[variables('sqlDBName')]",
+                  "user": "[variables('sqlServerAdminLogin')]",
+                  "password": "[variables('password')]",
+                  "table": "[variables('sqlpbiTableName')]"
+                },
+		"Diagnostics": null,
+                "Serialization": null
+              }
+            }
+          },
+          {
+            "name": "newsstream",
+            "properties": {
+              "datasource": {
+                "type": "Microsoft.Sql/Server/Database",
+                "properties": {
+                  "server": "[variables('sqlServerName')]",
+                  "database": "[variables('sqlDBName')]",
+                  "user": "[variables('sqlServerAdminLogin')]",
+                  "password": "[variables('password')]",
+                  "table": "[variables('sqlpbiTableName')]"
+                },
+                "Diagnostics": null,
+                "Serialization": null
+              }
+            }
+          }
+        ],
+        "transformation": {
+          "name": "[variables('jobName')]",
+          "properties": {
+            "streamingUnits": 1,
+            "query": "[variables('jobQuery')]"
+          }
+        },
+		"dependsOn": [
+        "[resourceId('Microsoft.ServiceBus/EventHub', variables('eventHubName'))]",
+        "[resourceId('Microsoft.SQL/servers/databases', variables('sqlServerName'), variables('sqlDBName'))]"
+      ]
+  }}],
+  "outputs":{"sqlServerName": {
+      "type": "string",
+      "value": "[variables('sqlServerName')]"
+  }}
+  }

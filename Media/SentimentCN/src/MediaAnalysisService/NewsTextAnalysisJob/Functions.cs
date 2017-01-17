@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MediaAnalysis;
 using Microsoft.Azure.WebJobs;
 
 namespace NewsTextAnalysisJob
@@ -23,8 +24,8 @@ namespace NewsTextAnalysisJob
             {
                 log.WriteLine(e.Message);
                 log.WriteLine(e.StackTrace);
-                Console.WriteLine(e.Message);
-                Console.WriteLine(e.StackTrace);
+                Logger.Log(e.Message);
+                Logger.Log(e.StackTrace);
             }
         }
     }

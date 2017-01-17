@@ -74,6 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Logger.cs" />
     <Compile Include="Pipeline\ActivityResult.cs" />
     <Compile Include="Pipeline\IPipeline.cs" />
     <Compile Include="Pipeline\IPipelineActivity.cs" />

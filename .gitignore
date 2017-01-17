@@ -321,3 +321,9 @@ build/
 
 # End of https://www.gitignore.io/api/visual ,visualstudio
 
+/Media/SentimentCN/DeployPkg/Web
+/Media/SentimentCN/DeployPkg/ASA
+/Media/SentimentCN/DeployPkg/SSCN/app_data/jobs/continuous/DataCollectingJob
+/Media/SentimentCN/DeployPkg/SSCN/app_data/jobs/continuous/NewsTextAnalysisJob
+/Media/SentimentCN/DeployPkg/SSCN
+/Media/SentimentCN/DeployPkg/setupasa.ps1

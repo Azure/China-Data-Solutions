@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MediaAnalysis;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Timers;
 
@@ -22,7 +23,7 @@ namespace DataCollectingJob
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Logger.Log(e);
                 log.WriteLine(e.StackTrace);
             }
         }
