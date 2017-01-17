@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MediaAnalysis;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host.Executors;
 using Microsoft.WindowsAzure.Storage;
@@ -29,7 +30,7 @@ namespace DataCollectingJob
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Logger.Log(e);
             }
         }
     }
