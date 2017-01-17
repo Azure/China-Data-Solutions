@@ -25,6 +25,7 @@ namespace DataCollectingJob
             var text = File.ReadAllText(@"data\samplenews.json");
             var objects = JArray.Parse(text);
 
+            int index = 1;
             foreach (var item in objects)
             {
                 var bytes = Encoding.UTF8.GetBytes(item.ToString());
@@ -36,11 +37,21 @@ namespace DataCollectingJob
                 try
                 {
                     await client.SendAsync(data);
+                    if (index%100 == 0)
+                    {
+                        Console.WriteLine($"{index} items sent.");
+                        index++;
+                    }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex);
                 }
+            }
+
+            while (true)
+            {
+                System.Threading.Thread.Sleep(100000);
             }
         }
     }

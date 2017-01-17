@@ -26,6 +26,10 @@ namespace NewsTextAnalysisJob
                 {
                     throw result.Exception;
                 }
+                else
+                {
+                    Console.WriteLine($"{newsStreams.Count()} items processed.");
+                }
             }
             else
             {

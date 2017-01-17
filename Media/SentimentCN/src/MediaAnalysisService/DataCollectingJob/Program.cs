@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Host.Executors;
+using Microsoft.WindowsAzure.Storage;
 
 namespace DataCollectingJob
 {
@@ -20,12 +22,14 @@ namespace DataCollectingJob
                 JobHostConfiguration config = new JobHostConfiguration();
                 config.UseTimers();
                 var host = new JobHost(config);
+                CloudStorageAccount ac;
+                var result = CloudStorageAccount.TryParse(config.DashboardConnectionString, out ac);
                 // The following code ensures that the WebJob will be running continuously
                 host.RunAndBlock();
             }
             catch (Exception e)
             {
-                Debug.WriteLine(e);
+                Console.WriteLine(e);
             }
         }
     }

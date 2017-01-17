@@ -1,5 +1,5 @@
 ﻿Set-StrictMode -version 3.0
-$Global:PackageName = "Web"
+$Global:PackageName = "SSCN"
 $Global:NamePrefix="sscn"
 $Global:DbPackage = "sampledatabase.zip"
 
@@ -250,7 +250,6 @@ Function Create-AzureWebApp{
        $ServicePlanName
     )
 
-
     Check-ResourceGroup -resourceGroupName $ResourceGroupName -resourceGroupLocation $Location
     Check-ServicePlan -resourceGroupName $ResourceGroupName -servicePlanName $ServicePlanName -location $Location
 
@@ -303,8 +302,6 @@ Function Create-SqlAzureDatabase
         $StartIPAddress = $ipRange.StartIPAddress
         $EndIPAddress = $ipRange.EndIPAddress
     }
-
-    
    
     Check-ResourceGroup -resourceGroupName $ResourceGroupName -resourceGroupLocation $Location
     $server = New-AzureRmSqlServer -ResourceGroupName $ResourceGroupName -ServerName $ServerName -Location $Location -ServerVersion "12.0" -SqlAdministratorCredentials $Credential
@@ -317,8 +314,6 @@ Function Create-SqlAzureDatabase
     Write-Host "Firewall rule to allow client visit successfully created. " -ForegroundColor Green
 
     $database = New-AzureRmSqlDatabase -ResourceGroupName $ResourceGroupName -ServerName $ServerName -DatabaseName $DatabaseName
-
-    Write-Host "[WORKITEM] Database Import completed: "$status.Status -ForegroundColor Green
     $connstr = "Server=tcp:$ServerName.database.chinacloudapi.cn,1433;Database=$DatabaseName;User ID=$userName;Password=$password;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;"
     return $connstr
 }
@@ -394,16 +389,16 @@ Function CreateEventHub
         [string] $TemplateParametersFile = '.\Eventhub\azuredeploy.parameters.json'
     )
 
-$OptionalParameters = New-Object -TypeName Hashtable
-$TemplateFile = [System.IO.Path]::Combine($PSScriptRoot, $TemplateFile)
-$TemplateParametersFile = [System.IO.Path]::Combine($PSScriptRoot, $TemplateParametersFile)
+    $OptionalParameters = New-Object -TypeName Hashtable
+    $TemplateFile = [System.IO.Path]::Combine($PSScriptRoot, $TemplateFile)
+    $TemplateParametersFile = [System.IO.Path]::Combine($PSScriptRoot, $TemplateParametersFile)
 
-New-AzureRmResourceGroupDeployment -Name ((Get-ChildItem $TemplateFile).BaseName + '-' + ((Get-Date).ToUniversalTime()).ToString('MMdd-HHmm')) `
-                                   -ResourceGroupName $ResourceGroupName `
-                                   -TemplateFile $TemplateFile `
-                                   -TemplateParameterFile $TemplateParametersFile `
-                                   @OptionalParameters `
-                                   -Force -Verbose
+    New-AzureRmResourceGroupDeployment -Name ((Get-ChildItem $TemplateFile).BaseName + '-' + ((Get-Date).ToUniversalTime()).ToString('MMdd-HHmm')) `
+                                       -ResourceGroupName $ResourceGroupName `
+                                       -TemplateFile $TemplateFile `
+                                       -TemplateParameterFile $TemplateParametersFile `
+                                       @OptionalParameters `
+                                       -Force -Verbose
 }
 
 Function CreateASAJob
@@ -415,16 +410,16 @@ Param(
     [string] $TemplateParametersFile = '.\ASA\azuredeploy.parameters.json'
 )
 
-$OptionalParameters = New-Object -TypeName Hashtable
-$TemplateFile = [System.IO.Path]::Combine($PSScriptRoot, $TemplateFile)
-$TemplateParametersFile = [System.IO.Path]::Combine($PSScriptRoot, $TemplateParametersFile)
+    $OptionalParameters = New-Object -TypeName Hashtable
+    $TemplateFile = [System.IO.Path]::Combine($PSScriptRoot, $TemplateFile)
+    $TemplateParametersFile = [System.IO.Path]::Combine($PSScriptRoot, $TemplateParametersFile)
 
-New-AzureRmResourceGroupDeployment -Name ((Get-ChildItem $TemplateFile).BaseName + '-' + ((Get-Date).ToUniversalTime()).ToString('MMdd-HHmm')) `
-                                   -ResourceGroupName $ResourceGroupName `
-                                   -TemplateFile $TemplateFile `
-                                   -TemplateParameterFile $TemplateParametersFile `
-                                   @OptionalParameters `
-                                   -Force -Verbose
+    New-AzureRmResourceGroupDeployment -Name ((Get-ChildItem $TemplateFile).BaseName + '-' + ((Get-Date).ToUniversalTime()).ToString('MMdd-HHmm')) `
+                                       -ResourceGroupName $ResourceGroupName `
+                                       -TemplateFile $TemplateFile `
+                                       -TemplateParameterFile $TemplateParametersFile `
+                                       @OptionalParameters `
+                                       -Force -Verbose
 }
 
 Function TryCreate-AzureStorageAccount($ResourceGroup, $AccountName, $SkuName,$Location)
@@ -490,7 +485,7 @@ Check-ResourceGroup -resourceGroupName $resourceGroupName -resourceGroupLocation
 
 $account = TryCreate-AzureStorageAccount -ResourceGroup $ResourceGroupName -SkuName 'Standard_LRS' -AccountName $StorageAccountName -Location $Location
 $key = (Get-AzureRmStorageAccountKey -ResourceGroupName $ResourceGroupName -Name $account.StorageAccountName).Value[0]
-$accoutConnection = "BlobEndpoint=http://{0}.blob.{2}/;QueueEndpoint=http://{0}.queue.{2}/;TableEndpoint=http://{0}.table.{2}/;AccountName={0};AccountKey={1}" -f $account.StorageAccountName, $key, $account.Context.EndPointSuffix
+$accoutConnection = "DefaultEndpointsProtocol=https;AccountName={0};AccountKey={1};EndpointSuffix={2};" -f $account.StorageAccountName, $key, $account.Context.EndPointSuffix.TrimEnd('/')
 
 $result = createeventhub -ResourceGroupName $resourceGroupName -ResourceGroupLocation $Location
 $eventhubConnStr = $result.Outputs["namespaceDefaultConnectionString"].Value
@@ -506,9 +501,12 @@ if([string]::IsNullOrEmpty($connStr))
 (Get-Content "$path\ASA\azuredeploy.json").Replace("{{EventHubNS}}",$eventhubNS).Replace("{{SqlServerName}}",$dbServerName).Replace("{{SqlServerUser}}",$userName).Replace("{{SqlServerPassword}}",$password).Replace("{{DBName}}",$dbName) | Set-Content "$path\ASA\azuredeployASA.json"
 $result = CreateASAJob -ResourceGroupName $resourceGroupName -ResourceGroupLocation $Location -TemplateFile "$path\ASA\azuredeployASA.json"
 Remove-Item "$path\ASA\azuredeployASA.json"
+Start-AzureRmStreamAnalyticsJob -ResourceGroupName $resourceGroupName -Name "ASANewsImport" -OutputStartMode CustomTime -OutputStartTime ([System.DateTime]::UtcNow)
 
-(Get-Content "$path\$Global:PackageName\\app_data\jobs\continuous\DataCollectingJob\DataCollectingJob.exe.config.tpl").Replace('[[StorageConnection]]', $accoutConnection).Replace("[[EventHubConnection]]", $eventhubConnStr) | Set-Content "$path\$Global:PackageName\app_data\jobs\continuous\DataCollectingJob\DataCollectingJob.exe.config"
-(Get-Content "$path\$Global:PackageName\\app_data\jobs\continuous\NewsTextAnalysisJob\NewsTextAnalysisJob.exe.config.tpl").Replace('[[StorageConnection]]', $accoutConnection).Replace("[[DatabaseConnection]]", $connStr) | Set-Content "$path\$Global:PackageName\app_data\jobs\continuous\NewsTextAnalysisJob\NewsTextAnalysisJob.exe.config"
+(Get-Content "$path\$Global:PackageName\app_data\jobs\continuous\DataCollectingJob\DataCollectingJob.exe.config.tpl").Replace('[[StorageConnection]]', $accoutConnection).Replace("[[EventHubConnection]]", $eventhubConnStr) | Set-Content "$path\$Global:PackageName\app_data\jobs\continuous\DataCollectingJob\DataCollectingJob.exe.config"
+(Get-Content "$path\$Global:PackageName\app_data\jobs\continuous\NewsTextAnalysisJob\NewsTextAnalysisJob.exe.config.tpl").Replace('[[StorageConnection]]', $accoutConnection).Replace("[[DatabaseConnection]]", $connStr) | Set-Content "$path\$Global:PackageName\app_data\jobs\continuous\NewsTextAnalysisJob\NewsTextAnalysisJob.exe.config"
+(Get-Content "$path\$Global:PackageName\Web.Config.tpl").Replace('[[StorageConnection]]', $accoutConnection) | Set-Content "$path\$Global:PackageName\Web.Config"
 Create-AzureWebApp -ResourceGroupName $resourceGroupName -WebAppName $webAppName -ServicePlanName $servicePlanName -Location $Location
+Set-AzureRmResource -PropertyObject @{"siteConfig" = @{"AlwaysOn" = $true}} -Name $webAppName -ResourceGroupName $resourceGroupName -ResourceType Microsoft.Web/sites -Force
 $webApp = Get-AzureRmWebApp -ResourceGroupName $resourceGroupName -Name $webAppName
 Write-Host $webApp.HostNames -ForegroundColor Green

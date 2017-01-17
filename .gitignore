@@ -323,3 +323,6 @@ build/
 
 /Media/SentimentCN/DeployPkg/Web
 /Media/SentimentCN/DeployPkg/ASA
+/Media/SentimentCN/DeployPkg/SSCN/app_data/jobs/continuous/DataCollectingJob
+/Media/SentimentCN/DeployPkg/SSCN/app_data/jobs/continuous/NewsTextAnalysisJob
+/Media/SentimentCN/DeployPkg/SSCN
