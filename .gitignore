@@ -326,3 +326,4 @@ build/
 /Media/SentimentCN/DeployPkg/SSCN/app_data/jobs/continuous/DataCollectingJob
 /Media/SentimentCN/DeployPkg/SSCN/app_data/jobs/continuous/NewsTextAnalysisJob
 /Media/SentimentCN/DeployPkg/SSCN
+/Media/SentimentCN/DeployPkg/setupasa.ps1

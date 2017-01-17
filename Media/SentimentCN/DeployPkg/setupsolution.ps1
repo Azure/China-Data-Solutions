@@ -442,7 +442,28 @@ Function TryCreate-AzureStorageAccount($ResourceGroup, $AccountName, $SkuName,$L
 Check-AzureRmModule
 Check-Net45
 
-#$mcprofile = Add-AzureRmAccount -EnvironmentName AzureChinaCloud
+$mcprofile = Add-AzureRmAccount -EnvironmentName AzureChinaCloud
+
+$dataTpl = "$path\$Global:PackageName\app_data\jobs\continuous\DataCollectingJob\DataCollectingJob.exe.config.tpl"
+$anaTpl = "$path\$Global:PackageName\app_data\jobs\continuous\NewsTextAnalysisJob\NewsTextAnalysisJob.exe.config.tpl"
+$webTpl =  "$path\$Global:PackageName\Web.Config.tpl"
+
+if( -not (Test-Path $dataTpl))
+{
+    New-Item $dataTpl
+    (Get-Content "$path\$Global:PackageName\app_data\jobs\continuous\DataCollectingJob\DataCollectingJob.exe.config") | Set-Content $dataTpl
+}
+
+if( -not (Test-Path $anaTpl))
+{
+    (Get-Content "$path\$Global:PackageName\app_data\jobs\continuous\NewsTextAnalysisJob\NewsTextAnalysisJob.exe.config") | Set-Content $anaTpl
+}
+
+if( -not (Test-Path $webTpl))
+{
+    (Get-Content "$path\$Global:PackageName\Web.Config") | Set-Content $webTpl
+}
+
 $Location = 'China North'
 $selection = '0'
 
