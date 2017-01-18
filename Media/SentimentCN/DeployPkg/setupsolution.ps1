@@ -442,7 +442,7 @@ Function TryCreate-AzureStorageAccount($ResourceGroup, $AccountName, $SkuName,$L
 Check-AzureRmModule
 Check-Net45
 
-#$mcprofile = Add-AzureRmAccount -EnvironmentName AzureChinaCloud
+$mcprofile = Add-AzureRmAccount -EnvironmentName AzureChinaCloud
 
 $dataTpl = "$path\$Global:PackageName\app_data\jobs\continuous\DataCollectingJob\DataCollectingJob.exe.config.tpl"
 $anaTpl = "$path\$Global:PackageName\app_data\jobs\continuous\NewsTextAnalysisJob\NewsTextAnalysisJob.exe.config.tpl"
