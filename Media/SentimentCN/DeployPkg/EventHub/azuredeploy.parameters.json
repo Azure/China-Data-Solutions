@@ -7,6 +7,12 @@
       "metadata": {
         "description": "The name of the eventhub"
       }
+    },
+     "visitsHubName": {
+      "value": "visitshub",
+      "metadata": {
+        "description": "The name of the eventhub"
+      }
     }
   }
 }

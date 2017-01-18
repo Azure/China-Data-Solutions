@@ -442,7 +442,7 @@ Function TryCreate-AzureStorageAccount($ResourceGroup, $AccountName, $SkuName,$L
 Check-AzureRmModule
 Check-Net45
 
-$mcprofile = Add-AzureRmAccount -EnvironmentName AzureChinaCloud
+#$mcprofile = Add-AzureRmAccount -EnvironmentName AzureChinaCloud
 
 $dataTpl = "$path\$Global:PackageName\app_data\jobs\continuous\DataCollectingJob\DataCollectingJob.exe.config.tpl"
 $anaTpl = "$path\$Global:PackageName\app_data\jobs\continuous\NewsTextAnalysisJob\NewsTextAnalysisJob.exe.config.tpl"
@@ -508,7 +508,7 @@ $account = TryCreate-AzureStorageAccount -ResourceGroup $ResourceGroupName -SkuN
 $key = (Get-AzureRmStorageAccountKey -ResourceGroupName $ResourceGroupName -Name $account.StorageAccountName).Value[0]
 $accoutConnection = "DefaultEndpointsProtocol=https;AccountName={0};AccountKey={1};EndpointSuffix={2};" -f $account.StorageAccountName, $key, $account.Context.EndPointSuffix.TrimEnd('/')
 
-$result = createeventhub -ResourceGroupName $resourceGroupName -ResourceGroupLocation $Location
+$result = CreateEventHub -ResourceGroupName $resourceGroupName -ResourceGroupLocation $Location
 $eventhubConnStr = $result.Outputs["namespaceDefaultConnectionString"].Value
 $eventhubNS = $result.Outputs["namespaceName"].Value
 
@@ -519,12 +519,17 @@ if([string]::IsNullOrEmpty($connStr))
 }
 
 
-(Get-Content "$path\ASA\azuredeploy.json").Replace("{{EventHubNS}}",$eventhubNS).Replace("{{SqlServerName}}",$dbServerName).Replace("{{SqlServerUser}}",$userName).Replace("{{SqlServerPassword}}",$password).Replace("{{DBName}}",$dbName) | Set-Content "$path\ASA\azuredeployASA.json"
-$result = CreateASAJob -ResourceGroupName $resourceGroupName -ResourceGroupLocation $Location -TemplateFile "$path\ASA\azuredeployASA.json"
-Remove-Item "$path\ASA\azuredeployASA.json"
+(Get-Content "$path\ASA\azuredeploynews.json").Replace("{{EventHubNS}}",$eventhubNS).Replace("{{SqlServerName}}",$dbServerName).Replace("{{SqlServerUser}}",$userName).Replace("{{SqlServerPassword}}",$password).Replace("{{DBName}}",$dbName) | Set-Content "$path\ASA\azuredeploynewsASA.json"
+$result = CreateASAJob -ResourceGroupName $resourceGroupName -ResourceGroupLocation $Location -TemplateFile "$path\ASA\azuredeploynewsASA.json"
+Remove-Item "$path\ASA\azuredeploynewsASA.json"
 Start-AzureRmStreamAnalyticsJob -ResourceGroupName $resourceGroupName -Name "ASANewsImport" -OutputStartMode CustomTime -OutputStartTime ([System.DateTime]::UtcNow)
 
-(Get-Content "$path\$Global:PackageName\app_data\jobs\continuous\DataCollectingJob\DataCollectingJob.exe.config.tpl").Replace('[[StorageConnection]]', $accoutConnection).Replace("[[EventHubConnection]]", $eventhubConnStr) | Set-Content "$path\$Global:PackageName\app_data\jobs\continuous\DataCollectingJob\DataCollectingJob.exe.config"
+(Get-Content "$path\ASA\azuredeployvisits.json").Replace("{{EventHubNS}}",$eventhubNS).Replace("{{SqlServerName}}",$dbServerName).Replace("{{SqlServerUser}}",$userName).Replace("{{SqlServerPassword}}",$password).Replace("{{DBName}}",$dbName) | Set-Content "$path\ASA\azuredeployvisitsASA.json"
+$result = CreateASAJob -ResourceGroupName $resourceGroupName -ResourceGroupLocation $Location -TemplateFile "$path\ASA\azuredeployvisitsASA.json"
+Remove-Item "$path\ASA\azuredeployvisitsASA.json"
+Start-AzureRmStreamAnalyticsJob -ResourceGroupName $resourceGroupName -Name "ASAVisitsImport" -OutputStartMode CustomTime -OutputStartTime ([System.DateTime]::UtcNow)
+
+(Get-Content "$path\$Global:PackageName\app_data\jobs\continuous\DataCollectingJob\DataCollectingJob.exe.config.tpl").Replace('[[StorageConnection]]', $accoutConnection).Replace("[[EventHubConnection]]", $eventhubConnStr).Replace("[[EventHubForVisit]]", $eventhubConnStr) | Set-Content "$path\$Global:PackageName\app_data\jobs\continuous\DataCollectingJob\DataCollectingJob.exe.config"
 (Get-Content "$path\$Global:PackageName\app_data\jobs\continuous\NewsTextAnalysisJob\NewsTextAnalysisJob.exe.config.tpl").Replace('[[StorageConnection]]', $accoutConnection).Replace("[[DatabaseConnection]]", $connStr) | Set-Content "$path\$Global:PackageName\app_data\jobs\continuous\NewsTextAnalysisJob\NewsTextAnalysisJob.exe.config"
 (Get-Content "$path\$Global:PackageName\Web.Config.tpl").Replace('[[StorageConnection]]', $accoutConnection) | Set-Content "$path\$Global:PackageName\Web.Config"
 Create-AzureWebApp -ResourceGroupName $resourceGroupName -WebAppName $webAppName -ServicePlanName $servicePlanName -Location $Location

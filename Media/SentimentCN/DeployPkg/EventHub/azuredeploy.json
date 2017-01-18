@@ -7,6 +7,12 @@
       "metadata": {
         "description": "Name of the Event Hub"
       }
+    },
+     "visitsHubName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the Event Hub"
+      }
     }
   },
   "variables": {
@@ -33,6 +39,17 @@
           ],
           "properties": {
             "path": "[parameters('eventHubName')]"
+          }
+        },
+        {
+          "apiVersion": "[variables('ehVersion')]",
+          "name": "[parameters('visitsHubName')]",
+          "type": "eventHubs",
+          "dependsOn": [
+            "[concat('Microsoft.EventHub/namespaces/', variables('eventHubNamespace'))]"
+          ],
+          "properties": {
+            "path": "[parameters('visitsHubName')]"
           }
         }
       ]
