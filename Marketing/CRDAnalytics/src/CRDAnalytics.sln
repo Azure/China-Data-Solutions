@@ -7,14 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		LICENSE.md = LICENSE.md
+		Licenses.txt = Licenses.txt
 		Nuget.config = Nuget.config
 		Settings.StyleCop = Settings.StyleCop
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{4E94274E-5A69-4846-BA7F-A6F16B65B5D5}"
-	ProjectSection(SolutionItems) = preProject
-		References\Microsoft.Azure.Plugins.Diagnostics.dll.dll = References\Microsoft.Azure.Plugins.Diagnostics.dll.dll
-		References\Microsoft.WindowsAzure.ServiceRuntime.dll = References\Microsoft.WindowsAzure.ServiceRuntime.dll
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{A4F17ACF-FC47-4952-9CBF-613D27CAC02F}"
@@ -22,6 +17,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deployment", "Deployment\Deployment.csproj", "{1F1D546A-B392-4D40-A591-160C1B8A5B8F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppServiceHost", "AppServiceHost\AppServiceHost.csproj", "{281047B2-0D19-419A-A832-46615F54C446}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{7D9B00D9-C712-4568-A85B-78F59F7BD1E3}"
+	ProjectSection(SolutionItems) = preProject
+		References\JiebaNet.Analyser.dll = References\JiebaNet.Analyser.dll
+		References\JiebaNet.Analyser.pdb = References\JiebaNet.Analyser.pdb
+		References\JiebaNet.Segmenter.dll = References\JiebaNet.Segmenter.dll
+		References\JiebaNet.Segmenter.pdb = References\JiebaNet.Segmenter.pdb
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

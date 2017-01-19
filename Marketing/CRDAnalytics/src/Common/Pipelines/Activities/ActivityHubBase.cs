@@ -1,56 +1,118 @@
-﻿namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines.Activities
+﻿// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines.Activities
 {
     using System;
-    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
 
     using Models;
 
+    /// <summary>
+    /// Defines the activity hub base class.
+    /// </summary>
+    /// <seealso cref="IActivityHub" />
     public abstract class ActivityHubBase : IActivityHub
     {
-        private readonly TaskFactory taskFactory;
+        #region Fields
 
-        private readonly ConcurrentDictionary<int, Task> runningTasks;
-
+        /// <summary>
+        /// The disposed value
+        /// </summary>
         private bool disposedValue;
 
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ActivityHubBase"/> class.
+        /// </summary>
+        /// <param name="activities">The activities.</param>
         protected ActivityHubBase(IEnumerable<IActivity> activities)
         {
-            this.taskFactory = new TaskFactory();
-            this.runningTasks = new ConcurrentDictionary<int, Task>();
-
             this.Activities = activities;
             this.BindActivityEventHandlers();
         }
 
+        #endregion
+
+        #region Finalizer
+
+        /// <summary>
+        /// Finalizes an instance of the <see cref="ActivityHubBase"/> class.
+        /// </summary>
         ~ActivityHubBase()
         {
             this.Dispose(false);
         }
 
+        #endregion
+
+        #region Events
+
+        /// <summary>
+        /// Occurs when [activity executing].
+        /// </summary>
+        public event EventHandler<ActivityExecutingEventArgs> ActivityExecuting;
+
+        /// <summary>
+        /// Occurs when [activity executed].
+        /// </summary>
+        public event EventHandler<ActivityExecutedEventArgs> ActivityExecuted;
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the activity metadata.
+        /// </summary>
+        /// <value>
+        /// The activity metadata.
+        /// </value>
         public IEnumerable<IActivityMetadata> ActivityMetadatas => this.Activities.Select(a => a.Metadata);
 
-        public int RunningTasksCount =>
-            this.runningTasks.Values.Count(t => !t.IsCompleted && !t.IsCanceled && !t.IsFaulted);
-
+        /// <summary>
+        /// Gets the activities.
+        /// </summary>
+        /// <value>
+        /// The activities.
+        /// </value>
         protected IEnumerable<IActivity> Activities { get; }
 
-        public event ActivityEventHandler<ActivityExecutingEventArgs> ActivityExecuting;
+        #endregion
 
-        public event ActivityEventHandler<ActivityExecutedEventArgs> ActivityExecuted;
+        #region Methods
 
+        /// <summary>
+        /// Processes the models.
+        /// </summary>
+        /// <param name="modelType">Type of the model.</param>
+        /// <param name="inputModels">The input models.</param>
         public abstract void ProcessModels(Type modelType, IEnumerable<IDataModel> inputModels);
 
-        public abstract Task ProcessModelAsync(Type modelType, IDataModel inputModel);
+        /// <summary>
+        /// Processes the model asynchronous.
+        /// </summary>
+        /// <param name="modelType">Type of the model.</param>
+        /// <param name="inputModel">The input model.</param>
+        public abstract void ProcessModel(Type modelType, IDataModel inputModel);
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (this.disposedValue)
@@ -60,66 +122,66 @@
 
             if (disposing)
             {
-                this.DisposeUnmanagedResource();
-            }
+                this.UnbindActivityEventHandlers();
 
-            foreach (var task in this.runningTasks.Values)
-            {
-                if (!task.IsCanceled && !task.IsCompleted && !task.IsFaulted)
+                foreach (var activity in this.Activities)
                 {
-                    task.Wait(TimeSpan.FromSeconds(30));
+                    activity.Dispose();
                 }
-
-                task.Dispose();
             }
 
-            this.UnbindActivityEventHandlers();
-
-            foreach (var activity in this.Activities)
-            {
-                activity.Dispose();
-            }
+            this.DisposeUnmanagedResource();
 
             this.disposedValue = true;
         }
 
+        /// <summary>
+        /// Disposes the unmanaged resource.
+        /// </summary>
         protected virtual void DisposeUnmanagedResource()
         {
         }
 
-        protected void RunTask(Action action)
-        {
-            var task = this.taskFactory.StartNew(action).ContinueWith(t =>
-            {
-                Task value;
-                this.runningTasks.TryRemove(t.Id, out value);
-            });
+        /// <summary>
+        /// The activity executing event handler.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The <see cref="ActivityExecutingEventArgs"/> instance containing the event data.</param>
+        protected virtual void ActivityExecutingEventHandler(object sender, ActivityExecutingEventArgs args) =>
+            this.ActivityExecuting?.Invoke(sender, args);
 
-            this.runningTasks.TryAdd(task.Id, task);
-        }
+        /// <summary>
+        /// The activity executed event handler.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The <see cref="ActivityExecutedEventArgs" /> instance containing the event data.</param>
+        protected virtual void AcvitityExecutedEventHandler(object sender, ActivityExecutedEventArgs args) =>
+            this.ActivityExecuted?.Invoke(sender, args);
 
-        protected virtual void AcvitityExecutingEventHandler(IActivity sender, ActivityExecutingEventArgs args) =>
-            this.RunTask(() => this.ActivityExecuting?.Invoke(sender, args));
-
-        protected virtual void AcvitityExecutedEventHandler(IActivity sender, ActivityExecutedEventArgs args) =>
-            this.RunTask(() => this.ActivityExecuted?.Invoke(sender, args));
-
+        /// <summary>
+        /// Binds the activity event handlers.
+        /// </summary>
         private void BindActivityEventHandlers()
         {
             foreach (var activity in this.Activities)
             {
-                activity.ActivityExecuting += AcvitityExecutingEventHandler;
-                activity.ActivityExecuted += AcvitityExecutedEventHandler;
+                activity.ActivityExecuting += this.ActivityExecutingEventHandler;
+                activity.ActivityExecuted += this.AcvitityExecutedEventHandler;
             }
         }
 
+        /// <summary>
+        /// Unbinds the activity event handlers.
+        /// </summary>
         private void UnbindActivityEventHandlers()
         {
             foreach (var activity in this.Activities)
             {
-                activity.ActivityExecuting -= AcvitityExecutingEventHandler;
-                activity.ActivityExecuted -= AcvitityExecutedEventHandler;
+                activity.ActivityExecuting -= this.ActivityExecutingEventHandler;
+                activity.ActivityExecuted -= this.AcvitityExecutedEventHandler;
             }
         }
+
+        #endregion
     }
 }

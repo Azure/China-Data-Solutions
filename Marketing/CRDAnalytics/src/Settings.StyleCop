@@ -47,6 +47,7 @@
           <Value>on</Value>
           <Value>to</Value>
           <Value>ui</Value>
+          <Value>db</Value>
         </CollectionProperty>
       </AnalyzerSettings>
     </Analyzer>

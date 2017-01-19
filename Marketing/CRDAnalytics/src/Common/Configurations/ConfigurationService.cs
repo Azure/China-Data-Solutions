@@ -5,9 +5,7 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Configurations
 {
     using System.Configuration;
 
-    using Azure;
     using Extensions;
-    using WindowsAzure.ServiceRuntime;
 
     /// <summary>
     /// Defines the configuration service class.
@@ -24,9 +22,7 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Configurations
         /// <returns>The setting value for specific name, return default value if setting not found.</returns>
         public static string GetSetting(string settingName, string defaultValue = null)
         {
-            var settingValue = RoleEnvironment.IsAvailable
-                ? CloudConfigurationManager.GetSetting(settingName)
-                : ConfigurationManager.AppSettings[settingName];
+            var settingValue = ConfigurationManager.AppSettings[settingName];
 
             if (string.IsNullOrWhiteSpace(settingValue) && defaultValue != null)
             {

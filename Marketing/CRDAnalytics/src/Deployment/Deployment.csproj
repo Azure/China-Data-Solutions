@@ -91,7 +91,10 @@
     <Content Include="Resources\prob_trans.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="PsScripts\Functions.ps1" />
+    <None Include="PsScripts\Settings.ps1" />
     <None Include="PsScripts\Setup.ps1" />
+    <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

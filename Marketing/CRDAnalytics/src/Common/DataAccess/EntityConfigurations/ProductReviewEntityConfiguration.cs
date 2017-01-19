@@ -11,7 +11,7 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.DataAccess.Entit
     /// <summary>
     /// Defines the product review entity type configuration.
     /// </summary>
-    /// <seealso cref="System.Data.Entity.ModelConfiguration.EntityTypeConfiguration{ProductReviewEntity}" />
+    /// <seealso cref="EntityTypeConfiguration{ProductReviewEntity}" />
     internal sealed class ProductReviewEntityConfiguration
         : EntityTypeConfiguration<ProductReviewEntity>
     {

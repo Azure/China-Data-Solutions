@@ -1,15 +1,30 @@
-﻿namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines
+﻿// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines
 {
+    /// <summary>
+    /// Defines the pipeline error codes.
+    /// </summary>
     public static class PipelineErrorCodes
     {
-        private const string ErrorCodePrefix = @"ERR_PPLN_";
+        #region Fields
 
+        /// <summary>
+        /// The unknown error
+        /// </summary>
         public static readonly string UnknownError = $"{ErrorCodePrefix}_00000";
 
-        public static readonly string PipelineStartFailed = $"{ErrorCodePrefix}_00001";
+        /// <summary>
+        /// The activity process model failed
+        /// </summary>
+        public static readonly string ActivityProcessModelFailed = $"{ErrorCodePrefix}_00001";
 
-        public static readonly string PipelineStopFailed = $"{ErrorCodePrefix}_00002";
+        /// <summary>
+        /// The error code prefix
+        /// </summary>
+        private const string ErrorCodePrefix = @"ERR_PPLN_";
 
-        public static readonly string ModelProcessFailed = $"{ErrorCodePrefix}_00002";
+        #endregion
     }
 }

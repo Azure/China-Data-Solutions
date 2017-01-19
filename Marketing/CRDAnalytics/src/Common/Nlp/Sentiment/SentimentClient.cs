@@ -4,6 +4,8 @@
 namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Nlp.Sentiment
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
@@ -11,6 +13,7 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Nlp.Sentiment
     using System.Threading.Tasks;
 
     using Configurations;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Defines the sentiment client class.
@@ -42,7 +45,7 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Nlp.Sentiment
         #region Constructors
 
         /// <summary>
-        /// Initializes the <see cref="SentimentClient"/> class.
+        /// Initializes static members of the <see cref="SentimentClient"/> class.
         /// </summary>
         static SentimentClient()
         {
@@ -62,6 +65,24 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Nlp.Sentiment
         /// </value>
         private static string SentimentServiceEndpoint =>
             ConfigurationService.GetSetting(ConfigurationSettingNames.SentimentServiceEndpoint);
+
+        /// <summary>
+        /// Gets the sentiment service single analyze endpoint.
+        /// </summary>
+        /// <value>
+        /// The sentiment service single analyze endpoint.
+        /// </value>
+        private static string SentimentServiceSingleAnalyzeEndpoint =>
+            SentimentServiceEndpoint + @"api/sentiment/analyze";
+
+        /// <summary>
+        /// Gets the sentiment service batch analyze endpoint.
+        /// </summary>
+        /// <value>
+        /// The sentiment service batch analyze endpoint.
+        /// </value>
+        private static string SentimentServiceBatchAnalyzeEndpoint =>
+            SentimentServiceEndpoint + @"api/sentiment/batchanalyze";
 
         #endregion
 
@@ -91,6 +112,8 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Nlp.Sentiment
             {
                 using (var client = new HttpClient())
                 {
+                    client.Timeout = TimeSpan.FromSeconds(30);
+
                     // The expected response format is JSON
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(JsonMediaType);
@@ -99,7 +122,7 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Nlp.Sentiment
                     var content = new StringContent(@"=" + Uri.EscapeDataString(text));
                     content.Headers.ContentType = FormUrlEncodedMediaType;
 
-                    var response = await client.PostAsync(SentimentServiceEndpoint, content);
+                    var response = await client.PostAsync(SentimentServiceSingleAnalyzeEndpoint, content);
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -118,6 +141,40 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Nlp.Sentiment
 
                 Thread.Sleep(TimeSpan.FromSeconds(Math.Pow(2, retryCount)));
                 return await AnalyzeAsync(text, ++retryCount);
+            }
+        }
+
+        /// <summary>
+        /// Batches the analyze asynchronous.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the key.</typeparam>
+        /// <param name="textDictionary">The text dictionary.</param>
+        /// <returns>The sentiment results.</returns>
+        public static async Task<IDictionary<TKey, SentimentResult>> BatchAnalyzeAsync<TKey>(
+            IDictionary<TKey, string> textDictionary)
+        {
+            using (var client = new HttpClient())
+            {
+                client.Timeout = TimeSpan.FromSeconds(30);
+
+                // The expected response format is JSON
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(JsonMediaType);
+
+                // The expected request format is JSON
+                var content = new StringContent(JsonConvert.SerializeObject(new { Body = textDictionary.ToList() }));
+                content.Headers.ContentType = JsonMediaType;
+
+                var response = await client.PostAsync(SentimentServiceBatchAnalyzeEndpoint, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<IEnumerable<KeyValuePair<TKey, SentimentResult>>>();
+
+                    return result.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+                }
+
+                return null;
             }
         }
 

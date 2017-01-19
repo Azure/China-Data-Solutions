@@ -98,7 +98,7 @@ GO
 CREATE TABLE [dbo].[__TransactionHistory](
 	[Id] [uniqueidentifier] NOT NULL,
 	[CreationTime] [datetime] NOT NULL,
-	CONSTRAINT [PK_Products] PRIMARY KEY CLUSTERED
+	CONSTRAINT [PK_TransactionHistory] PRIMARY KEY CLUSTERED
 	(
 		[Id] ASC
 	)

@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="AppServiceHost.Global" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Microsoft.Azure.ChinaDataSolution.CrdAnalytics.AppServiceHost.Global" Language="C#" %>

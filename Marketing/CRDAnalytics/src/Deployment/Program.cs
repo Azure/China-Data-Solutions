@@ -1,46 +1,38 @@
-﻿namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Deployment
+﻿// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Deployment
 {
     using System;
 
-    using Common.Pipelines;
+    using Common.Extensions;
 
+    /// <summary>
+    /// Defines the program class.
+    /// </summary>
     internal static class Program
     {
+        #region Methods
+
+        /// <summary>
+        /// The console application entry method.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
         public static void Main(string[] args)
         {
             try
             {
-                PipelineManager.StartCustomerReviewDataPipeline();
+                // could write test code from here.
             }
             catch (Exception exception)
             {
-                Console.WriteLine($"Exception Type: {exception.GetType().AssemblyQualifiedName}");
-                Console.WriteLine($"Exception Message: {exception.Message}");
-                Console.WriteLine($"Exception StackTrace: {exception.StackTrace}");
-
-                if (exception.InnerException == null)
-                {
-                    return;
-                }
-
-                var currentException = exception.InnerException;
-
-                Console.WriteLine(@"Inner Exception:");
-                Console.WriteLine(new string('=', 80));
-
-                while (currentException != null)
-                {
-                    Console.WriteLine($"Exception Type: {currentException.GetType().AssemblyQualifiedName}");
-                    Console.WriteLine($"Exception Message: {currentException.Message}");
-                    Console.WriteLine($"Exception StackTrace: {currentException.StackTrace}");
-                    Console.WriteLine(new string('-', 80));
-
-                    currentException = currentException.InnerException;
-                }
+                Console.WriteLine(exception.GetDetailMessage());
             }
 
             Console.WriteLine(@"Press any key to continue...");
             Console.ReadKey(true);
         }
+
+        #endregion
     }
 }

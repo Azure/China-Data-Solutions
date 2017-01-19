@@ -12819,7 +12819,7 @@ INSERT [dbo].[ProductReviews] ([ProductId], [Channel], [Comment], [CreatedTime])
 GO
 INSERT [dbo].[ProductReviews] ([ProductId], [Channel], [Comment], [CreatedTime]) VALUES (4, N'渠道2', N'太喜欢了，非常好用，喜欢！', CAST(N'2016-10-17 10:42:49.000' AS DateTime))
 GO
-INSERT [dbo].[ProductReviews] ([ProductId], [Channel], [Comment], [CreatedTime]) VALUES (3, N'渠道1', N'SO GOOD~', CAST(N'2016-10-17 09:52:15.000' AS DateTime))
+INSERT [dbo].[ProductReviews] ([ProductId], [Channel], [Comment], [CreatedTime]) VALUES (3, N'渠道1', N'帮朋友买的，应该很不错，一直支持官网。', CAST(N'2016-10-17 09:52:15.000' AS DateTime))
 GO
 INSERT [dbo].[ProductReviews] ([ProductId], [Channel], [Comment], [CreatedTime]) VALUES (8, N'渠道3', N'帮朋友买的，应该很不错，一直支持官网。', CAST(N'2016-10-17 09:52:03.000' AS DateTime))
 GO

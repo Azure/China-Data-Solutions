@@ -48,10 +48,28 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines.Activi
         /// </value>
         public IDataModel InputModel { get; }
 
+        /// <summary>
+        /// Gets or sets the result.
+        /// </summary>
+        /// <value>
+        /// The result.
+        /// </value>
         public ActivityResult Result { get; set; }
 
+        /// <summary>
+        /// Gets the started time.
+        /// </summary>
+        /// <value>
+        /// The started time.
+        /// </value>
         public DateTime StartedTime { get; }
 
+        /// <summary>
+        /// Gets or sets the completed time.
+        /// </summary>
+        /// <value>
+        /// The completed time.
+        /// </value>
         public DateTime CompletedTime { get; set; }
 
         /// <summary>
@@ -61,7 +79,7 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines.Activi
         /// The <see cref="System.Object"/>.
         /// </value>
         /// <param name="key">The key.</param>
-        /// <returns></returns>
+        /// <returns>The context value for specified key.</returns>
         public object this[string key]
         {
             get
@@ -83,7 +101,7 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines.Activi
         /// Gets the input model.
         /// </summary>
         /// <typeparam name="TModel">The type of the model.</typeparam>
-        /// <returns></returns>
+        /// <returns>The input model instance in specified type.</returns>
         public TModel GetInputModel<TModel>()
             where TModel : class, IDataModel => this.InputModel as TModel;
 

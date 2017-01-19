@@ -15,8 +15,14 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.DataAccess.Entit
         /// </summary>
         public const string ProductReviews = @"ProductReviews";
 
+        /// <summary>
+        /// The product review sentence sentiments table name.
+        /// </summary>
         public const string ProductReviewSentenceSentiments = @"ProductReviewSentenceSentiments";
 
+        /// <summary>
+        /// The product review sentence tags table name.
+        /// </summary>
         public const string ProductReviewSentenceTags = @"ProductReviewSentenceTags";
 
         #endregion

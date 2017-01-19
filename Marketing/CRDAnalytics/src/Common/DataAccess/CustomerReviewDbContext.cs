@@ -24,6 +24,7 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.DataAccess
         public CustomerReviewDbContext(string nameOrConnectionString)
             : base(nameOrConnectionString)
         {
+            Database.SetInitializer<CustomerReviewDbContext>(null);
         }
 
         #endregion
