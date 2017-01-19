@@ -76,4 +76,7 @@ Set-AzureRmResource -PropertyObject @{"siteConfig" = @{"AlwaysOn" = $true}} -Nam
 # Start azure web app
 $result = Invoke-WebRequest -Uri "http://$($webApp.DefaultHostName)/" -ErrorAction SilentlyContinue
 
+# Show database connection string
+Show-Message -message "Please save this connection string for PowerBI report file: $connectionString" -color "Green"
+
 Show-Message -message "Setup Azure Mooncake environment end."
