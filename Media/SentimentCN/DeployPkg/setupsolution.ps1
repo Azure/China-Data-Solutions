@@ -443,7 +443,7 @@ Check-AzureRmModule
 Check-Net45
 
 $mcprofile = Add-AzureRmAccount -EnvironmentName AzureChinaCloud
-
+$path = Split-Path -Parent $PSCommandPath  
 $dataTpl = "$path\$Global:PackageName\app_data\jobs\continuous\DataCollectingJob\DataCollectingJob.exe.config.tpl"
 $anaTpl = "$path\$Global:PackageName\app_data\jobs\continuous\NewsTextAnalysisJob\NewsTextAnalysisJob.exe.config.tpl"
 $webTpl =  "$path\$Global:PackageName\Web.Config.tpl"
@@ -501,7 +501,6 @@ if([string]::IsNullOrEmpty($connStr))
     $credential = New-PSCredentialFromPlainText -UserName $userName -Password $password
 }
 
-$path = Split-Path -Parent $PSCommandPath  
 Check-ResourceGroup -resourceGroupName $resourceGroupName -resourceGroupLocation $Location
 
 $account = TryCreate-AzureStorageAccount -ResourceGroup $ResourceGroupName -SkuName 'Standard_LRS' -AccountName $StorageAccountName -Location $Location
