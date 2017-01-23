@@ -13,7 +13,7 @@ Discover social hot events, analyze sentiment and impact of events based on stre
 ### Social Sentiment Solution (EN) [[Demo]](https://msit.powerbi.com/view?r=eyJrIjoiYmExZGMxMjUtN2MxZi00MzczLWIwOTEtNWRkMWM5ZmQ0YjIwIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
 Discover social hot events, analyze sentiment and impact of events based on streaming news data published on global public network.
 
-### Social Network Analysis Solution (Weibo) [Demo]
+### Social Network Analysis Solution (Weibo) [[Demo]](https://msit.powerbi.com/view?r=eyJrIjoiZmU0ZWQ0ZDMtN2ExNC00MmMxLWEyNGYtZTI5ZmRhMTUzNjViIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
 
 ## Solutions for Marketing
 ### Social Listening Solution (CN) [[Demo]](http://wssocialsenti348668531.chinacloudsites.cn/)
