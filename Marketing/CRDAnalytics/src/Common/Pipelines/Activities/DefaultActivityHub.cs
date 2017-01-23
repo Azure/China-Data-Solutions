@@ -5,10 +5,10 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines.Activi
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Linq;
 
     using Extensions;
+    using log4net;
     using Models;
 
     /// <summary>
@@ -17,6 +17,15 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines.Activi
     /// <seealso cref="ActivityHubBase" />
     public sealed class DefaultActivityHub : ActivityHubBase
     {
+        #region Fields
+
+        /// <summary>
+        /// The logger
+        /// </summary>
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(DefaultActivityHub));
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
@@ -65,7 +74,7 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines.Activi
                 }
                 else
                 {
-                    Trace.TraceWarning($"Activity executed failed, exception detail: {activityResult.Exception.GetDetailMessage()}, input model: {inputModel.ToJsonIndented()}");
+                    Logger.Error($"Activity executed failed, exception detail: {activityResult.Exception.GetDetailMessage()}, input model: {inputModel.ToJsonIndented()}");
                 }
             }
         }

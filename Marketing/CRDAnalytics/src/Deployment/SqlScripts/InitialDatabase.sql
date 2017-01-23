@@ -1,4 +1,26 @@
-﻿/* Create Table [dbo].[Products] */
+﻿/* Create Table [dbo].[Log] */
+IF EXISTS (SELECT * FROM sys.tables WHERE [name] = 'Log')
+BEGIN
+	DROP TABLE [dbo].[Log]
+END
+GO
+
+CREATE TABLE [dbo].[Log] (
+	[Id] [bigint] IDENTITY (1, 1) NOT NULL,
+	[Date] [datetime] NOT NULL,
+	[Thread] [varchar] (255) NOT NULL,
+	[Level] [varchar] (50) NOT NULL,
+	[Logger] [varchar] (255) NOT NULL,
+	[Message] [nvarchar] (max) NOT NULL,
+	[Exception] [nvarchar] (max) NULL
+	CONSTRAINT [PK_dbo.Log] PRIMARY KEY CLUSTERED
+	(
+		[Id] ASC
+	)
+)
+GO
+
+/* Create Table [dbo].[Products] */
 IF EXISTS (SELECT * FROM sys.tables WHERE [name] = 'Products')
 BEGIN
 	DROP TABLE [dbo].[Products]

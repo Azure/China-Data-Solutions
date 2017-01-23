@@ -3,18 +3,27 @@
 
 namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines
 {
-    using System.Diagnostics;
     using System.Linq;
 
     using Activities;
     using DataAccess;
     using DataProviders;
+    using log4net;
 
     /// <summary>
     /// Defines the pipeline manager class.
     /// </summary>
     public static class PipelineManager
     {
+        #region Fields
+
+        /// <summary>
+        /// The logger
+        /// </summary>
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(PipelineManager));
+
+        #endregion
+
         #region Methods
 
         /// <summary>
@@ -22,7 +31,7 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines
         /// </summary>
         public static void StartCustomerReviewDataPipeline()
         {
-            Trace.TraceInformation(@"Customer review data pipeline starting...");
+            Logger.Info(@"Customer review data pipeline starting...");
 
             var databaseConnectionStringName = @"DatabaseConnectionString";
 
@@ -30,7 +39,7 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines
             {
                 if (dbContext.ProductReviewSentenceSentiments.Any() || dbContext.ProductReviewSentenceTags.Any())
                 {
-                    Trace.TraceWarning(@"Please clean the sentiment and tag weight tables and restart.");
+                    Logger.Warn(@"Please clean the sentiment and tag weight tables and restart.");
                     return;
                 }
             }
@@ -53,9 +62,9 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines
                 {
                     return;
                 }
-                ////
-                ////Trace.TraceInformation(
-                ////    $"{activity.Metadata.ActivityType}({activity.Metadata.InstanceId}) processing model: {eventArgs.Context.InputModel.CorrelationId}");
+
+                Logger.Info(
+                    $"{activity.Metadata.ActivityType}({activity.Metadata.InstanceId}) processing model: {eventArgs.Context.InputModel.CorrelationId}");
             };
 
             activityHub.ActivityExecuted += (sender, eventArgs) =>
@@ -67,7 +76,7 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines
                     return;
                 }
 
-                Trace.TraceInformation(
+                Logger.Info(
                     $"{activity.Metadata.ActivityType}({activity.Metadata.InstanceId}) processed model: {eventArgs.Context.InputModel.CorrelationId}");
             };
 
@@ -76,7 +85,7 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines
                 pipeline.Start();
             }
 
-            Trace.TraceInformation(@"Customer review data pipeline started.");
+            Logger.Info(@"Customer review data pipeline started.");
         }
 
         #endregion

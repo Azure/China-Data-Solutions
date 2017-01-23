@@ -13,6 +13,8 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Nlp.Sentiment
     using System.Threading.Tasks;
 
     using Configurations;
+    using Extensions;
+    using log4net;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -39,6 +41,11 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Nlp.Sentiment
             {
                 CharSet = @"utf-8"
             };
+
+        /// <summary>
+        /// The logger
+        /// </summary>
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(SentimentClient));
 
         #endregion
 
@@ -100,48 +107,39 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Nlp.Sentiment
         /// Analyzes the asynchronous.
         /// </summary>
         /// <param name="text">The text.</param>
-        /// <param name="retryCount">The retry count.</param>
         /// <returns>
         /// The sentiment result.
         /// </returns>
-        public static async Task<SentimentResult> AnalyzeAsync(string text, int retryCount = 0)
-        {
-            const int MaxRetryCount = 3;
-
-            try
-            {
-                using (var client = new HttpClient())
+        public static async Task<SentimentResult> AnalyzeAsync(string text) =>
+            await RunAsyncActionWithRetry(
+                text,
+                async delegate(string input)
                 {
-                    client.Timeout = TimeSpan.FromSeconds(30);
+                    using (var client = new HttpClient())
+                    {
+                        client.Timeout = TimeSpan.FromSeconds(30);
 
-                    // The expected response format is JSON
-                    client.DefaultRequestHeaders.Accept.Clear();
-                    client.DefaultRequestHeaders.Accept.Add(JsonMediaType);
+                        // The expected response format is JSON
+                        client.DefaultRequestHeaders.Accept.Clear();
+                        client.DefaultRequestHeaders.Accept.Add(JsonMediaType);
 
-                    // The expected request format is Form URL Encoded
-                    var content = new StringContent(@"=" + Uri.EscapeDataString(text));
-                    content.Headers.ContentType = FormUrlEncodedMediaType;
+                        // The expected request format is Form URL Encoded
+                        var content = new StringContent(@"=" + Uri.EscapeDataString(input));
+                        content.Headers.ContentType = FormUrlEncodedMediaType;
 
-                    var response = await client.PostAsync(SentimentServiceSingleAnalyzeEndpoint, content);
+                        var response = await client.PostAsync(SentimentServiceSingleAnalyzeEndpoint, content);
 
-                    response.EnsureSuccessStatusCode();
+                        response.EnsureSuccessStatusCode();
 
-                    var responseText = await response.Content.ReadAsStringAsync();
+                        var responseText = await response.Content.ReadAsStringAsync();
 
-                    return JsonConvert.DeserializeObject<SentimentResult>(responseText);
-                }
-            }
-            catch (Exception)
-            {
-                if (retryCount >= MaxRetryCount)
-                {
-                    throw;
-                }
-
-                Thread.Sleep(TimeSpan.FromSeconds(Math.Pow(2, retryCount)));
-                return await AnalyzeAsync(text, ++retryCount);
-            }
-        }
+                        return JsonConvert.DeserializeObject<SentimentResult>(responseText);
+                    }
+                },
+                ex =>
+                    $"Invoke sentiment service {SentimentServiceSingleAnalyzeEndpoint} failed, detail: {ex.GetDetailMessage()}",
+                (ex, retryCount) =>
+                    $"Invoke sentiment service {SentimentServiceSingleAnalyzeEndpoint} failed {retryCount} time(s), detail: {ex.GetDetailMessage()}");
 
         /// <summary>
         /// Batches the analyze asynchronous.
@@ -150,29 +148,76 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Nlp.Sentiment
         /// <param name="textDictionary">The text dictionary.</param>
         /// <returns>The sentiment results.</returns>
         public static async Task<IDictionary<TKey, SentimentResult>> BatchAnalyzeAsync<TKey>(
-            IDictionary<TKey, string> textDictionary)
+            IDictionary<TKey, string> textDictionary) =>
+            await RunAsyncActionWithRetry(
+                textDictionary,
+                async delegate(IDictionary<TKey, string> input)
+                {
+                    using (var client = new HttpClient())
+                    {
+                        client.Timeout = TimeSpan.FromSeconds(30);
+
+                        // The expected response format is JSON
+                        client.DefaultRequestHeaders.Accept.Clear();
+                        client.DefaultRequestHeaders.Accept.Add(JsonMediaType);
+
+                        // The expected request format is JSON
+                        var content = new StringContent(JsonConvert.SerializeObject(new { Body = input.ToList() }));
+                        content.Headers.ContentType = JsonMediaType;
+
+                        var response = await client.PostAsync(SentimentServiceBatchAnalyzeEndpoint, content);
+
+                        response.EnsureSuccessStatusCode();
+
+                        var responseText = await response.Content.ReadAsStringAsync();
+
+                        var result = JsonConvert.DeserializeObject<IEnumerable<KeyValuePair<TKey, SentimentResult>>>(responseText);
+
+                        return result.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+                    }
+                },
+                ex =>
+                    $"Invoke sentiment service {SentimentServiceBatchAnalyzeEndpoint} failed, detail: {ex.GetDetailMessage()}",
+                (ex, retryCount) =>
+                    $"Invoke sentiment service {SentimentServiceBatchAnalyzeEndpoint} failed {retryCount} time(s), detail: {ex.GetDetailMessage()}");
+
+        /// <summary>
+        /// Runs the asynchronous action with retry.
+        /// </summary>
+        /// <typeparam name="TInput">The type of the input.</typeparam>
+        /// <typeparam name="TOutput">The type of the output.</typeparam>
+        /// <param name="input">The input.</param>
+        /// <param name="action">The action.</param>
+        /// <param name="errorMessageGetter">The error message getter.</param>
+        /// <param name="warnMessageGetter">The warn message getter.</param>
+        /// <param name="retryCount">The retry count.</param>
+        /// <returns>The action result.</returns>
+        private static async Task<TOutput> RunAsyncActionWithRetry<TInput, TOutput>(
+            TInput input,
+            Func<TInput, Task<TOutput>> action,
+            Func<Exception, string> errorMessageGetter,
+            Func<Exception, int, string> warnMessageGetter,
+            int retryCount = 0)
         {
-            using (var client = new HttpClient())
+            const int MaxRetryCount = 3;
+
+            try
             {
-                client.Timeout = TimeSpan.FromSeconds(30);
+                return await action(input);
+            }
+            catch (Exception ex)
+            {
+                if (retryCount >= MaxRetryCount)
+                {
+                    Logger.Error(errorMessageGetter(ex), ex);
 
-                // The expected response format is JSON
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(JsonMediaType);
+                    throw;
+                }
 
-                // The expected request format is JSON
-                var content = new StringContent(JsonConvert.SerializeObject(new { Body = textDictionary.ToList() }));
-                content.Headers.ContentType = JsonMediaType;
+                Logger.Warn(warnMessageGetter(ex, retryCount), ex);
 
-                var response = await client.PostAsync(SentimentServiceBatchAnalyzeEndpoint, content);
-
-                response.EnsureSuccessStatusCode();
-
-                var responseText = await response.Content.ReadAsStringAsync();
-
-                var result = JsonConvert.DeserializeObject<IEnumerable<KeyValuePair<TKey, SentimentResult>>>(responseText);
-
-                return result.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+                Thread.Sleep(TimeSpan.FromSeconds(Math.Pow(2, retryCount)));
+                return await RunAsyncActionWithRetry(input, action, errorMessageGetter, warnMessageGetter, ++retryCount);
             }
         }
 
