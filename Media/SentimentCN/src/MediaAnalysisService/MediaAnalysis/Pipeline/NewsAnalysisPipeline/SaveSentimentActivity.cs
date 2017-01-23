@@ -7,6 +7,7 @@ using DataAccess;
 using DataAccess.Models;
 using NLPLib.Sentiment;
 using System.Diagnostics;
+using EntityFramework.BulkInsert.Extensions;
 
 namespace MediaAnalysis.Pipeline.NewsAnalysisPipeline
 {
@@ -22,6 +23,7 @@ namespace MediaAnalysis.Pipeline.NewsAnalysisPipeline
 
             using (var db = ContextFactory.GetMediaAnalysisContext())
             {
+                var list = new List<SentimentsResultNews>();
                 foreach (var item in resultDict)
                 {
                     var senti = new SentimentsResultNews
@@ -32,12 +34,12 @@ namespace MediaAnalysis.Pipeline.NewsAnalysisPipeline
                         Name = string.Empty
                     };
 
-                    db.SentimentsResultNews.Add(senti);
+                    list.Add(senti);
                 }
 
                 try
                 {
-                    result.Result = db.SaveChanges();
+                    db.BulkInsert(list);
                 }
                 catch (Exception e)
                 {

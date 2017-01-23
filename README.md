@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿# 大数据智能行业解决方案 [[English]](https://github.com/Azure/China-Data-Solutions/blob/master/README-en.md)
+=======
+# 大数据智能行业解决方案 [[English]](./README-en.md)
+>>>>>>> master-dev
 大数据智能行业解决方案是服务于行业客户的一系列基于Azure大数据相关云服务的智能行业解决方案。解决方案针对行业客户典型业务场景，为客户提供了一系列基于Azure的可部署包。Azure客户可以通过部署解决方案的部署包，深入了解如何利用Azure云服务搭建行业业务场景。解决方案提供了包括部署包、部署文档、演示程序等一系列相关文件及文档。
 
 解决方案提供两种部署包：
@@ -6,7 +10,7 @@
 * 演示程序包 - 演示程序包包括处理过的数据及演示程序（Web应用或PowerBI报表）。客户可以利用演示程序深入理解解决方案能够实现的业务场景，也可以通过修改演示程序来实现业务场景的定制化。
 
 ## 媒体行业解决方案
-### [舆情洞察（中文）](https://github.com/Azure/China-Data-Solutions/tree/master/Media/SentimentCN) [[演示程序]](https://msit.powerbi.com/view?r=eyJrIjoiOTJkZDYyYzgtZjQwYS00ZTkxLWFhMDAtMWQyNGQ0MjhjZTZjIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
+### [舆情洞察（中文）](./Media/SentimentCN) [[演示程序]](https://msit.powerbi.com/view?r=eyJrIjoiOTJkZDYyYzgtZjQwYS00ZTkxLWFhMDAtMWQyNGQ0MjhjZTZjIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
 基于网络公开新闻文本数据，发现并分析热点事件，分析事件情感，持续监控事件趋势，多维度洞察事件影响力。协助媒体机构采集素材及报道选题。
 
 ### 舆情洞察（英文） [[演示程序]](https://msit.powerbi.com/view?r=eyJrIjoiYmExZGMxMjUtN2MxZi00MzczLWIwOTEtNWRkMWM5ZmQ0YjIwIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
@@ -19,5 +23,6 @@
 ### 社会化聆听（中文） [[演示程序]](http://wssocialsenti348668531.chinacloudsites.cn/)
 基于互联网公开数据，分析和监控媒体声音，实现企业口碑监控、企业影响力分析、竞争品牌分析等社会化聆听核心业务场景，辅助进行品牌宣传、危机公关等事件的决策。
 
-### [客户评论数据分析](https://github.com/Azure/China-Data-Solutions/tree/master/Marketing/CRDAnalytics) [[演示程序]](https://msit.powerbi.com/view?r=eyJrIjoiNGJiMmFhMjMtNzE0OC00MjM1LThiOTgtYjFhOWIzY2ZlZmU2IiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
+### [客户评论数据分析](./Marketing/CRDAnalytics) [[演示程序]](https://msit.powerbi.com/view?r=eyJrIjoiNGJiMmFhMjMtNzE0OC00MjM1LThiOTgtYjFhOWIzY2ZlZmU2IiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
 基于电商网站用户评论数据，多维度分析、比较产品及竞品的优势及差异，为产品改进提供可量化建议。
+
