@@ -56,3 +56,6 @@ $AppServiceHostWebConfigPath = "$AppServiceHostPath/web.config"
 
 # Web App profile path
 $WebAppProfilePath = "$PackageRootPath/$WebAppName.profile.xml"
+
+# Connection String path
+$ConnectionStringPath = "$PackageRootPath/$DatabaseServerName.$DatabaseName.txt"
