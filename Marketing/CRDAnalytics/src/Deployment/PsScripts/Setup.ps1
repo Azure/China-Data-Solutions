@@ -80,3 +80,6 @@ $result = Invoke-WebRequest -Uri "http://$($webApp.DefaultHostName)/" -ErrorActi
 Show-Message -message "Please save this connection string for PowerBI report file: $connectionString" -color "Green"
 
 Show-Message -message "Setup Azure Mooncake environment end."
+
+Write-Host "Press any key to continue ..."
+$x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
