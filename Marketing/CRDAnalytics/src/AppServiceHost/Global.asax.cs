@@ -7,6 +7,7 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.AppServiceHost
     using System.Diagnostics;
     using System.Web;
 
+    using Common.Extensions;
     using Common.Pipelines;
 
     /// <summary>
@@ -26,7 +27,14 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.AppServiceHost
         {
             Trace.TraceInformation(@"Application starting...");
 
-            PipelineManager.StartCustomerReviewDataPipeline();
+            try
+            {
+                PipelineManager.StartCustomerReviewDataPipeline();
+            }
+            catch (Exception exception)
+            {
+                Trace.TraceError($"Customer review data pipeline started failed, exception detail: {exception.GetDetailMessage()}");
+            }
 
             Trace.TraceInformation(@"Application started...");
         }
