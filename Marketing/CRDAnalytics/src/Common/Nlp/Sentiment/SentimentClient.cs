@@ -124,12 +124,11 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Nlp.Sentiment
 
                     var response = await client.PostAsync(SentimentServiceSingleAnalyzeEndpoint, content);
 
-                    if (response.IsSuccessStatusCode)
-                    {
-                        return await response.Content.ReadAsAsync<SentimentResult>();
-                    }
+                    response.EnsureSuccessStatusCode();
 
-                    return null;
+                    var responseText = await response.Content.ReadAsStringAsync();
+
+                    return JsonConvert.DeserializeObject<SentimentResult>(responseText);
                 }
             }
             catch (Exception)
@@ -167,14 +166,13 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Nlp.Sentiment
 
                 var response = await client.PostAsync(SentimentServiceBatchAnalyzeEndpoint, content);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = await response.Content.ReadAsAsync<IEnumerable<KeyValuePair<TKey, SentimentResult>>>();
+                response.EnsureSuccessStatusCode();
 
-                    return result.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-                }
+                var responseText = await response.Content.ReadAsStringAsync();
 
-                return null;
+                var result = JsonConvert.DeserializeObject<IEnumerable<KeyValuePair<TKey, SentimentResult>>>(responseText);
+
+                return result.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
             }
         }
 
