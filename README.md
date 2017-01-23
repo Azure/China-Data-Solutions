@@ -1,4 +1,4 @@
-# 大数据智能行业解决方案 [[English]](./README-en.md)
+﻿# 大数据智能行业解决方案 [[English]](./README-en.md)
 大数据智能行业解决方案是服务于行业客户的一系列基于Azure大数据相关云服务的智能行业解决方案。解决方案针对行业客户典型业务场景，为客户提供了一系列基于Azure的可部署包。Azure客户可以通过部署解决方案的部署包，深入了解如何利用Azure云服务搭建行业业务场景。解决方案提供了包括部署包、部署文档、演示程序等一系列相关文件及文档。
 
 解决方案提供两种部署包：
@@ -12,7 +12,7 @@
 ### 舆情洞察（英文） [[演示程序]](https://msit.powerbi.com/view?r=eyJrIjoiYmExZGMxMjUtN2MxZi00MzczLWIwOTEtNWRkMWM5ZmQ0YjIwIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
 基于全球网络公开新闻文本数据，发现全球各主要国家及地区热点事件，分析事件情感，持续监控时间走势，多维度洞察事件影响力。协助媒体机构采集素材及报道选题。
 
-### 社交网络分析（中文） [演示程序]
+### 社交网络分析（中文） [[演示程序]](https://msit.powerbi.com/view?r=eyJrIjoiZmU0ZWQ0ZDMtN2ExNC00MmMxLWEyNGYtZTI5ZmRhMTUzNjViIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
 基于社交网络公开数据，对热点事件建立传播路径，找到传播路径中的关键传播节点，持续监控其社交网络行为，多维度洞察其影响力。
 
 ## 营销解决方案
