@@ -151,16 +151,20 @@ namespace MediaMonitoring.Controllers
         {
             var str = this.Request.GetRequestParamValue(this.endDate);
             var defaulDate = DateTime.UtcNow.AddDays(-1);
-            using (var db = ContextFactory.GetProfileContext())
+            if (String.IsNullOrEmpty(str))
             {
-                string query = "select Max(Date) FROM [dbo].[NewsStream]";
-                var defaultDate = db.Database.SqlQuery<DateTime?>(query).FirstOrDefault();
-                if (defaultDate != null)
+                using (var db = ContextFactory.GetProfileContext())
                 {
-                    str = defaultDate.ToString();
+                    string query = "select Max(Date) FROM [dbo].[NewsStream]";
+                    var defaultDate = db.Database.SqlQuery<DateTime?>(query).FirstOrDefault();
+                    if (defaultDate != null)
+                    {
+                        str = defaultDate.ToString();
+                    }
+                    else
+                        str = defaulDate.ToString();
                 }
-                else
-                    str = defaulDate.ToString();
+
             }
 
             if (!string.IsNullOrEmpty(dataType)) defaulDate = this.dataManager.GetMaxDate(dataType);

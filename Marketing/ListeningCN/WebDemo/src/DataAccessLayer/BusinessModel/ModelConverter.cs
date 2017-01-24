@@ -27,6 +27,7 @@ namespace DataAccessLayer.BusinessModel
         /// The defaultthumbnailurl
         /// </summary>
         private const string DEFAULTTHUMBNAILURL = @"/Resources/img/sample.png";
+        private const string DEFAULTNEWSURL = @"/Resources/img/sample_new.jpg";
 
         /// <summary>
         /// To the weibo brief.
@@ -96,7 +97,7 @@ namespace DataAccessLayer.BusinessModel
             result.Id = input.Id;
             result.Source = input.NewsSource;
             result.ThumbnailUrl = string.IsNullOrEmpty(input.GoodDominantImageURL)
-                                      ? DEFAULTTHUMBNAILURL
+                                      ? DEFAULTNEWSURL
                                       : input.GoodDominantImageURL;
             result.Title = input.Title;
             result.Url = input.Url;
