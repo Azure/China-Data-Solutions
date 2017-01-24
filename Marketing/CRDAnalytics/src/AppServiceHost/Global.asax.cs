@@ -4,10 +4,15 @@
 namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.AppServiceHost
 {
     using System;
-    using System.Diagnostics;
+    using System.Configuration;
+    using System.Linq;
     using System.Web;
 
+    using Common.Extensions;
     using Common.Pipelines;
+    using log4net;
+    using log4net.Appender;
+    using log4net.Repository.Hierarchy;
 
     /// <summary>
     /// Defines the global HTTP application.
@@ -15,6 +20,15 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.AppServiceHost
     /// <seealso cref="HttpApplication" />
     public class Global : HttpApplication
     {
+        #region Fields
+
+        /// <summary>
+        /// The logger
+        /// </summary>
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(Global));
+
+        #endregion
+
         #region Methods
 
         /// <summary>
@@ -24,11 +38,22 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.AppServiceHost
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected void Application_Start(object sender, EventArgs e)
         {
-            Trace.TraceInformation(@"Application starting...");
+            RefreshLogSettings();
 
-            PipelineManager.StartCustomerReviewDataPipeline();
+            Logger.Info(@"Application starting...");
 
-            Trace.TraceInformation(@"Application started...");
+            try
+            {
+                PipelineManager.StartCustomerReviewDataPipeline();
+            }
+            catch (Exception exception)
+            {
+                Logger.Error(
+                    $"Customer review data pipeline started failed, exception detail: {exception.GetDetailMessage()}",
+                    exception);
+            }
+
+            Logger.Info(@"Application started...");
         }
 
         /// <summary>
@@ -65,6 +90,12 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.AppServiceHost
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected void Application_Error(object sender, EventArgs e)
         {
+            var exception = Server.GetLastError();
+            Response.Clear();
+
+            var errorMessage = exception?.Message ?? "Internal error occurred.";
+
+            Logger.Error(exception == null ? errorMessage : exception.GetDetailMessage(), exception);
         }
 
         /// <summary>
@@ -83,7 +114,27 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.AppServiceHost
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected void Application_End(object sender, EventArgs e)
         {
-            Trace.TraceInformation(@"Application stopped...");
+            Logger.Info(@"Application stopped...");
+        }
+
+        /// <summary>
+        /// Refreshes the log settings.
+        /// </summary>
+        private static void RefreshLogSettings()
+        {
+            var hierarchy = LogManager.GetRepository() as Hierarchy;
+            if (hierarchy == null || !hierarchy.Configured)
+            {
+                return;
+            }
+
+            var defaultConnection =
+                ConfigurationManager.ConnectionStrings[@"DatabaseConnectionString"].ConnectionString;
+            foreach (var adoNetAppender in hierarchy.GetAppenders().OfType<AdoNetAppender>())
+            {
+                adoNetAppender.ConnectionString = defaultConnection;
+                adoNetAppender.ActivateOptions();
+            }
         }
 
         #endregion

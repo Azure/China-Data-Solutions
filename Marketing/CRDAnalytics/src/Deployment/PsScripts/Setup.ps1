@@ -74,9 +74,17 @@ $webApp = Create-AzureWebApp -resourceGroupName $ResourceGroupName -webAppName $
 Set-AzureRmResource -PropertyObject @{"siteConfig" = @{"AlwaysOn" = $true}} -Name $WebAppName -ResourceGroupName $ResourceGroupName -ResourceType Microsoft.Web/sites -Force
 
 # Start azure web app
-$result = Invoke-WebRequest -Uri "http://$($webApp.DefaultHostName)/" -ErrorAction SilentlyContinue
+
+$webAppUrl = "http://$($webApp.DefaultHostName)/"
+try { $result = Invoke-WebRequest -Uri $webAppUrl } catch {}
+
+Show-Message -message "The Web App $webAppUrl created." -color "Green"
 
 # Show database connection string
-Show-Message -message "Please save this connection string for PowerBI report file: $connectionString" -color "Green"
+$connectionString | Set-Content $ConnectionStringPath
+Show-Message -message "The database connection string $connectionString was saved to file $ConnectionStringPath" -color "Green"
 
 Show-Message -message "Setup Azure Mooncake environment end."
+
+Write-Host "Press any key to continue ..."
+$x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")

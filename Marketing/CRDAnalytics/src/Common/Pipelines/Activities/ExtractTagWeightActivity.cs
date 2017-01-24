@@ -5,11 +5,11 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines.Activi
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Linq;
     using System.Threading.Tasks;
 
     using Extensions;
+    using log4net;
     using Models;
     using Nlp.TagWeight;
 
@@ -20,6 +20,15 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines.Activi
     public sealed class ExtractTagWeightActivity
         : ActivityBase<CustomerReviewSentencesModel, CustomerReviewSentencesTagWeightModel>
     {
+        #region Fields
+
+        /// <summary>
+        /// The logger
+        /// </summary>
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(ExtractTagWeightActivity));
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
@@ -44,8 +53,8 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines.Activi
         /// </returns>
         protected override Task<CustomerReviewSentencesTagWeightModel> ProcessModelAsync(ActivityContext activityContext)
         {
-            ////Trace.TraceInformation(
-            ////    $"Extracting tag weight: {activityContext.InputModel.CorrelationId}");
+            Logger.Info(
+                $"Extracting tag weight: {activityContext.InputModel.CorrelationId}");
 
             try
             {
@@ -71,8 +80,9 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines.Activi
             }
             catch (Exception ex)
             {
-                Trace.TraceWarning(
-                                   $"Extracting tag weight failed, exception detail: {ex.GetDetailMessage()}, context: {activityContext.ToJsonIndented()}");
+                Logger.Error(
+                    $"Extracting tag weight failed, exception detail: {ex.GetDetailMessage()}, context: {activityContext.ToJsonIndented()}",
+                    ex);
 
                 throw;
             }

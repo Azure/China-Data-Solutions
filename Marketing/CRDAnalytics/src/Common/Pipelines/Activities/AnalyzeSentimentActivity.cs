@@ -5,11 +5,11 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines.Activi
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Linq;
     using System.Threading.Tasks;
 
     using Extensions;
+    using log4net;
     using Models;
     using Nlp.Sentiment;
 
@@ -20,6 +20,15 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines.Activi
     public sealed class AnalyzeSentimentActivity
         : ActivityBase<CustomerReviewSentencesModel, CustomerReviewSentencesSentimentModel>
     {
+        #region Fields
+
+        /// <summary>
+        /// The logger
+        /// </summary>
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(AnalyzeSentimentActivity));
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
@@ -45,8 +54,8 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines.Activi
         protected override async Task<CustomerReviewSentencesSentimentModel> ProcessModelAsync(
             ActivityContext activityContext)
         {
-            ////Trace.TraceInformation(
-            ////    $"Analyzing sentiment: {activityContext.InputModel.CorrelationId}");
+            Logger.Info(
+                $"Analyzing sentiment: {activityContext.InputModel.CorrelationId}");
 
             try
             {
@@ -75,8 +84,9 @@ namespace Microsoft.Azure.ChinaDataSolution.CrdAnalytics.Common.Pipelines.Activi
             }
             catch (Exception ex)
             {
-                Trace.TraceWarning(
-                    $"Analyze sentiment failed, exception detail: {ex.GetDetailMessage()}, context: {activityContext.ToJsonIndented()}");
+                Logger.Error(
+                    $"Analyze sentiment failed, exception detail: {ex.GetDetailMessage()}, context: {activityContext.ToJsonIndented()}",
+                    ex);
 
                 throw;
             }
