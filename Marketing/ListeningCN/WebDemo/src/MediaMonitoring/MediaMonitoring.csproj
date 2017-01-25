@@ -355,6 +355,7 @@
     <Content Include="Resources\img\fumian.png" />
     <Content Include="Resources\img\jiao.png" />
     <Content Include="Resources\img\sample.png" />
+    <Content Include="Resources\img\sample_new.jpg" />
     <Content Include="Resources\img\scanningbackground1.png" />
     <Content Include="Resources\img\scanningbackground2.png" />
     <Content Include="Resources\img\scanresult2.png" />
