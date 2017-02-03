@@ -355,6 +355,7 @@
     <Content Include="Resources\img\fumian.png" />
     <Content Include="Resources\img\jiao.png" />
     <Content Include="Resources\img\sample.png" />
+    <Content Include="Resources\img\sample_new.jpg" />
     <Content Include="Resources\img\scanningbackground1.png" />
     <Content Include="Resources\img\scanningbackground2.png" />
     <Content Include="Resources\img\scanresult2.png" />
@@ -402,12 +403,7 @@
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Properties\PublishProfiles\centerone.pubxml" />
-    <None Include="Properties\PublishProfiles\ercenterone - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\ercenterone - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\PackageBuild.pubxml" />
-    <None Include="Properties\PublishProfiles\prmn - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\prmn - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\cloud.js" />

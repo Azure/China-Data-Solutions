@@ -47,7 +47,6 @@ namespace MediaMonitoring
             app.UseHangfireServer(options);
             ProfileHelper.InitClientUser();
             JobStorage.Current = storage.Entry;
-            TaskProcessor.Run();
         }
     }
 }

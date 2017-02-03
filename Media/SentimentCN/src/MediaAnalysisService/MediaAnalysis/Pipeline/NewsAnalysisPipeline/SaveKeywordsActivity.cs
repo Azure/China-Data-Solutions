@@ -20,12 +20,10 @@ namespace MediaAnalysis.Pipeline.NewsAnalysisPipeline
             var obj = context.Result.ActivityResults["ExtractKeyWord"];
             var resultDict = Convert.ChangeType(obj.Result, obj.ObjectType) as IDictionary<long, List<string>>;
             var newsList = context[pipe.NewsContextKey] as IEnumerable<NewsStream>;
-            foreach (var item in newsList)
-            {
-
-            }
             using (var db = ContextFactory.GetMediaAnalysisContext())
             {
+                db.Configuration.AutoDetectChangesEnabled = false;
+                db.Configuration.ValidateOnSaveEnabled = false;
                 foreach (var item in newsList)
                 {
                     var keywords = resultDict.ContainsKey(item.Id) ? resultDict[item.Id] : null;
@@ -36,7 +34,7 @@ namespace MediaAnalysis.Pipeline.NewsAnalysisPipeline
                     }
                     else
                     {
-                        if (item != null && !string.IsNullOrEmpty(item.Title))
+                        if (!string.IsNullOrEmpty(item.Title))
                         {
                             var length = item.Title.Length > 20 ? 20 : item.Title.Length;
                             item.KeyWords = item.Title.Substring(0, length);
