@@ -53,7 +53,7 @@
   1. 下载部署包[CRDAnalytics.zip](./DeployPkg/CRDAnalytics.zip)并解压至本地目录（如 C:\Temp\CRDAnalytics）。
   2. （可选）根据说明修改PsScripts\Settings.ps1中的环境配置信息
   3. （可选）如需替换演示数据可以修改SqlScripts\InsertSampleData.sql中的商品信息和客户评论数据
-  3. 运行setup.cmd。
+  3. 在“命令行”程序中运行setup.cmd。
   4. 等待脚本运行，直到部署完成。
   5. 保存脚本输出的数据库连接信息。
   5. 等待演示数据处理完成，此过程大约需要30~60分钟。
