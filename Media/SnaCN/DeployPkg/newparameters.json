@@ -1,0 +1,81 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "chinanorth"
+        },
+        "virtualMachineName": {
+            "value": "rservertest1865"
+        },
+        "virtualMachineSize": {
+            "value": "Standard_DS2"
+        },
+        "adminUsername": {
+            "value": "azure"
+        },
+        "storageAccountName": {
+            "value": "rservertest1865stor"
+        },
+        "virtualNetworkName": {
+            "value": "rservertest1865-vnet"
+        },
+        "networkInterfaceName": {
+            "value": "rservertest1865Netinterface"
+        },
+        "networkSecurityGroupName": {
+            "value": "rservertest1865-nsg"
+        },
+        "adminPassword": {
+            "value": "Passw0rd123!"
+        },
+        "storageAccountType": {
+            "value": "Premium_LRS"
+        },
+        "diagnosticsStorageAccountName": {
+            "value": "rservertest1865dstor"
+        },
+        "diagnosticsStorageAccountType": {
+            "value": "Standard_LRS"
+        },
+        "diagnosticsStorageAccountId": {
+            "value": "Microsoft.Storage/storageAccounts/rservertest1865dstor"
+        },
+        "addressPrefix": {
+            "value": "10.2.0.0/24"
+        },
+        "subnetName": {
+            "value": "default"
+        },
+        "subnetPrefix": {
+            "value": "10.2.0.0/24"
+        },
+        "publicIpAddressName": {
+            "value": "rservertest1865-ip"
+        },
+        "publicIpAddressType": {
+            "value": "Static"
+        },
+		"servers_sndemoserver_name": {
+            "value": "rservertest1865dbserver"
+        },
+        "serverfarms_SNADemo_name": {
+            "value": "rservertest1865appsf"
+        },
+        "sites_SNADemo_name": {
+            "value": "rservertest1865sites"
+        },
+		"databases_SNADemo_Id": {
+            "value": "9a13aa75-4637-4ff5-8897-b1f2065b1592"
+        },
+        "databases_master_name": {
+            "value": "rservertest1865dbserver/master"
+        },
+        "databases_SNADemo_name": {
+            "value": "rservertest1865dbserver/SNADemo"
+        },
+        "firewallRules_AllowAllWindowsAzureIps_name": {
+            "value": "rservertest1865dbserver/AllowAllWindowsAzureIps"
+        }
+    }
+}
