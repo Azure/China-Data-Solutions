@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<workspaceId>the workspace id</workspaceId>
+	<appkey>powerbi embedded key</appkey>
+	<reportId>the report id</reportId>
+	<embedUrl>the embedded url</embedUrl>
+	<wcn>the workspace name</wcn>
+	<words>the module words url</words>
+	<emotion>the module emotion url</emotion>
+	<topic>the module topic url</topic>
+	<dataUrl>the database connection</dataUrl>
+</config>

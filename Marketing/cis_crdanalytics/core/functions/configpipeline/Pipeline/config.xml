@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<workspaceId>{{workspaceId}}</workspaceId>
+	<appkey>{{appkey}}</appkey>
+	<reportId>{{reportId}}</reportId>
+	<embedUrl>{{embedUrl}}</embedUrl>
+	<wcn>{{workspaceCollecionName}}</wcn>
+	<words>{{wordsURL}}/words</words>
+	<emotion>{{emotionURL}}/emotion</emotion>
+	<topic>{{topicURL}}/topic</topic>
+	<dataUrl>{{databaseConnection}}</dataUrl>
+</config>
