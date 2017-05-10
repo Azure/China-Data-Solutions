@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Template>
+    <Category>DesignPattern</Category>
+    <Title>Customer Review Analytics</Title>
+    <Owner displayname="Pengzhi Sun" email="Pengzhi.Sun@microsoft.com" />
+    <PublishedOn>3/9/2017</PublishedOn>
+    <ImageUrl>{PatternAssetBaseUrl}/image.png</ImageUrl>
+    <Description>Customer Review Analytics Tutorial from China Cloud Group.</Description>
+    <Summary src="markdown/Summary.md" format="markdown" />
+    <EstimatedTime>20 Minutes</EstimatedTime>
+    <ProvisioningSteps>
+        <Manual parameterSource="arm/CreateSQLdatabaseArm.json" title="Setup SQL server account">
+            <Parameters>
+                <Credential type="sql" username="sqlServerUsername" password="sqlServerPassword" />
+            </Parameters>
+        </Manual>
+        <!-- Setup the Azure Function App correctly -->
+        <AzureFunctionApp alwaysOn="true" use32BitWorkerProcess="false" servicePlanSku="S3" servicePlanTier="Standard">
+            <AppSettings>
+                <Add key="AzureWebJobsDashboard" value="DefaultEndpointsProtocol=https;AccountName={Outputs.storageAccountName};AccountKey={Outputs.storageAccountKey}" />
+                <Add key="AzureWebJobsStorage" value="DefaultEndpointsProtocol=https;AccountName={Outputs.storageAccountName};AccountKey={Outputs.storageAccountKey}" />
+                <Add key="WEBSITE_CONTENTAZUREFILECONNECTIONSTRING" value="DefaultEndpointsProtocol=https;AccountName={Outputs.storageAccountName};AccountKey={Outputs.storageAccountKey}" />
+                <Add key="WEBSITE_NODE_DEFAULT_VERSION" value="6.5.0" />
+            </AppSettings>
+        </AzureFunctionApp>
+        <ArmDeployment source="arm/CreateSQLdatabaseArm.json" title="Deploying a SQL database ARM template" autoResolveParameters="true" />
+        <Function name="prepsql" title="Preparing the SQL Database">
+          <Parameters>
+              <Parameter hidden="true" name="sqlServerName" defaultValue="{Outputs.sqlServerName}" />
+              <Parameter hidden="true" name="sqlDatabaseName" defaultValue="{Outputs.sqlDatabaseName}" />
+              <Parameter hidden="true" name="sqlServerUsername" defaultValue="{Outputs.sqlServerUsername}" />
+              <Parameter hidden="true" name="sqlServerPassword" defaultValue="{Outputs.sqlServerPassword}" />
+          </Parameters>
+        </Function>
+        <ArmDeployment source="arm/deployEmotionApp.json" title="Deploying Emotion Web App">
+            <Parameters>
+                <Parameter name="deployPackageUri" hidden="true" defaultValue="{PatternAssetBaseUrl}\Emotion.zip" />
+            </Parameters>
+        </ArmDeployment>
+        <ArmDeployment source="arm/deployTopicApp.json" title="Deploying Topic Web App">
+            <Parameters>
+                <Parameter name="deployPackageUri" hidden="true" defaultValue="{PatternAssetBaseUrl}\Topic.zip" />
+            </Parameters>
+        </ArmDeployment>
+        <ArmDeployment source="arm/deployWordsApp.json" title="Deploying Words Web App">
+            <Parameters>
+                <Parameter name="deployPackageUri" hidden="true" defaultValue="{PatternAssetBaseUrl}\Words.zip" />
+            </Parameters>
+        </ArmDeployment>
+        <SolutionDashboard>
+            <Parameters>
+                <Parameter hidden="true" name="pbixFileUrl" defaultValue="{PatternAssetBaseUrl}/dashboards/dataChart.pbix" />
+                <Parameter hidden="true" name="sqlServer" defaultValue="{Outputs.sqlServerName}" />
+                <Parameter hidden="true" name="sqlDatabase" defaultValue="{Outputs.sqlDatabaseName}" />
+                <Parameter hidden="true" name="sqlServerUsername" defaultValue="{Outputs.sqlServerUsername}" />
+                <Parameter hidden="true" name="sqlServerPassword" defaultValue="{Outputs.sqlServerPassword}" />
+            </Parameters>
+        </SolutionDashboard>
+        <Function name="configpipeline" title="Configuring the Pipeline App">
+          <Parameters>
+              <Parameter hidden="true" name="sqlServerName" defaultValue="{Outputs.sqlServerName}" />
+              <Parameter hidden="true" name="sqlDatabaseName" defaultValue="{Outputs.sqlDatabaseName}" />
+              <Parameter hidden="true" name="sqlServerUsername" defaultValue="{Outputs.sqlServerUsername}" />
+              <Parameter hidden="true" name="sqlServerPassword" defaultValue="{Outputs.sqlServerPassword}" />
+              <Parameter hidden="true" name="emotionAppUrl" defaultValue="{Outputs.emotionAppUrl}" />
+              <Parameter hidden="true" name="topicAppUrl" defaultValue="{Outputs.topicAppUrl}" />
+              <Parameter hidden="true" name="wordsAppUrl" defaultValue="{Outputs.wordsAppUrl}" />
+              <Parameter hidden="true" name="storageAccountName" defaultValue="{Outputs.storageAccountName}"/>
+              <Parameter hidden="true" name="storageAccountKey" defaultValue="{Outputs.storageAccountKey}"/>
+              <Parameter hidden="true" name="containerName" defaultValue="asserts"/>
+          </Parameters>
+        </Function>
+        <ArmDeployment source="arm/deplopPipelineApp.json" title="Deploying Pipeline Web App">
+            <Parameters>
+                <Parameter hidden="true" name="assertStorageAccount" defaultValue="{Outputs.storageAccountName}"/>
+            </Parameters>
+        </ArmDeployment>
+        <Function name="startpipeline" title="Starting the Pipeline App">
+          <Parameters>
+              <Parameter hidden="true" name="pipelineAppUrl" defaultValue="{Outputs.pipelineAppUrl}" />
+          </Parameters>
+        </Function>
+        <Manual title="Done">
+            <Instructions src="markdown/Instructions.md" format="markdown" />
+        </Manual>
+    </ProvisioningSteps>
+</Template>
