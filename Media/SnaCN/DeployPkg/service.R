@@ -28,16 +28,15 @@ Find_KOL <-  function(fileStr)
   colnames(data) <- c("ego", "alter","weight")
   
   # convert into a graph object
-  sn <- graph.data.frame(data) 
+  rsn <- graph.data.frame(rdata) 
   
   # computing the out degree centrality. igraph computes the number of ties but not centrality, so I normalized it with H = (n-1) as stated in networkx document
-  outdegree_social <- degree(sn, mode='out')
-  n <- gorder(sn)
-  h <- n - 1
-  d <- sort(outdegree_social, decreasing = T) %>% as.data.frame() /h
-  out_d <- cbind(rownames(d), d) %>% as.data.frame()
-  colnames(out_d) <-  c("uid", "value")
-  rownames(out_d) <- NULL
+
+  pr <- page_rank(rsn)
+  prvals <- sort(pr[[1]],decreasing = T)  %>% as.data.frame()
+  out_pr <- cbind(rownames(prvals), prvals) %>% as.data.frame()
+  colnames(out_pr) <-  c("uid", "value")
+  rownames(out_pr) <- NULL
   answer <- toJSON(out_d)
   return(answer)
 }

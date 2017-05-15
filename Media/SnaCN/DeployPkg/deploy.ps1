@@ -335,10 +335,13 @@ if($resourceProviders.length) {
 }
 
 $postfix = [System.Environment]::TickCount.ToString()
-$VMName = "$VMName$postfix"
+$VMName = "$VMName$postfix".ToLower()
 
-$VMName = $VMName.Substring(0,15).ToLower()
-Write-Host $VMName
+if($VMName.Length -gt 15)
+{
+    $VMName = $VMName.Substring(0,15).ToLower()
+    Write-Host $VMName
+}
 
 
 #Create or check for existing resource group
