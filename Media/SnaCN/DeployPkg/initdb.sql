@@ -1,9 +1,15 @@
 ﻿CREATE TABLE [dbo].[Diffusion_prob](
-	[uid] [nvarchar](50) NOT NULL,
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[kol_uid] [nvarchar](50) NULL,
+	[user_followers_count] [int] NOT NULL,
+	[user_statuses_count] [int] NOT NULL,
+	[user_gender] [nvarchar](50) NULL,
+	[user_province] [nvarchar](50) NULL,
+	[user_verified] [nvarchar](10) NULL,
 	[value] [float] NULL,
  CONSTRAINT [PK_diffusion_prob] PRIMARY KEY CLUSTERED 
 (
-	[uid] ASC
+	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
 )
 
@@ -95,3 +101,65 @@ CREATE TABLE [dbo].[Weibo_user_detailed](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
 )
 
+CREATE TABLE [dbo].[Weibo_icons](
+	[iconname] [varchar](50) NOT NULL,
+	[url] [varchar](128) NULL,
+ CONSTRAINT [PK_Weibo_icons] PRIMARY KEY CLUSTERED 
+(
+	[iconname] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+)
+insert into [dbo].[Weibo_icons]([iconname],[url]) values(N'bannner',N'http://mcdidata.blob.core.chinacloudapi.cn/pic/banner_icon.png')
+insert into [dbo].[Weibo_icons]([iconname],[url]) values(N'KOL',N'http://mcdidata.blob.core.chinacloudapi.cn/pic/KOL3企业_1.png')
+insert into [dbo].[Weibo_icons]([iconname],[url]) values(N'男',N'http://mcdidata.blob.core.chinacloudapi.cn/pic/icon_male.png')
+insert into [dbo].[Weibo_icons]([iconname],[url]) values(N'女',N'http://mcdidata.blob.core.chinacloudapi.cn/pic/icon_female.png')
+insert into [dbo].[Weibo_icons]([iconname],[url]) values(N'企业',N'http://mcdidata.blob.core.chinacloudapi.cn/pic/icon_unknow.png') 
+
+
+ create view [dbo].[v_DailyHotTopic5] as 
+ SELECT Top 5  case when [retweeted_mid] is null  then '-1' else  [retweeted_mid] END as [retweeted_mid] , count(1) as count  
+ FROM 
+	( select *, CONVERT(VARCHAR(10),created_at,120) as created_at_date,CONVERT(VARCHAR(13),created_at,120)+':00' as created_at_hour 
+	  from [dbo].[weibo_detailed]  ) temp 
+ WHERE created_at_hour >'2016-12-13 10:00' and created_at_hour <='2016-12-14 10:00'   and [retweeted_mid] <>'-1'
+ GROUP BY [retweeted_mid],[retweeted_text],retweeted_uid, retweeted_name 
+ ORDER BY  count desc
+
+
+
+create view [dbo].[v_DailyHotTopic_Followers] as 
+SELECT created_at_hour,a.[retweeted_mid],sum(user_followers_count) as  user_followers_count
+FROM (select *,CONVERT(VARCHAR(10),created_at,120) as created_at_date, CONVERT(VARCHAR(13),created_at,120)+':00' as created_at_hour
+      from weibo_detailed) a
+	  ,v_DailyHotTopic5 c, Weibo_user_detailed d
+WHERE  a.retweeted_mid= c.retweeted_mid  and created_at_hour <='2016-12-14 10:00'and a.user_uid=d.user_uid
+GROUP BY created_at_hour,a.[retweeted_mid]
+
+
+
+
+create view [dbo].[v_Weibo_user_diffusion] as 
+select 
+	   a.[user_followers_count]
+      ,a.[user_statuses_count]
+      ,a.[user_gender]
+      ,a.[user_province]
+	  ,a.[user_verified] 
+      ,case a.[user_verified] when 0 then '普通用户' when 1 then '验证用户' when 2 then '企业用户'  end [user_verified_nom] 
+      ,a.[value]
+      ,a.[kol_uid]
+      ,cast(log(c.value*1000000)*3  as int) as [KOLrank] 
+	  ,d.koldiffvaluerank
+		--ranking all diffusion value for kol_uid,user_gender,user_province
+	  ,row_number() over (partition by a.[kol_uid],a.user_gender,a.user_province order by a.[value] desc,a.user_followers_count desc ,a.user_statuses_count desc ) valuerank
+      ,b.user_followers_count as kol_followers_count,b.user_statuses_count as kol_statuses_count
+from  [dbo].Diffusion_prob a,Weibo_user_detailed  b ,KOL_pagerank c 
+      ,(select *
+				--ranking sumed KOL's diffusion value for user_gender,user_province
+				,row_number() over (partition by koldiff.user_gender,koldiff.user_province order by koldiff.koldiffsumvalue desc ) koldiffvaluerank
+        from
+           (select [kol_uid],[user_gender],[user_province] ,sum(value)as koldiffsumvalue
+            from  [dbo].Diffusion_prob group by [kol_uid],[user_gender],[user_province]) koldiff  
+			) d
+where a.[kol_uid] = b.[user_uid]  and a.[kol_uid]=c.uid 
+      and a.[user_gender]=d.[user_gender] and a.[user_province]=d.[user_province] and a.[kol_uid]=d.[kol_uid]
