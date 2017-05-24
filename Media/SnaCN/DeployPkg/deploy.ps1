@@ -366,7 +366,7 @@ $newParametersPath = ".\newparameters.json"
 # Start the deployment
 Write-Host "Starting deployment...";
 if(Test-Path $newParametersPath) {
-    New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFilePath -TemplateParameterFile $newParametersPath -Debug;
+    New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFilePath -TemplateParameterFile $newParametersPath;
 } else {
     New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFilePath;
 }
