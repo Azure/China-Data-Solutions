@@ -101,7 +101,7 @@ xxxxxxxxxxxxxxxxxxxxxxxxx
 
 
 
-## [获取数据解决方案的源代码](./src/SNADemo)
+## [获取数据解决方案的源代码](src/SNADemo)
 解决方案提供了相应的源代码包供用户参考。用户可以通过修改源码来快速搭建及开发基于Azure的定制化的Demo。通过使用Visual Studio打开\src\SNASite\SNASite.sln文件可以打开工程。
 
 源代码主要包含以下几个工程
@@ -109,7 +109,7 @@ xxxxxxxxxxxxxxxxxxxxxxxxx
   2. DataLibrary，主要包含了文本处理的相关逻辑。
   3. SNASite,用于发布到Azure网站应用的工程，WebJob将随该工程进行发布并运行。系统的部署也需要先将该工程进行发布，形成整体的部署包。
 
-## [嵌入Power BI解决方案的源代码](./src/PowerBIEmbeded)
+## [嵌入Power BI解决方案的源代码](src/PowerBIEmbeded)
 解决方案提供了相应的源代码包供用户参考。用户可以通过修改源码来快速搭建及开发基于Azure的定制化的Demo。通过使用Visual Studio打开\src\PowerBIEmbeded\CreatePbiEmbedded.sln文件可以打开工程。
 
 源代码主要包含以下几个工程
