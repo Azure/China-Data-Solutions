@@ -101,7 +101,7 @@ xxxxxxxxxxxxxxxxxxxxxxxxx
 
 
 
-## [获取数据解决方案的源代码](src/SNADemo)
+## [获取数据解决方案的源代码](src/SNASite)
 解决方案提供了相应的源代码包供用户参考。用户可以通过修改源码来快速搭建及开发基于Azure的定制化的Demo。通过使用Visual Studio打开\src\SNASite\SNASite.sln文件可以打开工程。
 
 源代码主要包含以下几个工程
