@@ -42,12 +42,12 @@ xxxxxxxxxxxxxxxxxxxxxxxxx
   2. SNADemo文件夹中是对应用于。
   3. PowerBIEmbeded文件夹
   4. Initdb.sql用于初始化数据库表及索引结构
-  5. 需要将源代码中的SNASite发布到该文件夹中的SNADemo文件夹下，详细参见[操作步骤](####发布xxx)
-  5. 需要将源代码中的PowerBIEmbeded发布到该文件夹中的PowerBIEmbeded文件夹下，详细参见[操作步骤](####发布Web应用用于PowerBI Embeded展示)
+  5. 需要将源代码中的SNASite发布到该文件夹中的SNADemo文件夹下，详细参见[操作步骤](#发布)
+  5. 需要将源代码中的PowerBIEmbeded发布到该文件夹中的PowerBIEmbeded文件夹下，详细参见[操作步骤](#发布)
 
 ### 发布
 
-#### 发布xxx
+- 发布xxx
 
 要构建完成的部署包，需要将源代码进行生成发布，作为部署包的部署内容。
 
@@ -59,7 +59,7 @@ xxxxxxxxxxxxxxxxxxxxxxxxx
   6. 点击下一步，选择**发布**版本。
   7. 点击**完成**，进行工程的生成和发布。发布完成之后可以在SNADemo文件夹中看到完整的网站应用结构文件。
 
-#### 发布Web应用用于PowerBI Embeded展示
+- 发布Web应用用于PowerBI Embeded展示
 
 要构建完成的部署包，需要将源代码进行生成发布，作为部署包的部署内容。
 
@@ -109,7 +109,7 @@ xxxxxxxxxxxxxxxxxxxxxxxxx
   2. DataLibrary，主要包含了文本处理的相关逻辑。
   3. SNASite,用于发布到Azure网站应用的工程，WebJob将随该工程进行发布并运行。系统的部署也需要先将该工程进行发布，形成整体的部署包。
 
-## [获取数据解决方案的源代码](./src/PowerBIEmbeded)
+## [嵌入Power BI解决方案的源代码](./src/PowerBIEmbeded)
 解决方案提供了相应的源代码包供用户参考。用户可以通过修改源码来快速搭建及开发基于Azure的定制化的Demo。通过使用Visual Studio打开\src\PowerBIEmbeded\CreatePbiEmbedded.sln文件可以打开工程。
 
 源代码主要包含以下几个工程
