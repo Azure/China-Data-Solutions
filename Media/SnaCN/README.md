@@ -1,8 +1,10 @@
 # 传播主体分析解决方案
  
+xxxxxxxxxxxxxxxxxx
 
 ## 场景描述
  
+xxxxxxxxxxxxxxxxxxxxxxxxx
 
 ## 技术架构
 解决方案架构图如下：
@@ -40,12 +42,12 @@
   2. SNADemo文件夹中是对应用于。
   3. PowerBIEmbeded文件夹
   4. Initdb.sql用于初始化数据库表及索引结构
-  5. 需要将源代码中的SNASite发布到该文件夹中的SNADemo文件夹下，详细参见[操作步骤](#发布)
-  5. 需要将源代码中的PowerBIEmbeded发布到该文件夹中的PowerBIEmbeded文件夹下，详细参见[操作步骤](#发布Web应用用于PowerBI Embeded展示)
+  5. 需要将源代码中的SNASite发布到该文件夹中的SNADemo文件夹下，详细参见[操作步骤](#### 发布xxx)
+  5. 需要将源代码中的PowerBIEmbeded发布到该文件夹中的PowerBIEmbeded文件夹下，详细参见[操作步骤](#### 发布Web应用用于PowerBI Embeded展示)
 
 ### 发布
 
-####发布xxx
+#### 发布xxx
 
 要构建完成的部署包，需要将源代码进行生成发布，作为部署包的部署内容。
 
