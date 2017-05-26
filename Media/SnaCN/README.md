@@ -42,8 +42,8 @@ xxxxxxxxxxxxxxxxxxxxxxxxx
   2. SNADemo文件夹中是对应用于。
   3. PowerBIEmbeded文件夹
   4. Initdb.sql用于初始化数据库表及索引结构
-  5. 需要将源代码中的SNASite发布到该文件夹中的SNADemo文件夹下，详细参见[操作步骤](#### 发布xxx)
-  5. 需要将源代码中的PowerBIEmbeded发布到该文件夹中的PowerBIEmbeded文件夹下，详细参见[操作步骤](#### 发布Web应用用于PowerBI Embeded展示)
+  5. 需要将源代码中的SNASite发布到该文件夹中的SNADemo文件夹下，详细参见[操作步骤](####发布xxx)
+  5. 需要将源代码中的PowerBIEmbeded发布到该文件夹中的PowerBIEmbeded文件夹下，详细参见[操作步骤](####发布Web应用用于PowerBI Embeded展示)
 
 ### 发布
 
