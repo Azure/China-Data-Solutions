@@ -6,7 +6,7 @@
             "value": "chinanorth"
         },
         "virtualMachineName": {
-            "value": "rservertest1865"
+            "value": "rservertest1696"
         },
         "virtualMachineSize": {
             "value": "Standard_DS2"
@@ -15,31 +15,31 @@
             "value": "azure"
         },
         "storageAccountName": {
-            "value": "rservertest1865stor"
+            "value": "rservertest1696stor"
         },
         "virtualNetworkName": {
-            "value": "rservertest1865-vnet"
+            "value": "rservertest1696-vnet"
         },
         "networkInterfaceName": {
-            "value": "rservertest1865Netinterface"
+            "value": "rservertest1696Netinterface"
         },
         "networkSecurityGroupName": {
-            "value": "rservertest1865-nsg"
+            "value": "rservertest1696-nsg"
         },
         "adminPassword": {
-            "value": "Passw0rd123!"
+            "value": "passw0rd!"
         },
         "storageAccountType": {
             "value": "Premium_LRS"
         },
         "diagnosticsStorageAccountName": {
-            "value": "rservertest1865dstor"
+            "value": "rservertest1696dstor"
         },
         "diagnosticsStorageAccountType": {
             "value": "Standard_LRS"
         },
         "diagnosticsStorageAccountId": {
-            "value": "Microsoft.Storage/storageAccounts/rservertest1865dstor"
+            "value": "Microsoft.Storage/storageAccounts/rservertest1696dstor"
         },
         "addressPrefix": {
             "value": "10.2.0.0/24"
@@ -51,31 +51,31 @@
             "value": "10.2.0.0/24"
         },
         "publicIpAddressName": {
-            "value": "rservertest1865-ip"
+            "value": "rservertest1696-ip"
         },
         "publicIpAddressType": {
             "value": "Static"
         },
 		"servers_sndemoserver_name": {
-            "value": "rservertest1865dbserver"
+            "value": "rservertest1696dbserver"
         },
         "serverfarms_SNADemo_name": {
-            "value": "rservertest1865appsf"
+            "value": "rservertest1696appsf"
         },
         "sites_SNADemo_name": {
-            "value": "rservertest1865sites"
+            "value": "rservertest1696sites"
         },
 		"databases_SNADemo_Id": {
-            "value": "9a13aa75-4637-4ff5-8897-b1f2065b1592"
+            "value": "15633a35-122d-4a12-8d6e-b7d39989d3ba"
         },
         "databases_master_name": {
-            "value": "rservertest1865dbserver/master"
+            "value": "rservertest1696dbserver/master"
         },
         "databases_SNADemo_name": {
-            "value": "rservertest1865dbserver/SNADemo"
+            "value": "rservertest1696dbserver/SNADemo"
         },
         "firewallRules_AllowAllWindowsAzureIps_name": {
-            "value": "rservertest1865dbserver/AllowAllWindowsAzureIps"
+            "value": "rservertest1696dbserver/AllowAllWindowsAzureIps"
         }
     }
 }
