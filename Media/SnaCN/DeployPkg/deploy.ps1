@@ -70,7 +70,7 @@ $PBIApiEndpoint = "https://api.powerbi.cn",
  $PBIXfilepath = "weiboSNA.pbix",
 
  [string]
- $webAppName  = "SNADemoPbiEmbedb",
+ $webAppName  = "SNADemoPbiEmbed",
 
  [string]
  $servicePlanName ="SPSNADemo"
@@ -449,7 +449,7 @@ else{
 
 $newParametersPath = ".\newparameters.json"
 
-(Get-Content -Path $parametersFilePath) -replace("{{Name}}", $VMName.ToLower()) -replace(“{{Password}}”, $VMPassword) -replace(“{{ResourceGroup}}”, $resourceGroupName) -replace("{{DBID}}", [Convert]::ToString([guid]::NewGuid()))| Set-Content $newParametersPath
+(Get-Content -Path $parametersFilePath) -replace("{{Name}}", $VMName.ToLower()) -replace("{{Password}}", $VMPassword) -replace("{{ResourceGroup}}", $resourceGroupName) -replace("{{DBID}}", [Convert]::ToString([guid]::NewGuid()))| Set-Content $newParametersPath
 
 # Start the deployment
 Write-Host "Starting deployment...";
