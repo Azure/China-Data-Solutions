@@ -1,4 +1,4 @@
-<#
+ï»¿<#
  .SYNOPSIS
     Deploys a template to Azure
 
@@ -449,7 +449,7 @@ else{
 
 $newParametersPath = ".\newparameters.json"
 
-(Get-Content -Path $parametersFilePath) -replace("{{Name}}", $VMName.ToLower()) -replace(¡°{{Password}}¡±, $VMPassword) -replace(¡°{{ResourceGroup}}¡±, $resourceGroupName) -replace("{{DBID}}", [Convert]::ToString([guid]::NewGuid()))| Set-Content $newParametersPath
+(Get-Content -Path $parametersFilePath) -replace("{{Name}}", $VMName.ToLower()) -replace(â€œ{{Password}}â€, $VMPassword) -replace(â€œ{{ResourceGroup}}â€, $resourceGroupName) -replace("{{DBID}}", [Convert]::ToString([guid]::NewGuid()))| Set-Content $newParametersPath
 
 # Start the deployment
 Write-Host "Starting deployment...";
