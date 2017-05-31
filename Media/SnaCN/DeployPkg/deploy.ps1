@@ -1,4 +1,4 @@
-<#
+﻿<#
  .SYNOPSIS
     Deploys a template to Azure
 
