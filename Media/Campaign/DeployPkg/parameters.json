@@ -1,0 +1,93 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "chinaeast"
+        },
+        "virtualMachineName": {
+            "value": "{{envname}}"
+        },
+        "virtualMachineSize": {
+            "value": "Standard_DS12_v2"
+        },
+        "adminUsername": {
+            "value": "azure"
+        },
+        "virtualNetworkName": {
+            "value": "{{envname}}-vnet"
+        },
+        "networkInterfaceName": {
+            "value": "{{envname}}netinter"
+        },
+        "networkSecurityGroupName": {
+            "value": "{{envname}}-nsg"
+        },
+        "adminPassword": {
+            "value": "{{password}}"
+        },
+        "storageAccountName": {
+            "value": "{{envname}}stor"
+        },
+        "diagnosticsStorageAccountName": {
+            "value": "{{envname}}dia"
+        },
+        "diagnosticsStorageAccountId": {
+            "value": "Microsoft.Storage/storageAccounts/{{envname}}dia"
+        },
+        "subnetName": {
+            "value": "{{envname}}subnet"
+        },
+		"subnetPrefix": {
+            "value": "172.16.5.0/24"
+        },
+		"addressPrefix": {
+            "value": "172.16.5.0/24"
+        },
+        "publicIpAddressName": {
+            "value": "{{envname}}-ip"
+        },
+        "publicIpAddressType": {
+            "value": "Static"
+        },
+        "sqlConnectivityType": {
+            "value": "Private"
+        },
+        "sqlPortNumber": {
+            "value": 1433
+        },
+        "sqlStorageDisksCount": {
+            "value": 1
+        },
+        "sqlStorageWorkloadType": {
+            "value": "GENERAL"
+        },
+        "sqlStorageDisksConfigurationType": {
+            "value": "NEW"
+        },
+        "sqlStorageStartingDeviceId": {
+            "value": 2
+        },
+        "sqlStorageDeploymentToken": {
+            "value": 77993
+        },
+        "sqlAutopatchingDayOfWeek": {
+            "value": "Sunday"
+        },
+        "sqlAutopatchingStartHour": {
+            "value": "2"
+        },
+        "sqlAutopatchingWindowDuration": {
+            "value": "60"
+        },
+        "sqlAuthenticationLogin": {
+            "value": "{{sqluser}}"
+        },
+        "sqlAuthenticationPassword": {
+            "value": "{{sqlpassword}}"
+        },
+        "rServicesEnabled": {
+            "value": "true"
+        }
+    }
+}
