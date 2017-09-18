@@ -9,16 +9,18 @@
 ### [舆情洞察（中文）](./Media/SentimentCN) [[演示程序]](https://msit.powerbi.com/view?r=eyJrIjoiOTJkZDYyYzgtZjQwYS00ZTkxLWFhMDAtMWQyNGQ0MjhjZTZjIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
 基于网络公开新闻文本数据，发现并分析热点事件，分析事件情感，持续监控事件趋势，多维度洞察事件影响力。协助媒体机构采集素材及报道选题。
 
-### 舆情洞察（英文） [[演示程序]](https://msit.powerbi.com/view?r=eyJrIjoiYmExZGMxMjUtN2MxZi00MzczLWIwOTEtNWRkMWM5ZmQ0YjIwIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
+### [舆情洞察（英文）](./Media/SentimentEN) [[演示程序]](https://msit.powerbi.com/view?r=eyJrIjoiYmExZGMxMjUtN2MxZi00MzczLWIwOTEtNWRkMWM5ZmQ0YjIwIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
 基于全球网络公开新闻文本数据，发现全球各主要国家及地区热点事件，分析事件情感，持续监控时间走势，多维度洞察事件影响力。协助媒体机构采集素材及报道选题。
 
-### 社交网络分析（中文） [[演示程序]](https://msit.powerbi.com/view?r=eyJrIjoiZmU0ZWQ0ZDMtN2ExNC00MmMxLWEyNGYtZTI5ZmRhMTUzNjViIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
+### [社交网络分析（中文）](./Media/SnaCN) [[演示程序]](https://msit.powerbi.com/view?r=eyJrIjoiZmU0ZWQ0ZDMtN2ExNC00MmMxLWEyNGYtZTI5ZmRhMTUzNjViIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
 基于社交网络公开数据，对热点事件建立传播路径，找到传播路径中的关键传播节点，持续监控其社交网络行为，多维度洞察其影响力。
 
 ## 营销解决方案
-### 社会化聆听（中文） [[演示程序]](http://wssocialsenti348668531.chinacloudsites.cn/)
+### [社会化聆听（中文）](./Marketing/ListeningCN) [[演示程序]](http://wssocialsenti348668531.chinacloudsites.cn/)
 基于互联网公开数据，分析和监控媒体声音，实现企业口碑监控、企业影响力分析、竞争品牌分析等社会化聆听核心业务场景，辅助进行品牌宣传、危机公关等事件的决策。
 
 ### [客户评论数据分析](./Marketing/CRDAnalytics) [[演示程序]](https://msit.powerbi.com/view?r=eyJrIjoiNGJiMmFhMjMtNzE0OC00MjM1LThiOTgtYjFhOWIzY2ZlZmU2IiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
 基于电商网站用户评论数据，多维度分析、比较产品及竞品的优势及差异，为产品改进提供可量化建议。
 
+### [营销方案优化](./Marketing/Campaign) [[演示程序]](https://msit.powerbi.com/view?r=eyJrIjoiN2ZmMTE0MWMtNjkyYi00YTc4LTlkNzUtNzdkZDYyOTVjZGM3IiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
+对商家的历史销售数据进行分析，建立预测模型对营销活动转化率进行预测，并将预测结果转化为营销建议，提高营销活动转化率。
