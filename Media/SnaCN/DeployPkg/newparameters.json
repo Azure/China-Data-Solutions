@@ -6,7 +6,11 @@
             "value": "chinanorth"
         },
         "virtualMachineName": {
+<<<<<<< HEAD
             "value": "rservertest1696"
+=======
+            "value": "rservertest1865"
+>>>>>>> remotes/origin/master
         },
         "virtualMachineSize": {
             "value": "Standard_DS2"
@@ -15,6 +19,7 @@
             "value": "azure"
         },
         "storageAccountName": {
+<<<<<<< HEAD
             "value": "rservertest1696stor"
         },
         "virtualNetworkName": {
@@ -28,18 +33,41 @@
         },
         "adminPassword": {
             "value": "passw0rd!"
+=======
+            "value": "rservertest1865stor"
+        },
+        "virtualNetworkName": {
+            "value": "rservertest1865-vnet"
+        },
+        "networkInterfaceName": {
+            "value": "rservertest1865Netinterface"
+        },
+        "networkSecurityGroupName": {
+            "value": "rservertest1865-nsg"
+        },
+        "adminPassword": {
+            "value": "Passw0rd123!"
+>>>>>>> remotes/origin/master
         },
         "storageAccountType": {
             "value": "Premium_LRS"
         },
         "diagnosticsStorageAccountName": {
+<<<<<<< HEAD
             "value": "rservertest1696dstor"
+=======
+            "value": "rservertest1865dstor"
+>>>>>>> remotes/origin/master
         },
         "diagnosticsStorageAccountType": {
             "value": "Standard_LRS"
         },
         "diagnosticsStorageAccountId": {
+<<<<<<< HEAD
             "value": "Microsoft.Storage/storageAccounts/rservertest1696dstor"
+=======
+            "value": "Microsoft.Storage/storageAccounts/rservertest1865dstor"
+>>>>>>> remotes/origin/master
         },
         "addressPrefix": {
             "value": "10.2.0.0/24"
@@ -51,12 +79,17 @@
             "value": "10.2.0.0/24"
         },
         "publicIpAddressName": {
+<<<<<<< HEAD
             "value": "rservertest1696-ip"
+=======
+            "value": "rservertest1865-ip"
+>>>>>>> remotes/origin/master
         },
         "publicIpAddressType": {
             "value": "Static"
         },
 		"servers_sndemoserver_name": {
+<<<<<<< HEAD
             "value": "rservertest1696dbserver"
         },
         "serverfarms_SNADemo_name": {
@@ -76,6 +109,27 @@
         },
         "firewallRules_AllowAllWindowsAzureIps_name": {
             "value": "rservertest1696dbserver/AllowAllWindowsAzureIps"
+=======
+            "value": "rservertest1865dbserver"
+        },
+        "serverfarms_SNADemo_name": {
+            "value": "rservertest1865appsf"
+        },
+        "sites_SNADemo_name": {
+            "value": "rservertest1865sites"
+        },
+		"databases_SNADemo_Id": {
+            "value": "9a13aa75-4637-4ff5-8897-b1f2065b1592"
+        },
+        "databases_master_name": {
+            "value": "rservertest1865dbserver/master"
+        },
+        "databases_SNADemo_name": {
+            "value": "rservertest1865dbserver/SNADemo"
+        },
+        "firewallRules_AllowAllWindowsAzureIps_name": {
+            "value": "rservertest1865dbserver/AllowAllWindowsAzureIps"
+>>>>>>> remotes/origin/master
         }
     }
 }

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ï»¿<#
+=======
+<#
+>>>>>>> remotes/origin/master
  .SYNOPSIS
     Deploys a template to Azure
 
@@ -52,6 +56,7 @@ param(
  $templateFilePath = "template.json",
 
  [string]
+<<<<<<< HEAD
  $parametersFilePath = "parameters.json",
 
 [string]
@@ -74,12 +79,18 @@ $PBIApiEndpoint = "https://api.powerbi.cn",
 
  [string]
  $servicePlanName ="SPSNADemo"
+=======
+ $parametersFilePath = "parameters.json"
+>>>>>>> remotes/origin/master
 )
 
 $Global:PackageName = "SNADemo"
 
+<<<<<<< HEAD
 $Global:PBIPackageName = "PowerBIEmbeded"
 
+=======
+>>>>>>> remotes/origin/master
 <#
 .SYNOPSIS
     Registers RPs
@@ -254,6 +265,7 @@ Function CheckAndMake-FTPDirectory{
     }
 }
 
+<<<<<<< HEAD
 Function Create-AzureWebApp{
     param
     (
@@ -319,6 +331,8 @@ Function Check-ServicePlan
     }
 }
 
+=======
+>>>>>>> remotes/origin/master
 Function Detect-IPAddress
 {
     $ipregex = "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)"
@@ -449,12 +463,20 @@ else{
 
 $newParametersPath = ".\newparameters.json"
 
+<<<<<<< HEAD
 (Get-Content -Path $parametersFilePath) -replace("{{Name}}", $VMName.ToLower()) -replace(â€œ{{Password}}â€, $VMPassword) -replace(â€œ{{ResourceGroup}}â€, $resourceGroupName) -replace("{{DBID}}", [Convert]::ToString([guid]::NewGuid()))| Set-Content $newParametersPath
+=======
+(Get-Content -Path $parametersFilePath) -replace("{{Name}}", $VMName.ToLower()) -replace(¡°{{Password}}¡±, $VMPassword) -replace(¡°{{ResourceGroup}}¡±, $resourceGroupName) -replace("{{DBID}}", [Convert]::ToString([guid]::NewGuid()))| Set-Content $newParametersPath
+>>>>>>> remotes/origin/master
 
 # Start the deployment
 Write-Host "Starting deployment...";
 if(Test-Path $newParametersPath) {
+<<<<<<< HEAD
     New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFilePath -TemplateParameterFile $newParametersPath;
+=======
+    New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFilePath -TemplateParameterFile $newParametersPath -Debug;
+>>>>>>> remotes/origin/master
 } else {
     New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFilePath;
 }
@@ -508,6 +530,7 @@ Write-Host "FTP Connection Successfully Parsed" -ForegroundColor Green
  
 $contentPath = "$path\$Global:PackageName"
 Upload-Directory -ftp $uploadInfo -path $contentPath -ErrorAction Stop
+<<<<<<< HEAD
 Write-Host "Files successfully uploaded to FTP" -ForegroundColor Green
 
 
@@ -566,3 +589,6 @@ while($suc -eq $false -and $retryTimes -lt 3)
 Create-AzureWebApp -ResourceGroupName $resourceGroupName -WebAppName $webAppName -ServicePlanName $servicePlanName -Location $Location
 $webApp = Get-AzureRmWebApp -ResourceGroupName $resourceGroupName -Name $webAppName
 Write-Host $webApp.HostNames -ForegroundColor Green
+=======
+Write-Host "Files successfully uploaded to FTP" -ForegroundColor Green
+>>>>>>> remotes/origin/master
