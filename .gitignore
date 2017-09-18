@@ -329,3 +329,7 @@ build/
 /Media/SentimentCN/DeployPkg/setupasa.ps1
 /Media/SnaCN/DeployPkg/SNADemo/app_data/jobs/continuous/DataPrepare
 /Media/SnaCN/DeployPkg/SNADemo
+<<<<<<< HEAD
+/Media/SnaCN/DeployPkg/newparameters.json
+=======
+>>>>>>> remotes/origin/master

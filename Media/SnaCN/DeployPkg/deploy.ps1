@@ -1,4 +1,8 @@
+ï»¿<<<<<<< HEAD
+é”˜?#
+=======
 <#
+>>>>>>> remotes/origin/master
  .SYNOPSIS
     Deploys a template to Azure
 
@@ -52,11 +56,41 @@ param(
  $templateFilePath = "template.json",
 
  [string]
+<<<<<<< HEAD
+ $parametersFilePath = "parameters.json",
+
+[string]
+$WorkspaceCollectionName = "SNADemoPBIC",
+
+[string]
+ $WorkspaceName = "SNADemoPBIW",
+
+[string]
+$PBIXdatasetname = "SNADemodataset",
+
+[string]
+$PBIApiEndpoint = "https://api.powerbi.cn",
+
+[string]
+ $PBIXfilepath = "weiboSNA.pbix",
+
+ [string]
+ $webAppName  = "SNADemoPbiEmbed",
+
+ [string]
+ $servicePlanName ="SPSNADemo"
+=======
  $parametersFilePath = "parameters.json"
+>>>>>>> remotes/origin/master
 )
 
 $Global:PackageName = "SNADemo"
 
+<<<<<<< HEAD
+$Global:PBIPackageName = "PowerBIEmbeded"
+
+=======
+>>>>>>> remotes/origin/master
 <#
 .SYNOPSIS
     Registers RPs
@@ -231,6 +265,71 @@ Function CheckAndMake-FTPDirectory{
     }
 }
 
+Function Create-AzureWebApp{
+    param
+    (
+       [parameter(Mandatory=$true)]
+       $ResourceGroupName,
+       [parameter(Mandatory=$true)]
+       $WebAppName,
+       [parameter(Mandatory=$true)]
+       $Location,
+       [parameter(Mandatory=$true)]
+       $ServicePlanName
+    )
+
+
+    #Check-ResourceGroup -resourceGroupName $ResourceGroupName -resourceGroupLocation $Location
+    Check-ServicePlan -resourceGroupName $ResourceGroupName -servicePlanName $ServicePlanName -location $Location
+
+    $profileFolder = New-Item -ItemType directory -Path "$Env:TEMP\$ResourceGroupName" -Force
+    $profilePath = $Env:TEMP + "\" + $ResourceGroupName + "\" + $WebAppName + "_src.json"
+    $webApp = New-AzureRmWebApp -ResourceGroupName $ResourceGroupName -Name $WebAppName -Location $Location -AppServicePlan $ServicePlanName -ErrorAction Stop
+    Write-Host "Web App $WebAppName successfully created" -ForegroundColor Green
+
+    $profile = Get-AzureRmWebAppPublishingProfile -WebApp $webApp -OutputFile $profilePath -ErrorAction Stop
+    Write-Host "Published Profile Downloaded" -ForegroundColor Green
+
+    [FTpInfo]$uploadInfo = ParseFtp -profile $profile
+    Write-Host "FTP Connection Successfully Parsed" -ForegroundColor Green
+
+    $path = Split-Path -Parent $PSCommandPath  
+    $contentPath = "$path\$Global:PBIPackageName"
+
+    Upload-Directory -ftp $uploadInfo -path $contentPath -ErrorAction Stop
+    Write-Host "Files successfully uploaded to FTP" -ForegroundColor Green
+
+    return $webApp
+}
+
+Function Check-ServicePlan
+{
+    param(
+        [parameter(Mandatory=$true)]
+        $resourceGroupName, 
+        [parameter(Mandatory=$true)]
+        $servicePlanName, 
+        [parameter(Mandatory=$true)]
+        $location, 
+        [parameter(Mandatory=$false)]
+        $tier = 'Standard', 
+        [parameter(Mandatory=$false)]
+        $numofWorkers=5)
+
+    $plan  = Get-AzureRmAppServicePlan -ResourceGroupName $resourceGroupName -Name $servicePlanName -ErrorAction SilentlyContinue
+    if(!$plan)
+    {
+        if(!$location) {
+            $resourceGroupLocation = Read-Host "resourceGroupLocation";
+        }
+        $sp = New-AzureRmAppServicePlan -ResourceGroupName $resourceGroupName -Name $servicePlanName -Location $location -NumberofWorkers  $numofWorkers -Tier $tier
+        Write-Host "Service Plan $servicePlanName Created" -ForegroundColor Green
+    }
+    else{
+        Write-Host "Using existing service plan '$servicePlanName'";
+    }
+}
+
 Function Detect-IPAddress
 {
     $ipregex = "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)"
@@ -361,12 +460,12 @@ else{
 
 $newParametersPath = ".\newparameters.json"
 
-(Get-Content -Path $parametersFilePath) -replace("{{Name}}", $VMName.ToLower()) -replace(¡°{{Password}}¡±, $VMPassword) -replace(¡°{{ResourceGroup}}¡±, $resourceGroupName) -replace("{{DBID}}", [Convert]::ToString([guid]::NewGuid()))| Set-Content $newParametersPath
+(Get-Content -Path $parametersFilePath) -replace("{{Name}}", $VMName.ToLower()) -replace(â€œ{{Password}}â€, $VMPassword) -replace(â€œ{{ResourceGroup}}â€, $resourceGroupName) -replace("{{DBID}}", [Convert]::ToString([guid]::NewGuid()))| Set-Content $newParametersPath
 
 # Start the deployment
 Write-Host "Starting deployment...";
 if(Test-Path $newParametersPath) {
-    New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFilePath -TemplateParameterFile $newParametersPath -Debug;
+    New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFilePath -TemplateParameterFile $newParametersPath;
 } else {
     New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFilePath;
 }
@@ -420,4 +519,61 @@ Write-Host "FTP Connection Successfully Parsed" -ForegroundColor Green
  
 $contentPath = "$path\$Global:PackageName"
 Upload-Directory -ftp $uploadInfo -path $contentPath -ErrorAction Stop
+Write-Host "Files successfully uploaded to FTP" -ForegroundColor Green
+
+
+
+
+# Create PowerBI Embedded Workspace Collection
+$WorkspaceCollectionName = "$WorkspaceCollectionName$postfix".ToLower()
+$resourceGroup = Get-AzureRmResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue
+$location = $resourceGroup.Location
+
+$collection =  New-AzureRmPowerBIWorkspaceCollection -ResourceGroupName $ResourceGroupName -WorkspaceCollectionName $WorkspaceCollectionName -Location $location
+
+$accessKeys = Get-AzureRmPowerBIWorkspaceCollectionAccessKeys -ResourceGroupName $ResourceGroupName -WorkspaceCollectionName $WorkspaceCollectionName
+$appkey = $accessKeys[0].Value
+
+# Create PowerBI Embedded Workspace and post a import
+$workspace = powerbi create-workspace -c $WorkspaceCollectionName -k $appkey  -b $PBIApiEndpoint
+
+$workspaceId = $workspace.Split(":").GetValue(1)
+$import = powerbi import -c $WorkspaceCollectionName -w $workspaceId -k $appkey -f $PBIXfilepath -n $PBIXdatasetname -b $PBIApiEndpoint
+
+$importID = $import.GetValue(2).Split(":").GetValue(1)
+
+#get the first one id there exists more than one dataset in the workspace
+$dataset = powerbi get-datasets -c $WorkspaceCollectionName -w $workspaceId -k $appkey -b $PBIApiEndpoint
+$d = $dataset[3].Split("|").Split(":")
+$datasetID = $d[1].Replace(" ","")
+$reports = powerbi get-reports -c $WorkspaceCollectionName -w $workspaceId -k $appkey -b $PBIApiEndpoint
+#get the first one id there exists more than one report in the workspace
+$r = $reports[3].Split("|")
+$reportId = $r[0].Split(":").GetValue(1)
+$embedUrl = $r[2].Split(":").GetValue(1) + ":" + $r[2].Split(":").GetValue(2)
+#Set the datasource
+$dbConnection = "data source=$dbServerName.database.chinacloudapi.cn;initial catalog=$dbname;persist security info=True;encrypt=True;trustservercertificate=False"
+$suc = $false
+$retryTimes = 0
+while($suc -eq $false -and $retryTimes -lt 3)
+    {           
+            Start-Sleep -s 10
+            $updatecon=powerbi update-connection -c $WorkspaceCollectionName -w $workspaceId -k $appkey -d $datasetID -s $dbConnection -u "dbuser" -p $VMPassword -b $PBIApiEndpoint
+            $succ= $updatecon.GetValue(15).Split("]").GetValue(1)
+            
+            if($succ -eq " Successfully updated datasource credentials!")
+            {
+              Write-Host "Successfully updated datasource credentials!" -ForegroundColor Green
+              $suc = $true 
+             } 
+
+            $retryTimes = $retryTimes+1       
+    }    
+
+
+
+# Create PowerBI Website
+(Get-Content "$path\$Global:PBIPackageName\Web.Template.config").Replace('{{powerbi:AccessKey}}', $appkey).Replace('{{powerbi:WorkspaceCollection}}',$WorkspaceCollectionName).Replace('{{powerbi:WorkspaceId}}',$workspaceId) | Set-Content "$path\$Global:PBIPackageName\Web.Config"
+Create-AzureWebApp -ResourceGroupName $resourceGroupName -WebAppName $webAppName -ServicePlanName $servicePlanName -Location $Location
+$webApp = Get-AzureRmWebApp -ResourceGroupName $resourceGroupName -Name $webAppNameWrite-Host $webApp.HostNames -ForegroundColor Green
 Write-Host "Files successfully uploaded to FTP" -ForegroundColor Green
