@@ -1,9 +1,9 @@
 # Data Analytics Industry Solutions How-To Guides
 Data analytics industry solutions are for transforming your data into business intelligence actions. Solution how-to guides contain all the necessary materials and instructions to guide how to deploy solutions to Azure China subscription.
 
-We provide 2 types of packages for customers and partners.
-* Solution package - Solution package includes sample raw data, trained models and demo application (web app or PBI report). Solution package can be auto-deployed to Azure subscription directly follow the instructions of readme to help customers and partners understand how to build business scenarios with Azure services. Customers and partners can repalce the raw data, then modify the solution based on source code and scripts of solutions to build their Demo and PoC on demand.
-* Demo package - Demo package includes cooked data and demo application (web app or PBI report). Demo package can be deployed follow the instructions of readme to help customers and partners quick understand business scenarios. And customers and partners can also modify the demo application to present the business scenarios from different point of views.
+We provide both source packages and demo packages for customers and partners.
+* Source package - Source package includes sample raw data, trained models and demo application (web app or PBI report). Source package can be easy deployed to Azure subscription directly by following the instructions in readme. With source package, customers and partners can easy understand how to build business scenarios with Azure services. Customers and partners can repalce the raw data with their real business data, and customize the solution to build their owned demo and PoC on demand.
+* Demo package - Demo package includes cooked data and demo application (web app or PBI report). Demo package can be deployed by following the instructions in readme. With demo package, it helps customers and partners quick understanding business scenarios and capability of Azure services. They can also modify the demo application to present their business scenarios on their demand.
 
 
 ## Solutions for Media
@@ -14,6 +14,7 @@ Discover social hot events, analyze sentiment and impact of events based on stre
 Discover social hot events, analyze sentiment and impact of events based on streaming news data published on global public network.
 
 ### [Social Network Analysis Solution (Weibo)](./Media/SnaCN) [[Demo]](https://msit.powerbi.com/view?r=eyJrIjoiZmU0ZWQ0ZDMtN2ExNC00MmMxLWEyNGYtZTI5ZmRhMTUzNjViIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
+Build dissemination network to identify the key accounts (KOLs) in the network, and ananlyze the influence of accounts. 
 
 ## Solutions for Marketing
 ### [Social Listening Solution (CN)](./Marketing/ListeningCN) [[Demo]](http://wssocialsenti348668531.chinacloudsites.cn/)
