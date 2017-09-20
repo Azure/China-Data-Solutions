@@ -246,7 +246,7 @@
             "apiVersion": "2016-09-01",
             "location": "[parameters('location')]",
             "properties": {
-                "publicIpAllocationMethod": "[parameters('publicIpAddressType')]"
+                "publicIpAllocationMethod": "[parameters('publicIpAddressType')]",
 				"dnsSettings": {
                     "domainNameLabel": "[parameters('virtualMachineName')]"
                 }
