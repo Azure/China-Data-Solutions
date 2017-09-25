@@ -99,10 +99,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-=======
-    <None Include="App.config" />
->>>>>>> remotes/origin/master
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

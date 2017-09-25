@@ -8,7 +8,6 @@ namespace DataLibrary.Models.Mapping
         public Diffusion_probMap()
         {
             // Primary Key
-<<<<<<< HEAD
             this.HasKey(t => new { t.user_followers_count, t.user_statuses_count, t.id });
 
             // Properties
@@ -43,19 +42,6 @@ namespace DataLibrary.Models.Mapping
             this.Property(t => t.user_verified).HasColumnName("user_verified");
             this.Property(t => t.value).HasColumnName("value");
             this.Property(t => t.id).HasColumnName("id");
-=======
-            this.HasKey(t => t.uid);
-
-            // Properties
-            this.Property(t => t.uid)
-                .IsRequired()
-                .HasMaxLength(50);
-
-            // Table & Column Mappings
-            this.ToTable("Diffusion_prob");
-            this.Property(t => t.uid).HasColumnName("uid");
-            this.Property(t => t.value).HasColumnName("value");
->>>>>>> remotes/origin/master
         }
     }
 }
