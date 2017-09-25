@@ -37,8 +37,8 @@
 ### [部署包组成]((./DeployPkg))
 部署包中主要包含以下几个部分
   1. deploy.ps1 用于进行自动化部署的主要脚本
-  2. SNADemo文件夹中是对应用于xxxxxxxx
-  3. PowerBIEmbeded文件夹xxxxxxxxxxx
+  2. SNADemo文件夹中是对应用于用于运行WebJob任务的站点
+  3. PowerBIEmbeded文件夹对应于应用于PBI部署的相关文件
   4. initdb.sql用于初始化数据库表及索引结构
   5. 需要将源代码中的SNASite发布到该文件夹中的SNADemo文件夹下，详细参见[操作步骤](###发布)
   5. 需要将源代码中的PowerBIEmbeded发布到该文件夹中的PowerBIEmbeded文件夹下，详细参见[操作步骤](###发布)
@@ -76,7 +76,6 @@
 
   1. 创建资源组、虚拟机、数据库
   2. 将Web应用文件使用FTP的方式上传到Web应用中
-  xxxxxxxxxxxx
 
 
 
