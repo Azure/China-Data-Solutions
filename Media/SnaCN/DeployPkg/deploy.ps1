@@ -1,7 +1,4 @@
-﻿<<<<<<< HEAD
-锘?#
-=======
-<#
+﻿<#
 >>>>>>> remotes/origin/master
  .SYNOPSIS
     Deploys a template to Azure
@@ -56,22 +53,21 @@ param(
  $templateFilePath = "template.json",
 
  [string]
-<<<<<<< HEAD
  $parametersFilePath = "parameters.json",
 
-[string]
-$WorkspaceCollectionName = "SNADemoPBIC",
+ [string]
+ $WorkspaceCollectionName = "SNADemoPBIC",
 
-[string]
+ [string]
  $WorkspaceName = "SNADemoPBIW",
 
-[string]
-$PBIXdatasetname = "SNADemodataset",
+ [string]
+ $PBIXdatasetname = "SNADemodataset",
 
-[string]
-$PBIApiEndpoint = "https://api.powerbi.cn",
+ [string]
+ $PBIApiEndpoint = "https://api.powerbi.cn",
 
-[string]
+ [string]
  $PBIXfilepath = "weiboSNA.pbix",
 
  [string]
@@ -79,18 +75,15 @@ $PBIApiEndpoint = "https://api.powerbi.cn",
 
  [string]
  $servicePlanName ="SPSNADemo"
-=======
+
  $parametersFilePath = "parameters.json"
->>>>>>> remotes/origin/master
+
 )
 
 $Global:PackageName = "SNADemo"
 
-<<<<<<< HEAD
 $Global:PBIPackageName = "PowerBIEmbeded"
 
-=======
->>>>>>> remotes/origin/master
 <#
 .SYNOPSIS
     Registers RPs
