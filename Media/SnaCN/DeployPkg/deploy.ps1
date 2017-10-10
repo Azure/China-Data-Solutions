@@ -76,8 +76,6 @@ param(
  [string]
  $servicePlanName ="SPSNADemo"
 
- $parametersFilePath = "parameters.json"
-
 )
 
 $Global:PackageName = "SNADemo"
