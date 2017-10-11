@@ -71,7 +71,7 @@ param(
  $PBIXfilepath = "weiboSNA.pbix",
 
  [string]
- $webAppName  = "SNADemoPbiEmbed",
+ $webAppName  = "SNADemoPbiEmbedded",
 
  [string]
  $servicePlanName ="SPSNADemo"
@@ -80,7 +80,7 @@ param(
 
 $Global:PackageName = "SNADemo"
 
-$Global:PBIPackageName = "PowerBIEmbeded"
+$Global:PBIPackageName = "PowerBIEmbedded"
 
 <#
 .SYNOPSIS
@@ -566,5 +566,6 @@ while($suc -eq $false -and $retryTimes -lt 3)
 # Create PowerBI Website
 (Get-Content "$path\$Global:PBIPackageName\Web.Template.config").Replace('{{powerbi:AccessKey}}', $appkey).Replace('{{powerbi:WorkspaceCollection}}',$WorkspaceCollectionName).Replace('{{powerbi:WorkspaceId}}',$workspaceId) | Set-Content "$path\$Global:PBIPackageName\Web.Config"
 Create-AzureWebApp -ResourceGroupName $resourceGroupName -WebAppName $webAppName -ServicePlanName $servicePlanName -Location $Location
-$webApp = Get-AzureRmWebApp -ResourceGroupName $resourceGroupName -Name $webAppNameWrite-Host $webApp.HostNames -ForegroundColor Green
-Write-Host "Files successfully uploaded to FTP" -ForegroundColor Green
+$webApp = Get-AzureRmWebApp -ResourceGroupName $resourceGroupName -Name $webAppName
+Write-Host $webApp.HostNames -ForegroundColor Green
+
