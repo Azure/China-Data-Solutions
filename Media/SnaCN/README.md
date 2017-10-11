@@ -110,6 +110,5 @@
 ## [嵌入Power BI解决方案的源代码](./src/PowerBIEmbedded)
 通过使用Visual Studio打开\src\PowerBIEmbedded\CreatePbiEmbedded.sln文件可以打开工程。
 
-源代码主要包含以下几个工程
-  1. PbiEmbeddedWeb,用于发布到Azure网站应用的工程。系统的部署也需要先将该工程进行发布，形成整体的部署包
+源代码包含用于发布到Azure网站应用的工程PbiEmbeddedWeb。系统的部署也需要先将该工程进行发布，形成整体的部署包。
 
