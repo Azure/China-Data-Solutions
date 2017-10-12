@@ -7,21 +7,21 @@ We provide both source packages and demo packages for customers and partners.
 
 
 ## Solutions for Media
-### [Social Sentiment Solution (CN)](./Media/SentimentCN) [[Demo]](https://msit.powerbi.com/view?r=eyJrIjoiOTJkZDYyYzgtZjQwYS00ZTkxLWFhMDAtMWQyNGQ0MjhjZTZjIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
+### Social Sentiment Solution (CN) [[Sample Code]](./Media/SentimentCN) [[Online Demo]](https://msit.powerbi.com/view?r=eyJrIjoiOTJkZDYyYzgtZjQwYS00ZTkxLWFhMDAtMWQyNGQ0MjhjZTZjIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
 Discover social hot events, analyze sentiment and impact of events based on streaming news data published on local public network.
 
-### [Social Sentiment Solution (EN)](./Media/SentimentEN) [[Demo]](https://msit.powerbi.com/view?r=eyJrIjoiYmExZGMxMjUtN2MxZi00MzczLWIwOTEtNWRkMWM5ZmQ0YjIwIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
+### Social Sentiment Solution (EN) [[Sample Code]](./Media/SentimentEN) [[Online Demo]](https://msit.powerbi.com/view?r=eyJrIjoiYmExZGMxMjUtN2MxZi00MzczLWIwOTEtNWRkMWM5ZmQ0YjIwIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
 Discover social hot events, analyze sentiment and impact of events based on streaming news data published on global public network.
 
-### Social Network Analysis Solution (Weibo) [[Demo]](https://msit.powerbi.com/view?r=eyJrIjoiZmU0ZWQ0ZDMtN2ExNC00MmMxLWEyNGYtZTI5ZmRhMTUzNjViIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
+### Social Network Analysis Solution (CN) [[Sample Code]](./Media/SnaCN) [[Online Demo]](https://msit.powerbi.com/view?r=eyJrIjoiZmU0ZWQ0ZDMtN2ExNC00MmMxLWEyNGYtZTI5ZmRhMTUzNjViIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
 Build dissemination network to identify the key accounts (KOLs) in the network, and ananlyze the influence of accounts. 
 
 ## Solutions for Marketing
-### [Social Listening Solution (CN)](./Marketing/ListeningCN) [[Demo]](http://wssocialsenti348668531.chinacloudsites.cn/)
+### Social Listening Solution (CN) [[Sample Code]](./Marketing/ListeningCN) [[Online Demo]](http://wssocialsenti348668531.chinacloudsites.cn/)
 Discover and monitor events of enterprise, analyze sentiment and impact of events based on streaming news data published on local public network.
 
-### [Customer Review Data Analytics Solution](./Marketing/CRDAnalytics) [[Demo]](https://msit.powerbi.com/view?r=eyJrIjoiNGJiMmFhMjMtNzE0OC00MjM1LThiOTgtYjFhOWIzY2ZlZmU2IiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
+### Customer Review Data Analytics Solution [[Sample Code]](./Marketing/CRDAnalytics) [[Online Demo]](https://msit.powerbi.com/view?r=eyJrIjoiNGJiMmFhMjMtNzE0OC00MjM1LThiOTgtYjFhOWIzY2ZlZmU2IiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
 Analyze and monitor customer review on productions based on review data published on e-commerce websites.
 
-### [Compaign Optimization Solution](./Marketing/Campaign) [[Demo]](https://msit.powerbi.com/view?r=eyJrIjoiN2ZmMTE0MWMtNjkyYi00YTc4LTlkNzUtNzdkZDYyOTVjZGM3IiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
+### Compaign Optimization Solution [[Sample Code]](./Marketing/Campaign) [[Online Demo]](https://msit.powerbi.com/view?r=eyJrIjoiN2ZmMTE0MWMtNjkyYi00YTc4LTlkNzUtNzdkZDYyOTVjZGM3IiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
 The solution migrated from global Azure, and demonstrates how to recommend actions to maximize the purchase rate of leads targeted by a campaign. 
