@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{73F168
 		tools\ApplyVersionToAssemblies.ps1 = tools\ApplyVersionToAssemblies.ps1
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PbiEmbeddedWeb", "PbiEmbeddedWeb\PbiEmbeddedWeb.csproj", "{AB04A4B2-0AE2-4278-AAD8-4727C1D04677}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PbiEmbedWeb", "PbiEmbedWeb\PbiEmbedWeb.csproj", "{AB04A4B2-0AE2-4278-AAD8-4727C1D04677}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
