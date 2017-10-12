@@ -1,0 +1,81 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "chinanorth"
+        },
+        "virtualMachineName": {
+            "value": "{{Name}}"
+        },
+        "virtualMachineSize": {
+            "value": "Standard_DS2"
+        },
+        "adminUsername": {
+            "value": "azure"
+        },
+        "storageAccountName": {
+            "value": "{{Name}}stor"
+        },
+        "virtualNetworkName": {
+            "value": "{{Name}}-vnet"
+        },
+        "networkInterfaceName": {
+            "value": "{{Name}}Netinterface"
+        },
+        "networkSecurityGroupName": {
+            "value": "{{Name}}-nsg"
+        },
+        "adminPassword": {
+            "value": "{{Password}}"
+        },
+        "storageAccountType": {
+            "value": "Premium_LRS"
+        },
+        "diagnosticsStorageAccountName": {
+            "value": "{{Name}}dstor"
+        },
+        "diagnosticsStorageAccountType": {
+            "value": "Standard_LRS"
+        },
+        "diagnosticsStorageAccountId": {
+            "value": "Microsoft.Storage/storageAccounts/{{Name}}dstor"
+        },
+        "addressPrefix": {
+            "value": "10.2.0.0/24"
+        },
+        "subnetName": {
+            "value": "default"
+        },
+        "subnetPrefix": {
+            "value": "10.2.0.0/24"
+        },
+        "publicIpAddressName": {
+            "value": "{{Name}}-ip"
+        },
+        "publicIpAddressType": {
+            "value": "Static"
+        },
+		"servers_sndemoserver_name": {
+            "value": "{{Name}}dbserver"
+        },
+        "serverfarms_SNADemo_name": {
+            "value": "{{Name}}appsf"
+        },
+        "sites_SNADemo_name": {
+            "value": "{{Name}}sites"
+        },
+		"databases_SNADemo_Id": {
+            "value": "{{DBID}}"
+        },
+        "databases_master_name": {
+            "value": "{{Name}}dbserver/master"
+        },
+        "databases_SNADemo_name": {
+            "value": "{{Name}}dbserver/SNADemo"
+        },
+        "firewallRules_AllowAllWindowsAzureIps_name": {
+            "value": "{{Name}}dbserver/AllowAllWindowsAzureIps"
+        }
+    }
+}

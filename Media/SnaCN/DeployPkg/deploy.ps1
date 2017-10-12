@@ -433,11 +433,7 @@ if($VMName.Length -gt 15)
     Write-Host $VMName
 }
 
-$webAppName = "$webAppName$postfix".ToLower()
-{
-    $webAppName = $webAppName.Substring(0,15).ToLower()
-    Write-Host $webAppName
-}
+
 #Create or check for existing resource group
 $resourceGroup = Get-AzureRmResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue
 if(!$resourceGroup)
