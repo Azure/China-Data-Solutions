@@ -10,7 +10,7 @@
 
 解决方案架构图如下：
 
-![Solution Diagram](./Pictures/.JPG)
+![Solution Diagram](./Pictures/snaarch.png)
 
 解决方案是一个从数据收集到数据展现的完整流程，其中包括了数据收集，数据注入，数据转换，数据存储和分析，以及数据可视化部分。
 
