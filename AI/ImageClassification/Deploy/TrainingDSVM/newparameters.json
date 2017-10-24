@@ -1,0 +1,54 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "chinanorth"
+        },
+        "virtualMachineName": {
+           "value": "imgclassdsvm"
+        },
+        "virtualMachineSize": {
+            "value": "Standard_DS11"
+        },
+        "adminUsername": {
+            "value": "dsvm"
+        },
+        "virtualNetworkName": {
+           "value": "imgclassdsvm-vnet"
+        },
+        "networkInterfaceName": {
+           "value": "imgclassdsvmNetinterface"
+        },
+        "networkSecurityGroupName": {
+            "value": "imgclassdsvm-nsg"
+        },
+        "adminPassword": {
+            "value": "Password123!"
+        },
+        "diagnosticsStorageAccountName": {
+            "value": "imgclassdsvmdstor"
+        },
+        "diagnosticsStorageAccountType": {
+            "value": "Standard_LRS"
+        },
+        "diagnosticsStorageAccountId": {
+            "value": "Microsoft.Storage/storageAccounts/imgclassdsvmdstor"
+        },
+        "addressPrefix": {
+            "value": "10.2.0.0/24"
+        },
+        "subnetName": {
+            "value": "default"
+        },
+        "subnetPrefix": {
+            "value": "10.2.0.0/24"
+        },
+        "publicIpAddressName": {
+             "value": "imgclassdsvm-ip"
+        },
+        "publicIpAddressType": {
+             "value": "Static"
+        }
+    }
+}
