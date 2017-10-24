@@ -333,3 +333,5 @@ build/
 /Media/SnaCN/DeployPkg/newparameters.json
 =======
 >>>>>>> remotes/origin/master
+/ImageClassification/Code/.ipynb_checkpoints
+/ImageClassification/Deploy/TrainingDSVM/newparameters.json
