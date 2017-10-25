@@ -58,8 +58,3 @@ tryCatch(getService("KOLService"), error=function(e){
                  v="v1.0.0")
   write("Publish Service Done", file="./log.csv", append = TRUE)				
 })
-updateService("KOLService", 
-                 code=Find_KOL, 
-                 inputs=list(fileStr="character"),
-                 outputs = list(answer="character"),
-                 v="v1.0.0")
