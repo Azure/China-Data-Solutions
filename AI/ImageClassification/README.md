@@ -11,6 +11,6 @@ Image classification is among the most popular applications of deep learning. Fo
 - PowerBI dashboard: building a dashboard to track the performance 
 
 ## Repository Structure 
-- Code: this directory contains the python code and instruction for model training
-- Data: this directory stores sample datasets for training and testing.
-- Deploy: this directory contains the end to end deploy package to help you deploy this entire solution to your Azure subscription.
+- **Code**: this directory contains the instruction and Jupyter script for the CNN model training
+- **Data**: this directory stores sample datasets for training and testing.
+- **Deploy**: this directory contains an end to end deploy package to help you deploy this solution to your Azure subscription.
