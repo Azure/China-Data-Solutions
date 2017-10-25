@@ -1,0 +1,10 @@
+numpy
+scipy
+opencv-python
+imutils
+keras
+scikit_image
+scikit-learn
+h5py
+azure.storage.blob
+ggplot
