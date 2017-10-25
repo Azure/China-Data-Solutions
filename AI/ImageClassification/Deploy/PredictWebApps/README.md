@@ -1,4 +1,4 @@
-# 如何部署 PredictWebApps
+# 如何部署 PredictWebApps [English](README-EN.md)
 
 本解决方案包括两个流程：
 1. 训练流程

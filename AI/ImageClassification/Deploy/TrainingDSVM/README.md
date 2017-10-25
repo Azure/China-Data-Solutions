@@ -1,4 +1,4 @@
-# 如何部署 TrainingDSVM
+# 如何部署 TrainingDSVM [English](README-EN.md)
 
 本解决方案包括两个流程：
 1. 训练流程
