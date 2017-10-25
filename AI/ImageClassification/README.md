@@ -1,16 +1,12 @@
-# Image Classification with Microsoft AI Platform
-## Summary
-Image classification is among the most popular applications of deep learning. For example, the insurance company can classify the car accidents based on the photo of the damaged part and make decision whether the claim is valid or not. For manufacturing factories, they may inspect whether there is defect in the product based on the images. For this project, we will use the images from the parts of the vehicle to judge whether there is a defect with it, such as dents or scratches on the surface. Microsoft’s Azure cloud ecosystem provides the scalable, elastic and intelligent AI platform. We will demonstrate how to develop the end to end AI solution with Azure AI platform. The solution will include:
+# 基于Azure人工智能平台实现图像分类
+## 概述
+图像分类是深度学习中最常见的场景。其可用于各类行业，比如保险公司根据用户上传的汽车损坏的图片自动判断报险是否成立，快消公司可以通过超市的货架照片判断货品陈设是否按计划执行，医院可以通过医疗图像检测辅助医生判断病情等。微软Azure云提供了一系列的工具和平台可以帮助用户快速的搭建，训练和部署图像分类模型。本项目基于Azure平台，实现了通过汽车外壳照片自动检测外壳是否有划痕或凹陷。解决方案包括：
+- 图像处理：对图像分割提取关键信息
+- 深度学习：建立并训练一个CNN卷积神经网络模型
+- 迁移学习：利用训练好的深度学习模型调节参数
+- 模型部署：快速部署一个训练好的模型到生产环境
 
-- Image processing: process the images for feature extraction;
-- Deep learning model: building a CNN (Convolutional Neural Networks);
-- Model training: show how to create a CNN to train the model;
-- Transfer learning: using pre-trained deep learning model to fine tune the new model;
-- Deploy the model as a web service: demonstrate how to deploy the trained model as a web service;
-- Consume the web service: How to invoke the model;
-- PowerBI dashboard: building a dashboard to track the performance 
-
-## Repository Structure 
-- **Code**: this directory contains the instruction and Jupyter script for the CNN model training
-- **Data**: this directory stores sample datasets for training and testing.
-- **Deploy**: this directory contains an end to end deploy package to help you deploy this solution to your Azure subscription.
+## 项目结构 
+- **Code**: 此目录包含构建和训练一个CNN模型的介绍和Python脚本。
+- **Data**:  此目录包含训练和测试使用的汽车外壳sample图片。
+- **Deploy**: 此目录包含一个端到端的部署包，包括模型训练和模型预测。你可以方便地部署此方案到你自己的Azure定阅，实现上传一个汽车外壳图片即可自动检测是否有划痕和凹陷。
