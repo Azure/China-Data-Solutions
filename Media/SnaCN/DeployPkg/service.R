@@ -28,7 +28,7 @@ Find_KOL <-  function(fileStr)
   colnames(data) <- c("ego", "alter","weight")
   
   # convert into a graph object
-  rsn <- graph.data.frame(rdata) 
+  rsn <- graph.data.frame(data) 
   
   # computing the out degree centrality. igraph computes the number of ties but not centrality, so I normalized it with H = (n-1) as stated in networkx document
 
@@ -37,7 +37,7 @@ Find_KOL <-  function(fileStr)
   out_pr <- cbind(rownames(prvals), prvals) %>% as.data.frame()
   colnames(out_pr) <-  c("uid", "value")
   rownames(out_pr) <- NULL
-  answer <- toJSON(out_d)
+  answer <- toJSON(out_pr)
   return(answer)
 }
 write.csv("Start Remote Login", "./log.csv", append=T)
@@ -58,3 +58,8 @@ tryCatch(getService("KOLService"), error=function(e){
                  v="v1.0.0")
   write("Publish Service Done", file="./log.csv", append = TRUE)				
 })
+updateService("KOLService", 
+                 code=Find_KOL, 
+                 inputs=list(fileStr="character"),
+                 outputs = list(answer="character"),
+                 v="v1.0.0")
