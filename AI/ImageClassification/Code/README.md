@@ -1,80 +1,75 @@
-# Image Classification with Microsoft AI Platform
-## Summary
-Image classification is among the most popular applications of deep learning. For example, the insurance company can classify the car accidents based on the photo of the damaged part and make decision whether the claim is valid or not. For manufacturing factories, they may inspect whether there is defect in the product based on the images. For this project, we will use the images from the parts of the vehicle to judge whether there is a defect with it, such as dents or scratches on the surface. Microsoft’s Azure cloud ecosystem provides the scalable, elastic and intelligent AI platform. We will demonstrate how to develop the end to end AI solution with Azure AI platform. The solution will include:
+# 基于Azure人工智能平台实现图像分类 [English](README-EN.md)
 
-- Image processing: process the images for feature extraction;
-- Deep learning model: building a CNN (Convolutional Neural Networks);
-- Model training: show how to create a CNN to train the model;
-- Transfer learning: using pre-trained deep learning model to fine tune the new model;
-- Deploy the model as a web service: demonstrate how to deploy the trained model as a web service;
-- Consume the web service: How to invoke the model;
-- PowerBI dashboard: building a dashboard to track the performance 
+在下面的内容中，我们会针对本方案的端到端开发流程，按步骤进行详细说明。
 
-## Steps
-In the following, we will go through each step with detailed instructions to illustrate the end to end solution development process.
-### Step 0: Prepare the Azure DSVM
+## 步骤 0: 准备好Azure 数据科学虚拟机(DSVM)
+建议参考 *Depoy\TrainingDSVM* 创建，部署和配置DSVM.
+你也可以直接在[Azure 门户]((https://portal.azure.cn/)中创建 DSVM，然后按照需要自己配置。
 
-In the [Azure Portal](https://ms.portal.azure.com), begin provisioning a new Windows 2016 DSVM.
-It may take 15 to 20 minutes for VM deployment
+## 步骤 1: 数据预处理
+图像分类和一般的分类问题一样。首先我们需要标注数据。在本方案中，我们采集到原始数据后，在凹陷的中心点进行了标记。所以输入数据包括了*Train* 文件夹，包含原始图片，以及 *Train_dotted* 文件夹，包含标记过的图片。示例数据位于*Data/Images*。同理对于测试集，也包含有*Test*文件和*Test_dotted*文件夹。
 
-### Step 1: Label the image
-Image classification is the same as the common classificaiton problem. First we need label the data. We mark the center of the dents in the images. Then cut off the 64X64 around the center of the blob. This one will be labeld as '1'. For the rest of the images, we will cut 64X64 images randomly and label them as '0'. The following picture showed the result of this process:
+基于这样的数集，我们用预处理代码来自动切出64*64大小图片。以标记点为中心切出的图片就标记为"1"。在其他位置随机切出的图片就标记为"0"。下图就是对处理后图片的一个示例：
 
-<img src="picture_processing.jpg" alt="Alt text that describes the graphic" title="Image processing" />
+<img src="picture_processing.jpg" alt="picture_processing" title="Image processing" />
 
-### Step 2: Data Augmentation
-Even with the image processed as before, still we have too few images for training (< 100). We need expand our dataset for a better model. Data Augmentation can always improve performance though the amount depends on the dataset. If you want to augmented the data to artificially increase the size of the dataset you can do the following if the case applies (it wouldn't apply if for example were images of houses or people where if you rotate them 180degrees they would lose all information but not if you flip them like a mirror does):
+## 步骤 2: 数据增强
+尽管进行了上一步的数据处理，我们的训练数据还是很少(< 100)。为了得到更好的模型，我们需要扩大数据集。一般来说，数据增强总是可以提高性能的，能提高多少收到数据集的影响。
+如果你想人工增强数据，一般有如下这些操作：(不是所有的数据集都可以试用于所有方法)
+- 旋转: 随机旋转角度 0° 到 360°
+- 平移变化：随机变化-10 到10 像素
+- 尺度变换: 随机缩放 1/1.6 到 1.6
+- 翻转: 是或否 
+- 裁剪: 随机裁剪角度-20° 到 20°
+- 拉伸: 随机拉伸 1/1.3 到 1.3 
+- 镜像: 得到原始图片的镜像
 
-- rotation: random with angle between 0° and 360° (uniform)
-- translation: random with shift between -10 and 10 pixels (uniform)
-- rescaling: random with scale factor between 1/1.6 and 1.6 (log-uniform)
-- flipping: yes or no (bernoulli)
-- shearing: random with angle between -20° and 20° (uniform)
-- stretching: random with stretch factor between 1/1.3 and 1.3 (log-uniform)
-- mirroring: get the mirror of the original image
-
-In our approach, we will rotate each images in every 15 degree, and then take the mirror of each image in horizontal and vertical directions. So for each image, we will generate 24 (rotated including the original one) * 2 (mirrored) = 48 images. The following picture illustrates the processing:
+在本方案中，我们对每个图片进行15度的旋转，水平镜像和垂直镜像。因此对于一张图片，我们会生成 24 （旋转，包含原始的） * 2（镜像） = 48 张. 下图示例了数据增强的过程:
 
 <img src="picture_augmentation.jpg" alt="Image augmentation" title="Image augmentation process" />
 
-### Step 4.1: Build model from scratch
-We will use the Keras as example to show the model building process. Keras supports both CNTK and Tensorflow as the backend.
-The problem we try to solve is verify whether there is a dent in the given image, which is a simply binary classification problem. Here we build a feed-forward convolutional neural network (CNN), which performs quite well for this kind of classification problem. The following picture illustrates the workflow of the training process.
+## 步骤 3.1: 从头开始构建模型
+我们使用 Keras 来实现构建模型的过程。Keras 既支持 CNTK (Cognitive Toolkit) 也支持 Tensorflow 作为它的后端。
+我们要解决的问题是判给定的图片上是否有凹陷，所以这是一个二分类问题。因此我们可以构建一个前向卷积神经网络模型（CNN）。CNN 在图像分类问题上有很好的表现。下图是我们构建的 CNN 模型的结构图：
 
 <img src="cnn_modeling.jpg" alt="Image augmentation" title="Image augmentation process" />
 
-### Step 4.2: Transfer Learning
-Given the small number of images we have, instead of training the model from the scratch, we may take advantage of pre-trained model. In general, the most important factors to decide how to perform transfer learning are the size of the new dataset (small or large) and the similarity with the original dataset. For our case, we will use the pre-trained mode with VGG as example to demonstrate the usage of transfer learning. Since the dataset is small, we will only train a linear classifier. Because the dataset is very different compared with the ImageNet images, we will train a classifier from activations somewhere earlier in the VGG network.  
+## 步骤 3.2: 迁移学习
+鉴于我们的图片数量很小，我们可以利用预先训练好的模型来取得更好的效果。而不是从头开始构建新模型。一般来说，判断是否应该进行迁移学习的标准是数据集的大小以及新数据集和原始训练数据之间的相似性。在本方案中，我们使用预先训练好的 VGG 模式来示例迁移学习的使用。
+因为我们的数据集很小，we will only train a linear classifier. 又因为我们的数据集和VGG原始的数据集ImageNet差别比较大，我们会从网络层次比较早的位置开始训练。 
  
-VGG is a deep convolutional network for object recognition developed and trained by Oxford's renowned Visual Geometry Group (VGG). They achieved very good performance on the ImageNet dataset.
+VGG 是由牛津大学著名的 Visual Geometry Group (VGG) 开发和训练的物体识别CNN，在ILSVRC 2014 时，在ImageNet数据集上取得很好的效果。
 
-### Step 5: Model Performance Evaluation
-We randomly chose 11 images for model performance evaluation purpose. With the image augmentation, we will have 25 test images of size 64 X 64, 11 with positive labels and 14 with negative ones.
-For the model trained from the scratch, the performance metrics is as following:
-<br />&nbsp;&nbsp;&nbsp;<b>Precision:</b>  1.0
-<br />&nbsp;&nbsp;&nbsp;<b>Recall &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</b> 0.6
-<br />&nbsp;&nbsp;&nbsp;<b>F1 score :</b> 0.75
-<br />&nbsp;&nbsp;&nbsp;<b>AUC &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</b> 0.77
+## 步骤 4: 模型性能评价
+我们随机选取11张图片进行模型性能评估。通过图片增强，一共是25个数据，11标记为1，14个标记为0.
 
-The ROC curve is as following:
+对于从头开始构建的模型，性能指标如下所示：
+ |||
+ | - | - |
+ |准确率|1.0|
+ |召回率|0.6|
+ |F1|0.75|
+ |AUC|0.77|
+
+The ROC 曲线如下图所示:
+
 <img src="roc_customize.jpg" alt="Image augmentation" title="ROC Curve" /> 
 
- The performance metrics for VGG16 transfer learning is as following:
-<br />&nbsp;&nbsp;&nbsp;<b>Precision:</b>  1.0
-<br />&nbsp;&nbsp;&nbsp;<b>Recall &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</b> 0.6
-<br />&nbsp;&nbsp;&nbsp;<b>F1 score :</b> 0.75
-<br />&nbsp;&nbsp;&nbsp;<b>AUC &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</b> 0.91
+对于从 VGG16 迁移学习的模型，性能指标如下所示：
+ 
+ |||
+ | - | - |
+ |准确率|1.0|
+ |召回率|0.6|
+ |F1|0.75|
+ |AUC|0.91|
 
-The ROC curve is as following:
+The ROC 曲线如下图所示:
+
 <img src="roc_vgg16.jpg" alt="Image augmentation" title="ROC Curve" /> 
 
-With the transfer learning, it will get the better performance with relatively small amount of training images.
-### Step 6: Model deployment and scoring
-We selected the transfer learning model to deploy as the web service via Azure Webapp. 
+可以看出，使用了迁移学习的后可以得到更好的性能。
 
-##Learnings and Challenges
-The most challenge of the project is the limited number of images. This is a common problem: how to improve the performance of the deep learning model with small dataset? There are two ways to solve the problem. Either try to enlarge the dataset through the data augmentation or using transfer learning to fine tune the pre-trained model with the limited dataset.  
-
-In practice, very few cases there are large enough dataset to train the deep learning network from scratch. The transfer learning gains popularity recently. You can leverage the pre-trained model to save time on determining the topology of the network, thousands of hyper parameters and tons of time in training time. Through this project we tried and compared some popular CNN pre-trained models and found that it performed better than the built from scratch network and simplified the model development process.
-
-Another challenge we faced is the development toolset and the model operationalization. We need identify the necessary tools and platforms to use. It seemed the Azure Data Science Virtual Machine(DSVM) is great in helping the customer to ramp up on AI project. It contains most of the common tools for data exploration, modeling and development activities. The Tensorflow and Cognitive Toolkit are pre-installed and we can easily setup the Jupyter Notebook for AI model development. After the model is trained, how to deploy it into the production is a challenge to the data scientist. Thanks to Azure Web Apps service that provide us the way of publish the deep learning model as a web application which can be easily consumed. It provides the built-in autoscale and load balancing that can fit well for our scenario. The continuous deployment with Git, Team Foundation Server, Github and VSTS makes the model retrain and re-deploy much easier.    
+## 步骤 5: 模型部署和使用
+我们使用Azure Web应用来部署模型，通过网络服务来使用模型。
+参考 *Deploy\PredictWebApps* 进行模型部署和使用。
