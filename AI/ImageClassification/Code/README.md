@@ -3,8 +3,8 @@
 在下面的内容中，我们会针对本方案的端到端开发流程，按步骤进行详细说明。
 
 ## 步骤 0: 准备好Azure 数据科学虚拟机(DSVM)
-建议参考 *Depoy\TrainingDSVM* 创建，部署和配置DSVM.
-你也可以直接在[Azure 门户]((https://portal.azure.cn/)中创建 DSVM，然后按照需要自己配置。
+建议参考 *Depoy\TrainingDSVM* 创建、部署和配置DSVM.
+你也可以直接在[Azure 门户](https://portal.azure.cn/)中创建 DSVM，然后按照需要自己配置。
 
 ## 步骤 1: 数据预处理
 图像分类和一般的分类问题一样。首先我们需要标注数据。在本方案中，我们采集到原始数据后，在凹陷的中心点进行了标记。所以输入数据包括了*Train* 文件夹，包含原始图片，以及 *Train_dotted* 文件夹，包含标记过的图片。示例数据位于*Data/Images*。同理对于测试集，也包含有*Test*文件和*Test_dotted*文件夹。
