@@ -56,4 +56,4 @@ cd c:\
 pip install -r requirements.txt -i https://mirror.azure.cn/pypi/simple
 ```
 
-4. Start Jupyter Notebook. And this demo's code and data will on the folder *imageclassification*. Before start Jupyter Notebook, you need set the password and start Jupyter Server. Please refer preview setction [How to explore demo code](#How-to-explore-demo-code)
+4. Start Jupyter Notebook. And this demo's code and data will on the folder *imageclassification*. Before start Jupyter Notebook, you need set the password and start Jupyter Server. Please refer preview setction [How to explore demo code](#how-to-explore-demo-code)
