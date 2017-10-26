@@ -27,13 +27,15 @@
 部署成功后，用户就可以在[Azure门户](https://portal.azure.cn/)上看到这个虚拟机。点击*连接* 就可以远程登录到这台数据科学虚拟机(DSVM)中了。
 
 ## 运行示例代码
-第一次打开Jupyter Notebook, 先设置密码。只需要双击桌面的快捷方式 *Jupyter SetPassword* 按照提示设置密码 (密码可以设置为空)。设置完成后，双击桌面上的快捷方式 *Jupyter Start* 启动 Jupyter 服务。最后可以直接双击桌面快捷方式 *Jupyter Notebook* 或者打开浏览器导航到 https://localhost:9999/ 。输入刚才设置的密码登录成功后，可以看到一系列的Notebooks，都是 DSVM 里面提供的示例代码。其中本方案的示例代码和数据在文件夹 *image classification* 下面。
+第一次打开 Jupyter Notebook, 先设置密码。只需要双击桌面的快捷方式 *Jupyter SetPassword* 按照提示设置密码 (密码可以设置为空)。设置完成后，双击桌面上的快捷方式 *Jupyter Start* 启动 Jupyter 服务。最后可以直接双击桌面快捷方式 *Jupyter Notebook* 或者打开浏览器导航到 https://localhost:9999/ 。输入刚才设置的密码登录成功后，可以看到一系列的 Notebooks，都是 DSVM 里面提供的示例代码。其中本方案的示例代码和数据在文件夹 *image classification* 下面。
+
+打开 *ImageClassification.ipynb* 文件时，可能需要你选择内核 kernel, 选择 [conda env:py35] .
 
 
 ## (可选) 手动部署
 本方案自动部署的是 Windows 版本的 DSVM。 如果用户想要使用 Linux 版本的 DSVM, 或者就是想尝试手工部署，可以参考以下步骤：
 1. 创建一个DSVM。可以使用任何方式，比如 Powershell, Azure Cli 或者 Azure 门户。
-2. 在DSVM虚拟机 *c:\dsvm* 目录下，创建一个新的文件夹叫 *imageclassification* 。*c:\dsvm* 是Jupyter Notebook的根目录。拷贝本仓库的 *Code* 文件夹里面的所有内容到 DSVM 的 *c:\dsvm\imageclassification* 目录下。再把本仓库 *Data* 文件夹下面的 *image*文件夹整个拷贝到虚拟机的 *c:\dsvm\imageclassification* 下面。
+2. 在DSVM虚拟机 *c:\dsvm* 目录下，创建一个新的文件夹叫 *imageclassification* 。*c:\dsvm\notebooks\* 是Jupyter Notebook的根目录。拷贝本仓库的 *Code* 文件夹里面的所有内容到 DSVM 的 *c:\dsvm\notebooks\imageclassification* 目录下。再把本仓库 *Data* 文件夹下面的 *image*文件夹整个拷贝到虚拟机的 *c:\dsvm\notebooks\imageclassification* 下面。
 3. 安装需要的 python 包，本方案需要安装以下这些包：
 ```
 numpy
