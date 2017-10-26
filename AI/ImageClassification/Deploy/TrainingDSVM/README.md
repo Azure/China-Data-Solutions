@@ -47,10 +47,10 @@ h5py
 azure.storage.blob
 ggplot
 ```
-如果你不会按照python包，可以参考以下方法：把当前目录下的*requirements.txt*拷贝到 DSVM 桌面上，在 DSVM 中打开 Anaconda Prompt，在Anaconda中运行
+如果你不会安装 python 包，可以参考以下方法：把当前目录下的 *requirements.txt* 拷贝到 DSVM 桌面上，在 DSVM 中打开 Anaconda Prompt，在 Anaconda 中运行
 ···
 cd Desktop
 pip install -r requirements.txt -i https://mirror.azure.cn/pypi/simple
 ···
 
-4.启动 Jupter Notebook。 示例程序在目录*imageclassification* 下。如果你第一使用Jupyter Notebook, 你需要设置密码。具体参考[运行示例代码](#运行示例代码)
+4.启动 Jupter Notebook。 示例程序在目录 *imageclassification* 下。如果你第一使用Jupyter Notebook, 你需要设置密码。具体参考[运行示例代码](#运行示例代码)
