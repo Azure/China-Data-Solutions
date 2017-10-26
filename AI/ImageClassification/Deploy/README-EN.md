@@ -1,4 +1,4 @@
-# Deploy this solution to your subscription
+# Deploy this solution to your subscription [中文](README.md)
 We provide a deploy package here to help you deploy this solution to your subscription.
 
 As our Architecure shows as following, there are two pipelines:

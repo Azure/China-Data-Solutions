@@ -1,4 +1,4 @@
-# Image Classification with Microsoft AI Platform
+# Image Classification with Microsoft AI Platform [中文](README.md)
 
 In the following, we will go through each step with detailed instructions to illustrate the end to end solution development process.
 ## Step 0: Prepare the Azure DSVM
