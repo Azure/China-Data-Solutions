@@ -50,9 +50,9 @@ scikit-learn
 h5py
 azure.storage.blob
 ```
-If you don't know about to install python packages. You can copy *requirements.txt* in this folder to the desktop of DSVM, open Anaconda Prompt, in Anaconda console, run following:
+If you don't know about to install python packages. You can copy *requirements.txt* in this folder to *c:\* of DSVM, open Anaconda Prompt (py35), in Anaconda console, run following:
 ``` 
-cd Desktop
+cd c:\
 pip install -r requirements.txt -i https://mirror.azure.cn/pypi/simple
 ```
 
