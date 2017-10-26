@@ -81,7 +81,7 @@ $ErrorActionPreference = "Stop"
 
 # sign in
 Write-Host "Logging in...";
-#Login-AzureRmAccount -EnvironmentName AzureChinaCloud;
+Login-AzureRmAccount -EnvironmentName AzureChinaCloud;
 
 # select subscription
 Write-Host "Selecting subscription '$subscriptionId'";
