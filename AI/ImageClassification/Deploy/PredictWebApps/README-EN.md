@@ -1,4 +1,4 @@
-# How to deploy PredictWebApps
+# How to deploy PredictWebApps [中文](README.md)
 As our Architecure shows as following, there are two pipelines:
 1. Training Pipeline
 2. Inference Pipeline
