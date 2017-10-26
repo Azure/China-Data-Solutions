@@ -26,7 +26,7 @@
 
     ![WebAppSetting](webSetting.png "WebApp Setting")
 
-    + 打开 "Extensions"， 点击 "Add", 找到 "Python 3.5.4 x64", 添加安装。 (你必须使用这个版本的扩展)。 等待安装成功。 如果安装失败了就再添加一次。
+    + 打开 "Extensions"， 点击 "Add", 找到 **"Python 3.5.4 x64"**, 添加安装。**你必须使用这个版本的扩展**。 等待安装成功。 如果安装失败了就再添加一次。
 
 3. 设置为 git 部署，并且设置用户名和密码。
     + 打开 "Deployment options" , 点击 "Choose Source", 点击 "Local Git Repository"， 保存。
