@@ -47,7 +47,7 @@ h5py
 azure.storage.blob
 ggplot
 ```
-如果你不会安装 python 包，可以参考以下方法：把当前目录下的 *requirements.txt* 拷贝到 DSVM 的 *c:\* ，在 DSVM 中打开 Anaconda Prompt (py35)，在 Anaconda 中运行
+如果你不会安装 python 包，可以参考以下方法：把当前目录下的 *requirements.txt* 拷贝到 DSVM 的 *c:\\* ，在 DSVM 中打开 Anaconda Prompt (py35)，在 Anaconda 中运行
 ```
 cd c:\
 pip install -r requirements.txt -i https://mirror.azure.cn/pypi/simple
