@@ -1,5 +1,4 @@
 import os
-os.environ['PATH'] = r'D:\home\site\wwwroot\cntk;' + os.environ['PATH']
 import base64
 import urllib
 import numpy as np
@@ -25,14 +24,14 @@ def index():
 def api_upload_file():
     img = Image.open(BytesIO(request.files['imagefile'].read())).convert('RGB')
     img = ImageOps.fit(img, (64, 64), Image.ANTIALIAS)
-    prelables = run_some_deep_learning_cntk(img)
+    prelables = run_deep_learning_model(img)
     result = {"Predict": " ".join(str(x) for x in prelables)}
     return jsonify(result)
 
 
 
 
-def run_some_deep_learning_cntk(rgb_pil_image):
+def run_deep_learning_model(rgb_pil_image):
     # Convert to BGR
     rgb_image = np.array(rgb_pil_image, dtype=np.float32)
     bgr_image = rgb_image[..., [2, 1, 0]]
