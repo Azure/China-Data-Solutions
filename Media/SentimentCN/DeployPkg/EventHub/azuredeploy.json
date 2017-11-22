@@ -1,0 +1,68 @@
+﻿{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+  "parameters": {
+    "eventHubName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the Event Hub"
+      }
+    },
+     "visitsHubName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the Event Hub"
+      }
+    }
+  },
+  "variables": {
+    "eventHubNamespace": "[concat('eventHub',uniqueString(resourceGroup().id))]",
+    "location": "[resourceGroup().location]",
+    "sbListenOnlyKeyName": "ListenOnlyKey",
+    "ehVersion": "2014-09-01",
+    "defaultSASKeyName": "RootManageSharedAccessKey",
+    "authRuleResourceId": "[resourceId('Microsoft.Eventhub/namespaces/authorizationRules', variables('eventHubNamespace'), variables('defaultSASKeyName'))]"
+  },
+  "resources": [
+    {
+      "apiVersion": "[variables('ehVersion')]",
+      "name": "[variables('eventHubNamespace')]",
+      "type": "Microsoft.EventHub/namespaces",
+      "location": "[variables('location')]",
+      "resources": [
+        {
+          "apiVersion": "[variables('ehVersion')]",
+          "name": "[parameters('eventHubName')]",
+          "type": "eventHubs",
+          "dependsOn": [
+            "[concat('Microsoft.EventHub/namespaces/', variables('eventHubNamespace'))]"
+          ],
+          "properties": {
+            "path": "[parameters('eventHubName')]"
+          }
+        },
+        {
+          "apiVersion": "[variables('ehVersion')]",
+          "name": "[parameters('visitsHubName')]",
+          "type": "eventHubs",
+          "dependsOn": [
+            "[concat('Microsoft.EventHub/namespaces/', variables('eventHubNamespace'))]"
+          ],
+          "properties": {
+            "path": "[parameters('visitsHubName')]"
+          }
+        }
+      ]
+    }
+  ],
+  "outputs": {
+    "NamespaceDefaultConnectionString": {
+      "type": "string",
+      "value": "[listkeys(variables('authRuleResourceId'), variables('ehVersion')).primaryConnectionString]"
+    }, 
+	"NamespaceName": {
+      "type": "string",
+      "value": "[variables('eventHubNamespace')]"
+    }
+  }
+}
