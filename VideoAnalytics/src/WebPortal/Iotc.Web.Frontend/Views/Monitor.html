@@ -1,0 +1,46 @@
+﻿<link href="Content/Home.css" rel="stylesheet" />
+<link href="Content/DataTables-1.10.4/css/jquery.dataTables.css" rel="stylesheet" />
+
+<div style="width:988px;height:910px">
+
+    <div class="ui-state-default" style="position: relative;">
+        <!--<a onclick="clearSelectCamera();">ViewAll</a>-->
+       <span>Camera Filter:</span><span> <select id="camera-filter"></select></span>
+    </div>
+
+    <div class="surfaceplot-widget" style="width:988px;height:918px">
+
+        <div style="margin-left:30px;margin-top:10px;width:928px;height:316px;margin-bottom:30px;">
+            <div style="width:421px;height:316px;float:left">
+                <span class="homeSecurity-title-font" id="imgDis">Live Video</span>
+
+                <div id="blinkbox" class="blinking-div" style="width:421px;height:316px;display:none"></div>
+                <img id="wl1" src="Image/whitelist/user.png" style="width:421px;height:316px;" data-bind="click: $root.updateImage" />
+            </div>
+
+            <div style="width:470px;height:316px;float:right;">
+                <span class="homeSecurity-title-font" id="imgDis">Video Playback</span>
+                <div id="playbackplayer">
+                    <embed id="player" type="application/x-mplayer2"
+                           autoplay="true" autostart="true"
+                           loop="false" controls="false"
+                           allowFullscreen="false"
+                           width="470"
+                           height="316" />
+                </div>
+            </div>
+        </div>
+
+
+        <!--Table-->
+        <div style="margin-left:30px;margin-top:30px;">
+            <span class="homeSecurity-title-font" id="">Alerts</span>
+        </div>
+        <div class="blue-widget" style="margin-left:30px;margin-right:20px">
+            <table id="messageTable" class="table-hover row-border" style="margin-left:10px;width:908px;padding-bottom:10px"></table>
+        </div>
+
+    </div>
+
+
+</div>

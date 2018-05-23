@@ -1,0 +1,309 @@
+﻿body {
+    overflow-y: scroll;
+    background-color: #F0F0F2;
+    max-height: 100%;
+    font-family: 'Segoe UI';
+}
+
+.navbar-dashboard,
+.navbar-dashboard-bottom
+{
+    background-color: #293b4c;
+    height: 44px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #ffffff;
+}
+
+.navbar-dashboard-bottom
+{
+    height: 54px;
+}
+
+
+.navbar-dashboard-brand
+{
+    float:left;
+    font-family:'Microsoft Yahei';
+    font-size:25px;
+    padding-left:24px;
+    line-height: 44px;
+    
+}
+.navbar-dashboard-user
+{
+    float: right;
+}
+
+.navbar-dashboard-user > span
+{
+    font-size: 20px;
+    line-height: 44px;
+    font-family: 'Segoe UI Light';
+    right: 58px;
+    position: absolute;
+}
+
+.navbar-dashboard-user > img
+{
+    padding: 1px;
+}
+
+.navbar-dashboard-bottom-buttons
+{
+    float: right;
+    padding: 0px;
+    margin-top: 16px;
+    margin-right: 54px;
+}
+
+#nav-bar-dashboard-bottom-searchbar {
+    margin-right: 30px;
+}
+
+.sidebar
+{
+    position:fixed;
+    top: 44px;
+    padding-top: 94px;
+    width: 140px;
+    bottom: 0;
+    display: block;
+    z-index:1000;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #71b1d1;
+    /*border-top:1px solid #d5dde0;*/
+    color: #f7fbfd;
+    font-size:13pt;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 54px;
+}
+
+#content-container {
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding-left: 140px;
+    padding-top: 44px;
+    padding-bottom: 54px;
+}
+
+#content {
+    padding-bottom: 36px;
+    padding-top: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.content-title {
+    padding-top: 10px;
+    padding-left: 16px;
+    width: 100%;
+}
+
+.content-title-name {
+    font-size: 32px;
+    line-height: 30px;
+    font-family: 'Segoe UI Light';
+    color: #848484;
+    vertical-align: middle;
+    /*position: absolute;*/
+}
+
+.content-title-back {
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+    opacity: 0.6;
+    -webkit-transition: opacity 0.2s linear;
+    -moz-transition: opacity 0.2s linear;
+    -ms-transition: opacity 0.2s linear;
+    -o-transition: opacity 0.2s linear;
+    transition: opacity 0.2s linear;
+}
+
+.content-title-back:hover{
+    opacity:1.0;
+}
+
+.sidebar-user
+{
+    padding-top:34px;
+    padding-bottom:34px;
+    text-align:center;
+}
+
+.sidebar-user-name
+{
+    padding-top:8px;
+}
+
+.sidebar-user-image
+{
+    width:50px;
+    height:50px;
+}
+
+.sidebar-nav
+{
+    text-align:center;
+}
+
+.sidebar-nav > li
+{
+    display: block;
+    min-height: 76px;
+}
+
+.sidebar-nav > li > a
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 14px;
+    line-height: 14px;
+    font-family: 'Segoe UI';
+    min-height: 86px;
+    padding-top:15px;
+}
+
+.sidebar-nav a, 
+.sidebar-nav a:hover, 
+.sidebar-nav a:focus
+{
+    color: #ffffff;
+}
+
+.sidebar-nav > li > a:hover {
+    background-color: #7DC0DE;
+}
+
+.sidebar-nav > li > a:focus
+{
+    background-color: #71b1d1;
+}
+
+.sidebar-nav-selected, 
+li.sidebar-nav-selected a,
+li.sidebar-nav-selected > a:hover
+{
+    background-color: #f0f0f2;
+    color: #3C444F;
+}
+
+
+
+
+.sortable {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI Light'
+}
+
+.sortable > li {
+    float: left;
+}
+
+.sortable-placeholder {
+}
+
+.widget,
+.widget-medium,
+.widget-large {
+    background-color: #FFFFFF;
+    margin-bottom: 5px;
+    margin-right: 6px;
+    border: 2px solid #FFFFFF;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.widget > header,
+.widget-medium > header,
+.widget-large > header {
+    height: 29px;
+    font-size: 20px;
+    line-height: 20px;
+    color: #3C454F;
+    padding-left: 8px;
+    padding-right: 5px;
+    padding-top: 5px;
+    font-family: "Segoe UI Light";
+}
+
+.widget > header > a {
+    text-decoration: none;
+    color: #3C454F;
+    cursor: pointer;
+}
+
+.widget > div,
+.widget-medium > div,
+.widget-large > div  {
+    padding: 15px;
+    font-size: 18px;
+    line-height: 18px;
+    font-family: "Segoe UI Light"
+}
+
+.widget {
+    width: 310px;
+}
+
+.widget > div {
+    height: 172px;
+}
+
+.widget-medium {
+    width: 431px;
+}
+
+.widget-large {
+    width: 692px;
+}
+
+.widget-medium > div{
+    height: 230px;
+}
+
+.widget-large > div {
+    height: 465px;
+}
+
+.dashboard-container {
+    width: 1160px;
+    padding: 0;
+}
+
+.dashboard-background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 1160px;
+    margin-left: -580px;
+    z-index: -1;
+    box-shadow: 0 0 85px rgba(0, 0, 0, 0.3);
+    background-color: #ededf4;
+    min-height: 100%;
+    left: 50%
+}
+
+.ui-state-default a {
+    text-decoration: none;
+    cursor: default;
+}
+
+a > .widget:hover,
+a > .widget-medium:hover {
+    border: 2px solid #7DC0DE;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    cursor: pointer;
+}

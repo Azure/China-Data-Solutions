@@ -1,0 +1,70 @@
+﻿<div>
+    <div class="item-panel">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Camera Name</span>
+        </div>
+        <input id="addcamera-name" type="text" placeholder="Camera Name">
+    </div>
+    <div class="item-panel">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Camera Description</span>
+        </div>
+        <input id="addcamera-desc" type="text" placeholder="Camera Description">
+        <br>
+    </div>
+
+    <div class="item-panel">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Camera Stream</span>
+        </div>
+        <input id="addcamera-stream" type="text" placeholder="RTSP Stream">
+    </div>
+
+    <div class="item-panel">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Camera Resolution Width</span>
+        </div>
+        <input class="number-only" id="addcamera-width" type="text" placeholder="Width for the resolution">
+        <br>
+    </div>
+
+    <div class="item-panel">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Camera Resolution Height</span>
+        </div>
+        <input class="number-only" id="addcamera-height" type="text" placeholder="Height for the resolution">
+    </div>
+
+    <div class="item-panel">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Camera Frame Rate</span>
+        </div>
+        <input class="number-only" id="addcamera-fps" type="text" placeholder="FPS for the camera">
+    </div>
+
+
+    <div class="item-panel">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Pipelines</span>
+        </div>
+        <select id="addcamera-pipeline">
+            <option value="WorkPlaceSafety">Work Place Safety</option>
+            <option value="Car Detection">Car Detection</option>
+        </select>
+    </div>
+
+
+    <div class="item-panel">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Running Device</span>
+        </div>
+        <select id="addcamera-device"></select>
+    </div>
+
+
+    <div class="item-panel">
+        <input type="button" value="Add" onclick="AddCamera();"/>
+    </div>
+
+
+    </div>

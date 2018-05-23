@@ -1,0 +1,433 @@
+﻿
+.rightsidebar
+{
+    top: 94px;
+    width: 178px;
+    height: 630px;
+    bottom: 0;
+    display: block;
+    z-index:1000;
+    background-color: #d3d3d3;
+    /*border-top:1px solid #d5dde0;*/
+    color: #f7fbfd;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left:10px;
+    float:right;
+    padding:6px;
+}
+
+.rightsidebar-nav
+{
+    text-align:left;
+}
+
+.rightsidebar-nav > li
+{
+    display: block;
+    min-height: 76px;
+}
+.rightsidebar-nav > li > a > header
+{
+    font-size:20px;
+    line-height:20px;
+    margin-bottom:5px;
+    font-weight:bold;
+}
+.rightsidebar-nav > li > a > div > span
+{
+    font-size:15px;
+    line-height:18px;
+}
+.rightsidebar-nav > li > a
+{
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 14px;
+    line-height: 14px;
+    font-family: 'Segoe UI';
+    min-height: 86px;
+    background-color:white;
+    margin-bottom:8px;
+    cursor:pointer;
+}
+
+.rightsidebar-nav a, 
+.rightsidebar-nav a:hover, 
+.rightsidebar-nav a:focus
+{
+    color:#3c454f;
+}
+
+.rightsidebar-nav > li > a:hover {
+    background-color: #daeaef;
+}
+
+.rightsidebar-nav > li > a:focus
+{
+    background-color: #71b1d1;
+}
+
+.rightsidebar-nav-selected, 
+li.rightsidebar-nav-selected a,
+li.rightsidebar-nav-selected > a:hover
+{
+    background-color: #daeaef;
+    color: #3C444F;
+}
+
+.map
+{
+    width:800px;
+    height:480px;
+    float:left;
+    margin-bottom:10px;
+}
+
+.map > div
+{
+    position:absolute;
+    width:inherit;
+    height:inherit;
+    float: right
+}
+
+.home-tile
+{
+    width:193px;
+    height:140px;
+    margin-right:9px;
+}
+.home-tile > header
+{
+    font-size: 20px; 
+    line-height: 20px; 
+    font-family: Microsoft Yahei; 
+    font-weight: bold;
+    color: #3C454F;
+}
+.home-tile > div {
+    text-align:center;
+}
+.home-tile > div > span {
+    font-family: Microsoft Yahei; 
+    font-size: 50px; 
+    line-height: 50px;
+    color:#71b1d1;
+}
+
+
+.alarm-tile
+{
+    width:192px;
+    height:150px;
+    margin-right:7px;
+}
+.alarm-tile > header
+{
+    font-size: 20px; 
+    line-height: 20px; 
+    font-family: Microsoft Yahei; 
+    font-weight: bold;
+    color: #3C454F;
+}
+.alarm-tile > div {
+    text-align:center;
+    padding-top:30px;
+    height:100px;
+}
+.alarm-tile > div > span {
+    font-family: Microsoft Yahei; 
+    font-size: 50px; 
+    line-height: 50px;
+    color:#71b1d1;
+}
+
+/*For Simulation Page*/
+.surfaceplot-widget {
+    background-color: #ffffff;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.SurfacePlotDiv {
+    width: 500px;
+    height: 350px; 
+    margin-top: 10px;
+    background-color: #FFFFFF;
+}
+
+
+.surfaceplot-lable {
+    color: #848484;
+    font-size: 16px;
+    font-family: 'Segoe UI';
+}
+.blueslider {
+    -webkit-appearance: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: transparent;
+}
+
+.blueslider::-ms-track {
+    height: 14px;
+    width: 200px;
+    border: none;
+    /*remove default tick marks*/
+    color: transparent;
+}
+.blueslider::-ms-tooltip {
+    display: none;
+}
+
+.blueslider::-ms-fill-lower {
+    outline: none;
+    background-color: #71b1d1;
+}
+
+.blueslider::-ms-fill-upper { 
+    background-color: #565656;
+}
+
+.blueslider::-ms-thumb {
+    border: none;
+    height: 14px;
+    width: 5px;
+    background: #848484;
+}
+
+.blueslider::-webkit-slider-runnable-track {
+    height: 6px;
+    border: none;
+    background: #71b1d1;
+}
+
+.blueslider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 14px;
+    width: 5px;
+    background: #71b1d1;
+    margin-top: -7px;
+    border-radius: 50%;
+}
+
+.blueslider:focus {
+    outline: none;
+}
+
+.blueslider:focus::-webkit-slider-runnable-track {
+    background: #71b1d1;
+}
+
+.blueSendbutton {
+    height: 22px;
+    width: 130px;
+    background-color: #71b1d1;
+    color: #FFFFFF;
+    border: 0px;
+    font-family: "Segoe UI";
+}
+
+.simulation-label-font {
+    font-size: 14px;
+    font-family: 'Segoe UI';
+    color: #848484;
+}
+
+.simulation-value-font {
+    font-size: 21px;
+    font-family: 'Segoe UI';
+    font-weight: 600;
+    color: #71b1d1;
+}
+
+.label-value-font {
+    font-size: 30px;
+    font-family: 'Segoe UI';
+    font-weight: 600;
+    color: #71b1d1;
+}
+.label-title-font {
+    font-size: 24px;
+    font-family: 'Segoe UI';
+    color: #565656;
+}
+
+
+/*End of Simulation Page*/
+.emergingWarning-div {
+    /*-webkit-animation: emergyframe 0.3s; /* Chrome, Safari, Opera */
+/*    animation: emergyframe 0.3s;*/
+
+    cursor:pointer;
+    width:50px;
+    height:50px;
+    border-radius: 25px; 
+    background-color: #f2b200;
+    text-align:center;
+     line-height:50px;
+}
+.emergingWarning-div>span
+{
+    color:white;
+    font-weight:bold;
+    font-size:20px;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes emergyframe {
+    from {
+        opacity: 0;
+        width: 0px;
+        height:0px;
+    }
+
+    to {
+        opacity: 1;
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* Standard syntax */
+@keyframes emergyframe {
+    from {
+        opacity: 0;
+        width: 0px;
+        height:0px;
+    }
+
+    to {
+        opacity: 1;
+        width: 50px;
+        height: 50px;
+    }
+}
+
+.dialog-widget{
+    height:100px;
+    width: 460px;
+    padding-bottom:10px;
+    padding-left:0px;
+    padding-right:0px;
+    padding-top:0px;
+    background-color: #FFFFFF;
+    margin-bottom:6px;
+}
+.dialog-widget > table{
+    width:460px;
+}
+.dialog-widget > table > caption{
+    font-size:18px;
+    font-weight:bold;
+    text-align:left;
+    padding-bottom:5px;
+}
+
+td{
+    font-size:12px;
+    text-align:left;
+}
+
+.dialog-slider {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    width:300px;
+
+}
+
+.dialog-tooltip{
+    font-size:16px;
+    font-weight:normal;
+}
+
+.insight-panel {
+    width: 988px;
+    background-color: white;
+    padding-left: 12px;
+    padding-bottom: 12px;
+}
+
+.insight-panel > header {
+    height: 29px;
+    font-size: 20px;
+    line-height: 20px;
+    color: #3C454F;
+    padding-right: 5px;
+    padding-top: 5px;
+    font-family: "Segoe UI Light";
+}
+
+.insight-panel > div {
+    margin-top: 10px;
+    font-size: 16px;
+    font-family: "Segoe UI";
+    color: #848484;
+}
+.insight-panel >img {
+    margin-top: 10px;
+    width: 964px;
+    height: 730px;
+}
+
+
+
+/*new style for home security*/
+.blue-widget {
+    background-color: #7BB1D1;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+.whitelistimage {
+    margin-top:4px;
+    margin-left:4px;
+    width:130px;
+    height:130px;
+    border-radius: 130px;
+}
+
+.image-widget {
+    background-color: #7BB1D1;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width:138px;
+    height:138px;
+}
+
+.dataTable tbody tr {
+    min-height: 37px; /*set table row height consistent */
+    width:100%
+}
+
+
+
+.dataTable tbody {
+    width: 100%
+}
+
+
+progress {  
+    background-color: white;  
+    height: 18px;  
+    color: #3C454F;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+    
+}
+
+.homeSecurity-title-font {
+    font-size:20px;
+    font-family:"Segoe UI";
+
+}
+
+.item-panel {
+    margin-left: 40px;
+    margin-bottom : 20px;
+}
