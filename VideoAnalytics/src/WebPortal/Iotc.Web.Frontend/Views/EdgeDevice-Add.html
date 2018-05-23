@@ -1,0 +1,41 @@
+﻿<div>
+    <div class="item-panel">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Device Name</span>
+        </div>
+        <input id="AddEdgeDevice-DeviceName" type="text" placeholder="Device Name">
+    </div>
+    <div class="item-panel">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Device Description</span>
+        </div>
+        <input id="AddEdgeDevice-DeviceDescription" type="text" placeholder="Device Description">
+    </div>
+
+    <div class="item-panel">
+        <div class="input-group-prepend">
+            <span class="input-group-text">OSType</span>
+        </div>
+        <select id="AddEdgeDevice-OSType">
+            <option value="Windows">Windows</option>
+            <option value="Linux">Linux</option>
+        </select>
+    </div>
+
+    <div class="item-panel">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Capacity</span>
+        </div>
+        <input id="AddEdgeDevice-Capacity" type="number" placeholder="How many cameras can this device handle?">
+    </div>
+
+    <div class="item-panel">
+    <button id="AddEdgeDevice-AddButton"  data-bind="click: addDeviceWithInfo">Add</button>
+    </div>
+
+    <div id="AddEdgeDevice-config" style="font-size:2rem;line-height:3rem;">
+
+
+    </div>
+
+</div>

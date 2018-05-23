@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Video Analytics Demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <link href="Content/bootstrap.min.css" rel="stylesheet">
+    <link href="Content/dashboard.css" rel="stylesheet" />
+    <link href="Content/Loading.css" rel="stylesheet" />
+    <link href="Content/Home.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="container dashboard-container">
+        <div class="dashboard-background"></div>
+
+        <div class="dashboard-container" style="min-height: 100%;">
+            <div class="navbar-dashboard navbar-fixed-top container dashboard-container" role="navigation">
+                <div>
+                    <span data-bind="click: ResetStatus" class="navbar-dashboard-brand">Video Analytics Demo</span>
+                </div>
+            </div>
+            <div style="width: 100%;height: 100%;">
+                <div class="sidebar">
+                    <ul class="nav sidebar-nav" data-bind="foreach: $root.views">
+                        <li data-bind="css: { 'sidebar-nav-selected': $root.selectedViewName() === $data.viewName } , style : {display : $data.viewName === 'AddCamera' ? 'none': 'block'}">
+
+                            <!-- ko ifnot: ($data.viewName).substring(0,7) === 'http://' -->
+
+                            <a data-bind="attr: { href: '#' + $data.viewName}">
+                                <div data-bind="ifnot: $root.selectedViewName() === $data.viewName">
+                                    <img data-bind="attr: { src:  $data.options.icon }" />
+                                </div>
+                                <div data-bind="if: $root.selectedViewName() === $data.viewName">
+                                    <img data-bind="attr: { src:  ($data.options.icon).replace(/(.*)\.(.*)/g, '$1_selected.$2') }" />
+                                </div>
+                                <span data-bind="text: $data.options.displayName"></span>
+                            </a>
+                            <!-- /ko -->
+                            <!-- ko if: ($data.viewName).substring(0,7) === 'http://' -->
+
+                            <a data-bind="attr: { href: $data.viewName, target: '_blank'}">
+                                <div data-bind="ifnot: $root.selectedViewName() === $data.viewName">
+                                    <img data-bind="attr: { src:  $data.options.icon }" />
+                                </div>
+                                <div data-bind="if: $root.selectedViewName() === $data.viewName">
+                                    <img data-bind="attr: { src:  ($data.options.icon).replace(/(.*)\.(.*)/g, '$1_selected.$2') }" />
+                                </div>
+                                <span data-bind="text: $data.options.displayName"></span>
+                            </a>
+                            <!-- /ko -->
+
+                        </li>
+
+
+                    </ul>
+
+                </div>
+                <div id="content-container">
+                    <div class="content-title">
+                        <a href="javascript:void(0)" onclick="app.GoBack()" style="display: none; text-decoration: none;" data-bind="visible: app.selectedViewIsSubView">
+                            <img class="content-title-back" src="Image/back.png" alt="Go back" />
+                        </a>
+                        <span class="content-title-name" data-bind="text: app.selectedViewDisplayName"></span>
+                    </div>
+                    <div id="content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 3rd party libraries -->
+    <script type='text/javascript' src='Scripts/jquery/jquery-2.1.0.min.js'></script>
+    <script type="text/javascript" src="Scripts/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="Scripts/knockout/knockout-3.1.0.js"></script>
+    <script type="text/javascript" src="Scripts/sammy/sammy-0.7.4.min.js"></script>
+    <script type="text/javascript" src="Scripts/jqueryui/jquery-ui-1.10.4.min.js"></script>
+    <script type="text/javascript" src="Scripts/DataTables-1.10.4/jquery.dataTables.js"></script>
+
+    <!-- Application script -->
+    <script type="text/javascript" src="ViewModels/app.js"></script>
+
+
+    <!-- ADD VIEW SCRIPTS HERE -->
+    <script type="text/javascript" src="ViewModels/EdgeDeviceViewModel.js"></script>
+    <script type="text/javascript" src="ViewModels/CameraViewModel.js"></script>
+    <script type="text/javascript" src="ViewModels/MonitorViewModel.js"></script>
+    <script type="text/javascript" src="ViewModels/input-validation.js"></script>
+    <script type="text/javascript" src="Scripts/Constants.js"></script>
+
+
+</body>
+</html>
