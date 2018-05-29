@@ -15,7 +15,7 @@ Deployment Steps.
 
 3. Create a Storage Account following the [Instruction](https://docs.microsoft.com/en-us/azure/storage/common/storage-create-storage-account "Instruction")
 
-4. [Then build and upload the docker image used for Azure IoT Edge](./docker build.md "Then build and upload the docker image used for Azure IoT Edge"). 
+4. [Then build and upload the docker image used for Azure IoT Edge](./BuildImage.md "Then build and upload the docker image used for Azure IoT Edge"). 
 
 5. Connect with the SQL database and then Init the database tables, the sql script can be found in src/WebPortal/DataAccessLayer/SQL/init.sql 
 6. Open the Iot.Web.sln in src/WebPortal, then replace the configuration section in the following location.
