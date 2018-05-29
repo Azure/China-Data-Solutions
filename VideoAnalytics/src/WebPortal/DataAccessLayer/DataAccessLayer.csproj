@@ -63,5 +63,8 @@
   <ItemGroup>
     <Folder Include="Storage\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="SQL\init.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
