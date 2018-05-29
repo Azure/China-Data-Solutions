@@ -28,6 +28,8 @@
     <Use64BitIISExpress />
     <UseGlobalApplicationHostFile />
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -65,67 +67,10 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\dashboard.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.autoFill.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.autoFill.min.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.bootstrap.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.colReorder.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.colReorder.min.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.colVis.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.colvis.jqueryui.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.colVis.min.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.fixedColumns.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.fixedColumns.min.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.fixedHeader.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.fixedHeader.min.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.foundation.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.jqueryui.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.keyTable.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.keyTable.min.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.responsive.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.scroller.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.scroller.min.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.tableTools.css" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.tableTools.min.css" />
-    <Content Include="Content\DataTables-1.10.4\css\jquery.dataTables.css" />
-    <Content Include="Content\DataTables-1.10.4\css\jquery.dataTables.min.css" />
-    <Content Include="Content\DataTables-1.10.4\css\jquery.dataTables_themeroller.css" />
-    <Content Include="Content\DataTables-1.10.4\images\background.png" />
-    <Content Include="Content\DataTables-1.10.4\images\back_disabled.png" />
-    <Content Include="Content\DataTables-1.10.4\images\back_enabled.png" />
-    <Content Include="Content\DataTables-1.10.4\images\back_enabled_hover.png" />
-    <Content Include="Content\DataTables-1.10.4\images\collection.png" />
-    <Content Include="Content\DataTables-1.10.4\images\collection_hover.png" />
-    <Content Include="Content\DataTables-1.10.4\images\copy.png" />
-    <Content Include="Content\DataTables-1.10.4\images\copy_hover.png" />
-    <Content Include="Content\DataTables-1.10.4\images\csv.png" />
-    <Content Include="Content\DataTables-1.10.4\images\csv_hover.png" />
-    <Content Include="Content\DataTables-1.10.4\images\details_close.png" />
-    <Content Include="Content\DataTables-1.10.4\images\details_open.png" />
-    <Content Include="Content\DataTables-1.10.4\images\filler.png" />
-    <Content Include="Content\DataTables-1.10.4\images\forward_disabled.png" />
-    <Content Include="Content\DataTables-1.10.4\images\forward_enabled.png" />
-    <Content Include="Content\DataTables-1.10.4\images\forward_enabled_hover.png" />
-    <Content Include="Content\DataTables-1.10.4\images\insert.png" />
-    <Content Include="Content\DataTables-1.10.4\images\loading-background.png" />
-    <Content Include="Content\DataTables-1.10.4\images\pdf.png" />
-    <Content Include="Content\DataTables-1.10.4\images\pdf_hover.png" />
-    <Content Include="Content\DataTables-1.10.4\images\print.png" />
-    <Content Include="Content\DataTables-1.10.4\images\print_hover.png" />
-    <Content Include="Content\DataTables-1.10.4\images\sort_asc.png" />
-    <Content Include="Content\DataTables-1.10.4\images\sort_asc_disabled.png" />
-    <Content Include="Content\DataTables-1.10.4\images\sort_both.png" />
-    <Content Include="Content\DataTables-1.10.4\images\sort_desc.png" />
-    <Content Include="Content\DataTables-1.10.4\images\sort_desc_disabled.png" />
-    <Content Include="Content\DataTables-1.10.4\images\xls.png" />
-    <Content Include="Content\DataTables-1.10.4\images\xls_hover.png" />
-    <Content Include="Content\DataTables-1.10.4\swf\copy_csv_xls.swf" />
-    <Content Include="Content\DataTables-1.10.4\swf\copy_csv_xls_pdf.swf" />
     <Content Include="Content\Home.css" />
     <Content Include="Content\Loading.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Image\back.png" />
     <Content Include="Image\icons\HOME_selected.png" />
     <Content Include="Image\icons\HOME.png" />
@@ -140,11 +85,6 @@
     <Content Include="Image\whitelist\5.jpg" />
     <Content Include="Image\whitelist\add.png" />
     <Content Include="Image\whitelist\user.png" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.responsive.scss" />
-    <Content Include="Content\DataTables-1.10.4\css\dataTables.jqueryui.scss" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\homescy.pubxml" />
     <None Include="Properties\PublishProfiles\laddie-z220.pubxml" />
@@ -157,29 +97,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="Scripts\Constants.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.autoFill.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.autoFill.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.bootstrap.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.colReorder.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.colReorder.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.colVis.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.colVis.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.fixedColumns.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.fixedColumns.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.fixedHeader.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.fixedHeader.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.foundation.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.jqueryui.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.keyTable.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.keyTable.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.responsive.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.responsive.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.scroller.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.scroller.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.tableTools.js" />
-    <Content Include="Scripts\DataTables-1.10.4\dataTables.tableTools.min.js" />
-    <Content Include="Scripts\DataTables-1.10.4\jquery.dataTables.js" />
-    <Content Include="Scripts\DataTables-1.10.4\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.extension\jquery.bootstrap.dropdown.js" />
     <Content Include="Scripts\legend\legend.js" />
     <Content Include="ViewModels\input-validation.js" />
@@ -258,8 +175,9 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Web.WebJobs.Publish.2.0.0\build\Microsoft.Web.WebJobs.Publish.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebJobs.Publish.2.0.0\build\Microsoft.Web.WebJobs.Publish.targets'))" />
   </Target>
-  <Import Project="..\packages\Microsoft.Web.WebJobs.Publish.1.1.0\tools\webjobs.targets" Condition="Exists('..\packages\Microsoft.Web.WebJobs.Publish.1.1.0\tools\webjobs.targets')" />
+  <Import Project="..\packages\Microsoft.Web.WebJobs.Publish.2.0.0\build\Microsoft.Web.WebJobs.Publish.targets" Condition="Exists('..\packages\Microsoft.Web.WebJobs.Publish.2.0.0\build\Microsoft.Web.WebJobs.Publish.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
