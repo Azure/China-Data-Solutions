@@ -26,13 +26,13 @@ RUN ldconfig
 
 # get opencvsharp
 WORKDIR /
-RUN git clone --depth=1 https://github.com/shimat/opencvsharp.git
+RUN wget https://github.com/shimat/opencvsharp/archive/3.3.1.20171117.zip
+RUN unzip 3.3.1.20171117.zip -d /opencvsharp/
 
-WORKDIR /opencvsharp/src
+WORKDIR /opencvsharp/opencvsharp-3.3.1.20171117/src
 RUN cmake .
 RUN make -j 5
 RUN make install
-#RUN cp OpenCvSharpExtern/libOpenCvSharpExtern.so /app
 
 
 # build work image (multi-stage builds)
@@ -46,7 +46,7 @@ RUN apt-get update -y && \
 
 
 COPY --from=builder /usr/local /usr/local
-COPY --from=builder /opencvsharp/src/OpenCvSharpExtern/libOpenCvSharpExtern.so /app
+COPY --from=builder /opencvsharp/opencvsharp-3.3.1.20171117/src/OpenCvSharpExtern/libOpenCvSharpExtern.so /app
 RUN ldconfig
 
 COPY $EXE_DIR/ /app
