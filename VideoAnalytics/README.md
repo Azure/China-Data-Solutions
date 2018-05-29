@@ -28,3 +28,5 @@ A Video Analytics Platform contains the following components:
 The architecture with IoT edge devices will be like the following: 
 ![Architecture](./images/architecture.png "Architecture")
  
+
+ To Try the video analytics plaform demo, follow the instruction for [Deployment](./Deployment.md).
