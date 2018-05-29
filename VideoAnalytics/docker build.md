@@ -1,4 +1,4 @@
-#Build and Upload The Docker Image
+# Build and Upload The Docker Image
 
 To start the deployment for the video analytics solution,  you need firstly build the docker image which will be used for IoT edge modules. 
 
