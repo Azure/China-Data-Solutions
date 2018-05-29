@@ -22,9 +22,9 @@ However, many advanced camera systems are usually closed black box system, makin
 With Azure IoT Edge, we can leverage Azure IoT Hub and Edge to build a Video Analytics Platform which is open for extending and easily to be adopted in Local LAN system to process video analytics. 
 
 A Video Analytics Platform contains the following components: 
-(./images/platform.png)
+![Platfrom Diagram](./images/platform.png)
 
 
 The architecture with IoT edge devices will be like the following: 
-(./images/architecture.png)
+![Architecture Diagram](./images/architecture.png)
  
