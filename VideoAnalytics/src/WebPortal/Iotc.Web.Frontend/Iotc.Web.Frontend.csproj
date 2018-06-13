@@ -135,13 +135,6 @@
     <Content Include="Image\icons\OPERATION.png" />
     <Content Include="Image\icons\report_selected.png" />
     <Content Include="Image\icons\report.png" />
-    <Content Include="Image\whitelist\1.jpg" />
-    <Content Include="Image\whitelist\2.jpg" />
-    <Content Include="Image\whitelist\3.jpg" />
-    <Content Include="Image\whitelist\4.jpg" />
-    <Content Include="Image\whitelist\5.jpg" />
-    <Content Include="Image\whitelist\add.png" />
-    <Content Include="Image\whitelist\user.png" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -183,7 +176,6 @@
     <Content Include="Scripts\DataTables-1.10.4\jquery.dataTables.js" />
     <Content Include="Scripts\DataTables-1.10.4\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.extension\jquery.bootstrap.dropdown.js" />
-    <Content Include="Scripts\legend\legend.js" />
     <Content Include="ViewModels\input-validation.js" />
     <Content Include="ViewModels\CameraViewModel.js" />
     <Content Include="ViewModels\EdgeDeviceViewModel.js" />
