@@ -158,10 +158,8 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CamerasController.cs" />
-    <Compile Include="Controllers\DateTimeExtension.cs" />
     <Compile Include="Controllers\EdgeDevicesController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
-    <Compile Include="Controllers\InsightController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -1,6 +1,6 @@
 # Deployment For Video Analytics on Azure IoT Edge
 
-This instruction are used for deploy the video analytics on Azure IoT Edge,  after deployment, then you can monitoring one or multiple cameras for human detection and helmet alert. 
+This instruction are used for deploying the video analytics on Azure IoT Edge,  after deployment, then you can monitoring one or multiple cameras for human detection and helmet alert. 
 
 Requirement: 
 1. An Azure Subscription which have Azure IoT Edge Supported. 
@@ -17,7 +17,7 @@ Deployment Steps.
 
 4. [Then build and upload the docker image used for Azure IoT Edge](./BuildImage.md "Then build and upload the docker image used for Azure IoT Edge"). 
 
-5. Connect with the SQL database and then Init the database tables, the sql script can be found in src/WebPortal/DataAccessLayer/SQL/init.sql 
+5. Connect with the SQL database and then init the database tables, the sql script can be found in src/WebPortal/DataAccessLayer/SQL/init.sql 
 6. Open the Iot.Web.sln in src/WebPortal, then replace the configuration section in the following location.
 	a) Change the configuration in Web.Config in Iot.web.backend
 	b) Change the configuration in App.Config in MessageHandler project

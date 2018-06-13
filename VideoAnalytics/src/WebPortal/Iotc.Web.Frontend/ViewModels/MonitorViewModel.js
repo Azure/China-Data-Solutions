@@ -1,10 +1,6 @@
 ﻿function MonitorViewModel() {
     var self = this;
 
-    // All business logic goes here
-
-    //self.currimg = null;
-    //self.presshistory = false;
     self.currTime = null;
 
     self.selectedDevice = "ViewAll";
@@ -30,30 +26,6 @@
         self.ClearTimer();
     };
 
-    //self.setProgressBarTimer = function () {
-    //    var al = 0;
-    //    if (self.sim === undefined) {
-    //        self.sim = setInterval(function () {
-    //            self.progressBarSim(al);
-    //            al += 10;
-    //        }, 300);
-    //        if (al >= 100) {
-    //            self.clearProgressBarTimer();
-    //        }
-    //    }
-    //};
-
-    //self.clearProgressBarTimer = function () {
-    //    if (self.sim !== undefined) {
-    //        self.sim = window.clearInterval(self.sim);
-    //    }
-    //};
-
-    //self.progressBarSim = function (al) {
-    //    var bar = document.getElementById('progressBar');
-    //    bar.value = al;
-    //};
-
     self.updateImage = function () {
 
         $.getJSON("api/Insight/GetImageData", { time: self.currTime }, function (data) {
@@ -78,29 +50,6 @@
 
         });
     };
-
-    //self.updateStatus = function () {
-    //    $.getJSON("api/Insight/GetStatus", function (data) {
-
-    //                $.getJSON("api/Insight/GetLastData", function (data) {
-    //                    if (data !== null && data.AlertTime !== "") {
-
-    //                        self.updateTable();
-
-    //                        var blink = document.getElementById('blinkbox');
-    //                        var st = data.Status;
-    //                        if (st === "Alert") {
-    //                            blink.style.display = "block";
-    //                            blink.style.borderColor = "red";
-    //                        } else {
-    //                            blink.style.borderColor = "green";
-    //                            blink.style.display = "block";
-    //                        }
-    //                    }
-    //                });
-
-    //    });
-    //};
 
     self.MessageList = [];
 
@@ -193,55 +142,11 @@
             $('#playbackplayer').html(newPlayerHTML);
 
 
-
-            //var time = $('#messageTable').DataTable().row(this).data().time;
-            //if (time !== undefined && time !== "") {
-
-            //    $.getJSON("api/Insight/GetHistoryData", { time: time }, function (data) {
-            //        if (data !== null) {
-            //            var image1 = document.getElementById('wl1');
-            //            image1.src = "data:image/jpeg;base64," + data.Image;
-            //            var dis = document.getElementById('imgDis');
-            //            dis.textContent = "History: " + time;
-            //            self.presshistory = true;
-            //            self.setTimer();
-
-            //            var blink = document.getElementById('blinkbox');
-            //            var st = data.Status;
-            //            if (st === "Alert") {
-            //                blink.style.display = "block";
-            //                blink.style.borderColor = "red";
-            //            } else {
-            //                blink.style.borderColor = "green";
-            //                blink.style.display = "block";
-            //            }
-            //        }
-
-            //    });
-            //}
-
         });
 
-        //$('#messageTable tbody').on('dblclick', 'tr', function () {
-        //    self.selectedDevice = self.table.row(this).data().device;
-        //    self.updateTable(true);
-        //});
 
     };
 
-
-
-    //self.redrawMessageList = function () {
-    //    if ($('#messageTable').DataTable().rows()[0] === undefined)
-    //        return;
-
-    //    if ($('#messageTable').DataTable().rows()[0].length > 0)
-    //        $('#messageTable').DataTable().clear().draw();
-    //    $('#messageTable').DataTable().rows.add(self.MessageList).draw();
-
-    //    $("td:contains('Alert')").css('color', "red");
-    //    $("td:contains('Not Alert')").css('color', "green");
-    //};
 
 
     self.ResetPage = function () {
