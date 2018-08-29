@@ -23,7 +23,7 @@ namespace linuxhatdemo
         private static double _fps = 30.0;
         private const int CAPTUREWIDTH = 640;
         private const int CAPTUREHEIGHT = 320;
-        private static DeviceClient _deviceClient;
+        private static ModuleClient _moduleClient;
         private static Random _random = new Random();
 
         private static Mat latestFrame = new Mat();
@@ -50,13 +50,9 @@ namespace linuxhatdemo
             {
                 LogUtil.Log("start", LogLevel.Info);
 
-                // The Edge runtime gives us the connection string we need -- it is injected as an environment variable
-                string connectionString = Environment.GetEnvironmentVariable("EdgeHubConnectionString");
-
-                Init(connectionString).Wait();
-
-
-                LogUtil.Log("device client opend!", LogLevel.Info);
+                Init().Wait();
+                
+                LogUtil.Log("Init finished!", LogLevel.Info);
 
                 // --for debug only--
                 // RTSP = "rtsp://admin:Passw0rd!@10.172.94.234:554/h264/ch1/main/av_stream";
@@ -216,7 +212,7 @@ namespace linuxhatdemo
                 Message eventMessage = new Message(Encoding.UTF8.GetBytes(dataBuffer));
                 //eventMessage.Properties.Add("Snapshot", snapshot);
 
-                await _deviceClient.SendEventAsync("output1", eventMessage);
+                await _moduleClient.SendEventAsync("output1", eventMessage);
 
                 LogUtil.Log("sending messages success", LogLevel.Info);
             }
@@ -319,21 +315,20 @@ namespace linuxhatdemo
         /// Initializes the DeviceClient and sets up the callback to receive
         /// messages containing temperature information
         /// </summary>
-        static async Task Init(string connectionString)
+        static async Task Init()
         {
             try
             {
-                LogUtil.Log($"Init: Connection String: {connectionString}", LogLevel.Info);
 
-                var mqttSettings = new MqttTransportSettings(TransportType.Mqtt_Tcp_Only);
-                // During dev you might want to bypass the cert verification. It is highly recommended to verify certs systematically in production
-                mqttSettings.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+                AmqpTransportSettings amqpSetting = new AmqpTransportSettings(TransportType.Amqp_Tcp_Only);
+                ITransportSettings[] settings = { amqpSetting };
 
-                ITransportSettings[] settings = { mqttSettings };
                 // Open a connection to the Edge runtime
-                _deviceClient = DeviceClient.CreateFromConnectionString(connectionString, settings);
+                _moduleClient = await ModuleClient.CreateFromEnvironmentAsync(settings);
+                await _moduleClient.OpenAsync();
+                LogUtil.Log("IoT Hub module client initialized.",LogLevel.Info);
 
-                var moduleTwin = await _deviceClient.GetTwinAsync();
+                var moduleTwin = await _moduleClient.GetTwinAsync();
 
                 moduleId = moduleTwin.ModuleId; // not work yet.
                 LogUtil.Log($"moduleTwin.moduleId: {moduleId}");
@@ -378,15 +373,15 @@ namespace linuxhatdemo
                     LogUtil.Log($"StorageURI: {STORAGEURI}", LogLevel.Info);
                 }
 
-                await _deviceClient.OpenAsync();
+                await _moduleClient.OpenAsync();
 
                 LogUtil.Log("IoT Hub module client initialized.", LogLevel.Info);
 
                 // Register callback to be called when a message is received by the module
-                await _deviceClient.SetInputMessageHandlerAsync("input1", PipeMessage, _deviceClient);
+                await _moduleClient.SetInputMessageHandlerAsync("input1", PipeMessage, _moduleClient);
 
                 // Attach callback for Twin desired properties updates
-                await _deviceClient.SetDesiredPropertyUpdateCallbackAsync(OnDesiredPropertiesUpdate, null);
+                await _moduleClient.SetDesiredPropertyUpdateCallbackAsync(OnDesiredPropertiesUpdate, null);
 
 
             }
@@ -470,8 +465,8 @@ namespace linuxhatdemo
 
                 int counterValue = Interlocked.Increment(ref counter);
 
-                var deviceClient = userContext as DeviceClient;
-                if (deviceClient == null)
+                var moduleClient = userContext as ModuleClient;
+                if (moduleClient == null)
                 {
                     throw new InvalidOperationException("UserContext doesn't contain " + "expected values");
                 }
@@ -489,7 +484,7 @@ namespace linuxhatdemo
                         pipeMessage.Properties.Add(prop.Key, prop.Value);
                     }
 
-                    await deviceClient.SendEventAsync("output1", pipeMessage);
+                    await moduleClient.SendEventAsync("output1", pipeMessage);
 
                     LogUtil.Log("Received message sent to output1", LogLevel.Info);
 
