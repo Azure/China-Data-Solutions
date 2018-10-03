@@ -2,7 +2,7 @@
 Data analytics industry solutions are for transforming your data into business intelligence actions. Solution how-to guides contain all the necessary materials and instructions to guide how to deploy solutions to Azure China subscription.
 
 We provide both source packages and demo packages for customers and partners.
-* Source package - Source package includes sample raw data, trained models and demo application (web app or PBI report). Source package can be easy deployed to Azure subscription directly by following the instructions in readme. With source package, customers and partners can easy understand how to build business scenarios with Azure services. Customers and partners can repalce the raw data with their real business data, and customize the solution to build their owned demo and PoC on demand.
+* Source packages - Source packages include sample raw data, trained models and demo application (web app or PBI report). Source packages can be easy deployed to Azure subscription directly by following the instructions in the readme file. With source packages, customers and partners can easily understand how to build business scenarios with Azure services. Customers and partners can replace the raw data with their real business data, and customize the solutions to build their own demo and PoC on demand.
 * Demo package - Demo package includes cooked data and demo application (web app or PBI report). Demo package can be deployed by following the instructions in readme. With demo package, it helps customers and partners quick understanding business scenarios and capability of Azure services. They can also modify the demo application to present their business scenarios on their demand.
 
 
