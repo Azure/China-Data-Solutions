@@ -22,5 +22,7 @@
 ### 客户评论数据分析 [[参考代码]](./Marketing/CRDAnalytics) [[在线演示]](https://msit.powerbi.com/view?r=eyJrIjoiNGJiMmFhMjMtNzE0OC00MjM1LThiOTgtYjFhOWIzY2ZlZmU2IiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
 基于电商网站用户评论数据，多维度分析、比较产品及竞品的优势及差异，为产品改进提供可量化建议。
 
-### 营销方案优化 [[参考代码]](./Marketing/Campaign) [[在线演示]](https://msit.powerbi.com/view?r=eyJrIjoiN2ZmMTE0MWMtNjkyYi00YTc4LTlkNzUtNzdkZDYyOTVjZGM3IiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
+
+### 营销方案优化 [[在线演示]](https://msit.powerbi.com/view?r=eyJrIjoiN2ZmMTE0MWMtNjkyYi00YTc4LTlkNzUtNzdkZDYyOTVjZGM3IiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
+
 对商家的历史销售数据进行分析，建立预测模型对营销活动转化率进行预测，并将预测结果转化为营销建议，提高营销活动转化率。
