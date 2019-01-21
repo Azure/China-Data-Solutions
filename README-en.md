@@ -23,5 +23,7 @@ Discover and monitor events of enterprise, analyze sentiment and impact of event
 ### Customer Review Data Analytics Solution [[Sample Code]](./Marketing/CRDAnalytics) [[Online Demo]](https://msit.powerbi.com/view?r=eyJrIjoiNGJiMmFhMjMtNzE0OC00MjM1LThiOTgtYjFhOWIzY2ZlZmU2IiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
 Analyze and monitor customer review on productions based on review data published on e-commerce websites.
 
+
 ### Compaign Optimization Solution [[Online Demo]](https://msit.powerbi.com/view?r=eyJrIjoiN2ZmMTE0MWMtNjkyYi00YTc4LTlkNzUtNzdkZDYyOTVjZGM3IiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9)
+
 The solution migrated from global Azure, and demonstrates how to recommend actions to maximize the purchase rate of leads targeted by a campaign. 
